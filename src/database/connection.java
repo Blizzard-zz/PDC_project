@@ -1,25 +1,20 @@
 package database;
 
 import java.sql.*;
-import java.util.logging.Handler;
+
 
 public class connection {
     Connection connection;
-    PreparedStatement preparedStatement;
-    Statement statement;
-    ResultSet resultSet;
+    public Statement statement;
     String url = "jdbc:derby:D:/Derby/db-derby-10.13.1.1-bin/bin/firstdb";
     String user = "root";
     String password = "wanglei1224";
 
-    public connection(){
-
+    public connection() {
         getConnection();
-
     }
 
-
-    public Connection getConnection(){
+    public Connection getConnection() {
         try {
             Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
             System.out.println("driver success");
@@ -27,22 +22,25 @@ public class connection {
             e.printStackTrace();
         }
         try {
-            connection = DriverManager.getConnection(url);
+            connection = DriverManager.getConnection(url, user, password);
 
             statement = connection.createStatement();
 
             System.out.println("connection success");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        }finally {
-
         }
         return connection;
     }
 
-
-
-
+    public void close_Connection() {
+        try {
+            System.out.println("all the operation have done, close connection");
+            connection.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 
 }
 
