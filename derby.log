@@ -1,7 +1,7 @@
 ----------------------------------------------------------------
-Fri Jan 15 08:28:31 GMT+08:00 2021:
+Fri Jan 15 21:20:13 GMT+08:00 2021:
 正在使用类加载程序 sun.misc.Launcher$AppClassLoader@18b4aac2 引导数据库
-目录 D:\Derby\db-derby-10.13.1.1-bin\bin\firstdb 中的 Derby 版本 The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088) 实例 a816c00e-0177-0371-94c6-000015cf42d8
+目录 D:\Derby\db-derby-10.13.1.1-bin\bin\firstdb 中的 Derby 版本 The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088) 实例 a816c00e-0177-0634-174e-000015cf41b8
 已从 file:/D:/Derby/db-derby-10.13.1.1-bin/lib/derby.jar 加载
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_271-b09

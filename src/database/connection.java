@@ -6,6 +6,7 @@ import java.sql.*;
 public class connection {
     Connection connection;
     public Statement statement;
+
     String url = "jdbc:derby:D:/Derby/db-derby-10.13.1.1-bin/bin/firstdb";
     String user = "root";
     String password = "wanglei1224";
