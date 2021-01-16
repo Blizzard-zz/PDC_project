@@ -7,7 +7,7 @@ public class connection {
     Connection connection;
     public Statement statement;
 
-    String url = "jdbc:derby:D:/Derby/db-derby-10.13.1.1-bin/bin/firstdb";
+    String url = "jdbc:derby:D:/Derby/db-derby-10.14.2.0-bin/bin/PDC_database";
     String user = "root";
     String password = "wanglei1224";
 

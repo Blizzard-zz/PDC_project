@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="toursdb" uuid="2ee405ab-a7d4-41d0-9ebb-4aa40bd63c84">
+    <data-source source="LOCAL" name="PDC_database" uuid="54024aec-7acb-4f23-bc6d-8ce6a6321b86">
       <driver-ref>derby.embedded</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc-driver>
-      <jdbc-url>jdbc:derby:D:/Derby/test5/db-derby-10.13.1.1-bin/demo/databases/toursdb</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="firstdb" uuid="93451fc0-f99a-47cd-b992-26d42891f285">
-      <driver-ref>derby.embedded</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc-driver>
-      <jdbc-url>jdbc:derby:D:/Derby/db-derby-10.13.1.1-bin/bin/firstdb</jdbc-url>
+      <jdbc-url>jdbc:derby:D:/Derby/db-derby-10.14.2.0-bin/bin/PDC_database</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
