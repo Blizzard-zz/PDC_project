@@ -27,6 +27,7 @@ public class create_table {
         customer.insert("Mary", "Ropack", "78345", "rwf74d8", "fgijh");
         customer.view_table();
         Get_customer get_customer = customer.get(1);
+
         customer.delete(1, customer.table_name1);
         customer.view_table();
         System.out.println();
