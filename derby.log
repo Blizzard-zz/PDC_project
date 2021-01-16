@@ -1,10 +1,10 @@
 ----------------------------------------------------------------
-Fri Jan 15 21:20:13 GMT+08:00 2021:
-正在使用类加载程序 sun.misc.Launcher$AppClassLoader@18b4aac2 引导数据库
-目录 D:\Derby\db-derby-10.13.1.1-bin\bin\firstdb 中的 Derby 版本 The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088) 实例 a816c00e-0177-0634-174e-000015cf41b8
-已从 file:/D:/Derby/db-derby-10.13.1.1-bin/lib/derby.jar 加载
-java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_271-b09
+Sat Jan 16 01:11:19 UTC 2021:
+正在使用类加载程序 jdk.internal.loader.ClassLoaders$AppClassLoader@5b37e0d2 引导数据库
+目录 D:\Derby\db-derby-10.13.1.1-bin\bin\firstdb 中的 Derby 版本 The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088) 实例 a816c00e-0177-08bf-1c2a-000007700000
+已从 file:/D:/Derby/test5/db-derby-10.13.1.1-bin/lib/derby.jar 加载
+java.vendor=JetBrains s.r.o.
+java.runtime.version=11.0.9+11-b1145.21
 user.dir=C:\Users\zzzzzz\IdeaProjects\PDC_project
 os.name=Windows 10
 os.arch=amd64
