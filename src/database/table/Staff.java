@@ -142,6 +142,7 @@ public class Staff extends Table_super {
                     String register = resultSet.getString("register");
                     String question = resultSet.getString("question");
                     Get_staff get_staff = new Get_staff(id, firstname, lastname, phone, password, register, question);
+
                     return get_staff;
                 }
 
