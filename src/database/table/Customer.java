@@ -10,24 +10,24 @@ import java.util.Objects;
 
 public class Customer extends Table_super {
     public String table_name1 = "customer";
-    database.connection connection;
+//    database.connection connection;
 
     public Customer(ArrayList list, connection c) {
         super(c);
-        this.connection = super.connection;
+//        this.connection = super.connection;
         initial_table(list);
 
     }
 
     public void initial_table(ArrayList list) {
-        connection c = this.connection;
+//        connection c = this.connection;
         try {
             if (!list.contains(table_name1)) {
 
                 String sqlCreateTable = "CREATE TABLE " + table_name1 + " (ID INT, "
                         + "firstname VARCHAR(50), lastname VARCHAR(50), phone_number VARCHAR(50),password VARCHAR(20),question VARCHAR (30))";
 
-                c.statement.executeUpdate(sqlCreateTable);
+                connection.statement.executeUpdate(sqlCreateTable);
                 System.out.println("table: " + table_name1 + " create success");
             } else {
 
@@ -42,11 +42,11 @@ public class Customer extends Table_super {
 
     public boolean judge_customer_exist(String phone) {
         String table = table_name1;
-        connection c = this.connection;
+//        connection c = this.connection;
         boolean exist = false;
         ArrayList<String> list = new ArrayList();
         try {
-            ResultSet resultSet = c.statement.executeQuery("select * from " + table);
+            ResultSet resultSet = connection.statement.executeQuery("select * from " + table);
             while (resultSet.next()) {
                 String column = resultSet.getString("phone_number");
                 list.add(column);
@@ -69,7 +69,7 @@ public class Customer extends Table_super {
     public void insert(String firstname, String lastname, String phone, String password, String question) {
 
         ArrayList<Integer> list;
-        list = get_id_list();
+        list = get_id_list(table_name1);
 
         boolean customer_exist = judge_customer_exist(phone);
 
@@ -83,17 +83,6 @@ public class Customer extends Table_super {
             insert_value(last_id, firstname, lastname, phone, password, question);
         }
 
-    }
-
-    private int create_new_id(ArrayList<Integer> list) {
-        int last_id;
-        if (list.size() == 0) {
-            last_id = 1;
-        } else {
-            last_id = list.get(list.size() - 1);
-            last_id++;
-        }
-        return last_id;
     }
 
     private int search_id_by_phone(String phone) {
@@ -135,39 +124,12 @@ public class Customer extends Table_super {
         }
     }
 
-    public ArrayList get_id_list() {
-
-        ArrayList<Integer> list = new ArrayList();
-        try {
-            ResultSet resultSet = connection.statement.executeQuery("select * from " + table_name1);
-            while (resultSet.next()) {
-                int column = resultSet.getInt(1);
-                list.add(column);
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        return list;
-    }
-
-    private boolean judge_id_exist(ArrayList<Integer> list, int id) {
-        System.out.print("exist id list: ");
-        boolean exist = false;
-        for (Integer i : list) {
-            System.out.print(i + " ");
-            if (i == id) exist = true;
-        }
-        System.out.println();
-        return exist;
-    }
-
     // get an object by id
     public Get_customer get(int id) {
         String table_name = this.table_name1;
-        connection c = this.connection;
+//        connection c = this.connection;
         try {
-            ResultSet resultSet = c.statement.executeQuery("select * from " + table_name);
+            ResultSet resultSet = connection.statement.executeQuery("select * from " + table_name);
 
             while (resultSet.next()) {
                 if (id == resultSet.getInt("id")) {
@@ -188,12 +150,12 @@ public class Customer extends Table_super {
         return null;
     }
 
-    public boolean login(String phone, String intput_password) {
+    public boolean login(String phone, String input_password) {
         boolean login = false;
 
         String login_password = search_password_by_phone(phone);
 
-        if (login_password.equals(intput_password)) {
+        if (login_password.equals(input_password)) {
             login = true;
             System.out.println("input password correct,login.....");
         }

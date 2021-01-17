@@ -41,7 +41,7 @@ public class Hotel extends Table_super {
 
     public void insert(String hotel_name, int single_room, int double_room, int tripe_room, int four_room, int business_room, int presidential_suite) {
 
-        ArrayList<Integer> list = get_id_list();
+        ArrayList<Integer> list = get_id_list(table_name1);
 
         boolean hotel_exist = judge_hotel_exist(hotel_name);
 
@@ -55,6 +55,19 @@ public class Hotel extends Table_super {
             insert_value(last_id, hotel_name, single_room, double_room, tripe_room, four_room, business_room, presidential_suite);
         }
 
+    }
+
+    private void update_value(int pre_id, String hotel_name, int single_room, int double_room, int tripe_room, int four_room, int business_room, int presidential_suite) {
+
+        try {
+            String update = "update " + table_name1 + " set " + "hotel_name = '" + hotel_name + "',single_room = " + single_room
+                    + ",double_room = " + double_room + ",tripe_room = " + tripe_room + ",four_room = " + four_room + ",business_room = "
+                    + business_room + ",presidential_suite = " + presidential_suite + " where id = " + pre_id;
+            System.out.println(update);
+            connection.statement.executeUpdate(update);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
     }
 
@@ -82,33 +95,6 @@ public class Hotel extends Table_super {
         return exist;
     }
 
-    public ArrayList get_id_list() {
-//        connection c = this.connection;
-        ArrayList<Integer> list = new ArrayList();
-        try {
-            ResultSet resultSet = connection.statement.executeQuery("select * from " + table_name1);
-            while (resultSet.next()) {
-                int column = resultSet.getInt(1);
-                list.add(column);
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        return list;
-    }
-
-    private int create_new_id(ArrayList<Integer> list) {
-        int last_id;
-        if (list.size() == 0) {
-            last_id = 1;
-        } else {
-            last_id = list.get(list.size() - 1);
-            last_id++;
-        }
-        return last_id;
-    }
-
     private int search_id_by_hotel_name(String hotel_name) {
         System.out.println("hotel_name = " + hotel_name);
         try {
@@ -123,21 +109,6 @@ public class Hotel extends Table_super {
             throwables.printStackTrace();
         }
         return 0;
-    }
-
-
-    private void update_value(int pre_id, String hotel_name, int single_room, int double_room, int tripe_room, int four_room, int business_room, int presidential_suite) {
-
-        try {
-            String update = "update " + table_name1 + " set " + "hotel_name = '" + hotel_name + "',single_room = " + single_room
-                    + ",double_room = " + double_room + ",tripe_room = " + tripe_room + ",four_room = " + four_room + ",business_room = "
-                    + business_room + ",presidential_suite = " + presidential_suite + " where id = " + pre_id;
-            System.out.println(update);
-            connection.statement.executeUpdate(update);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
     }
 
 

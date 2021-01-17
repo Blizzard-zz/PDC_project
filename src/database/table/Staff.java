@@ -47,7 +47,7 @@ public class Staff extends Table_super {
     public void insert(String firstname, String lastname, String phone, String password, String register, String question) {
 
         ArrayList<Integer> list;
-        list = get_id_list();
+        list = get_id_list(table_name1);
 
         boolean staff_exist = judge_staff_exist(phone);
 
@@ -117,17 +117,6 @@ public class Staff extends Table_super {
 
     }
 
-    private int create_new_id(ArrayList<Integer> list) {
-        int last_id;
-        if (list.size() == 0) {
-            last_id = 1;
-        } else {
-            last_id = list.get(list.size() - 1);
-            last_id++;
-        }
-        return last_id;
-    }
-
     private void insert_value(int last_id, String firstname, String lastname, String phone, String password, String register, String question) {
         try {
             String insert = "insert into " + table_name1 + " values (" + last_id + ",'" + firstname + "','" + lastname
@@ -137,34 +126,6 @@ public class Staff extends Table_super {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-    }
-
-
-    private boolean judge_id_exist(ArrayList<Integer> list, int id) {
-        System.out.print("exist id list: ");
-        boolean exist = false;
-        for (Integer i : list) {
-            System.out.print(i + " ");
-            if (i == id) exist = true;
-        }
-        System.out.println();
-        return exist;
-    }
-
-    public ArrayList get_id_list() {
-
-        ArrayList<Integer> list = new ArrayList();
-        try {
-            ResultSet resultSet = connection.statement.executeQuery("select * from " + table_name1);
-            while (resultSet.next()) {
-                int column = resultSet.getInt(1);
-                list.add(column);
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        return list;
     }
 
     public Get_staff get(int id) {
@@ -179,8 +140,8 @@ public class Staff extends Table_super {
                     String phone = resultSet.getString("phone_number");
                     String password = resultSet.getString("password");
                     String register = resultSet.getString("register");
-                    String quetion = resultSet.getString("question");
-                    Get_staff get_staff = new Get_staff(id, firstname, lastname, phone, password, register, quetion);
+                    String question = resultSet.getString("question");
+                    Get_staff get_staff = new Get_staff(id, firstname, lastname, phone, password, register, question);
                     return get_staff;
                 }
 
@@ -194,12 +155,12 @@ public class Staff extends Table_super {
     }
 
     //login judge the input_password whether equal to the password stored in the database.
-    public boolean login(String phone, String intput_password) {
+    public boolean login(String phone, String input_password) {
         boolean login = false;
 
         String login_password = search_password_by_phone(phone);
 
-        if (login_password.equals(intput_password)) {
+        if (login_password.equals(input_password)) {
             login = true;
             System.out.println("input password correct,login.....");
         }
