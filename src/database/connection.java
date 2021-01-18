@@ -7,7 +7,8 @@ public class connection {
     Connection connection;
     public Statement statement;
 
-    String url = "jdbc:derby:D:/Derby/db-derby-10.14.2.0-bin/bin/PDC_database";
+//    String url = "jdbc:derby:C:/Users/zzzzzz/IdeaProjects/PDC_project/PDC_database";
+String url = "jdbc:derby:PDC_database";
     String user = "root";
     String password = "wanglei1224";
 
@@ -18,7 +19,7 @@ public class connection {
     public Connection getConnection() {
         try {
             Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-            System.out.println("driver success");
+            System.out.println("Driver Success");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -27,7 +28,7 @@ public class connection {
 
             statement = connection.createStatement();
 
-            System.out.println("connection success");
+            System.out.println("Connection Success");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

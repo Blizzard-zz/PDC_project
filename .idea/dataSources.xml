@@ -5,7 +5,7 @@
       <driver-ref>derby.embedded</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc-driver>
-      <jdbc-url>jdbc:derby:D:/Derby/db-derby-10.14.2.0-bin/bin/PDC_database</jdbc-url>
+      <jdbc-url>jdbc:derby:$PROJECT_DIR$/PDC_database</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
