@@ -1,14 +1,14 @@
 package database.get_object;
 
 public class Get_hotel {
-    int id;
-    String hotel_name;
-    int single_room;
-    int double_room;
-    int tripe_room;
-    int four_room;
-    int business_room;
-    int presidential_suite;
+    public int id;
+    public String hotel_name;
+    public int single_room;
+    public int double_room;
+    public int tripe_room;
+    public int four_room;
+    public int business_room;
+    public int presidential_suite;
 
     public Get_hotel(int id, String hotel_name, int single_room, int double_room, int tripe_room, int four_room, int business_room, int presidential_suite) {
         this.id = id;
@@ -19,7 +19,7 @@ public class Get_hotel {
         this.four_room = four_room;
         this.business_room = business_room;
         this.presidential_suite = presidential_suite;
-        print();
+//        print();
     }
 
     public void print() {

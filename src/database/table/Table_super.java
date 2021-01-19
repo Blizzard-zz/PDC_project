@@ -23,7 +23,6 @@ public abstract class Table_super implements Table {
 
     public abstract void initial_table(ArrayList list);
 
-
     public ArrayList get_id_list(String name) {
 //        name = table_name1;
         ArrayList<Integer> list = new ArrayList();
@@ -53,6 +52,8 @@ public abstract class Table_super implements Table {
 
     //-----search ID by username or phone-----//
     public int search_id_by_phone_or_username(String input) {
+        boolean exist = judge_something_exist_by_phone_or_username(input);
+
 
         if (isNumeric(input)) {
             String search1 = "select id from " + table_name1 + " where phone_number = '" + input + "'";
@@ -310,14 +311,22 @@ public abstract class Table_super implements Table {
 
     @Override
     public void delete(int id) {
-        try {
-            String delete = "delete from " + table_name1 + " where id = " + id;
-            System.out.println(delete);
-            connection.statement.executeUpdate("delete from " + table_name1 + " where id = " + id);
-            System.out.println("success delete id: " + id);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        ArrayList list = get_id_list(table_name1);
+//        System.out.println(list.contains(id));
+        if (list.contains(id)) {
+            try {
+                String delete = "delete from " + table_name1 + " where id = " + id;
+                System.out.println(delete);
+                connection.statement.executeUpdate("delete from " + table_name1 + " where id = " + id);
+                System.out.println("success delete id: " + id);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        } else {
+            System.out.println("No id exist");
+
         }
+
     }
 
     @Override

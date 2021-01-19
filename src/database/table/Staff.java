@@ -40,8 +40,7 @@ public class Staff extends Table_super {
     //insert value and need to select id if there has same id then update ,else insert value
     public void insert(String username, String firstname, String lastname, String phone, String password, String register, String question) {
 
-        ArrayList<Integer> list;
-        list = get_id_list(table_name1);
+        ArrayList<Integer> list = get_id_list(table_name1);
 
         boolean staff_exist1 = judge_something_exist_by_phone_or_username(phone);
         boolean staff_exist2 = judge_something_exist_by_phone_or_username(username);
@@ -59,7 +58,6 @@ public class Staff extends Table_super {
     }
 
     private void update_value(int pre_id, String username, String firstname, String lastname, String phone, String password, String register, String question) {
-
         try {
             String update = "update " + table_name1 + " set " + "username = '" + username + "',firstname = '" + firstname + "',lastname = '" + lastname
                     + "',phone_number = '" + phone + "',password = '" + password +
@@ -69,7 +67,6 @@ public class Staff extends Table_super {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
     }
 
     private void insert_value(int last_id, String username, String firstname, String lastname, String phone, String password, String register, String question) {

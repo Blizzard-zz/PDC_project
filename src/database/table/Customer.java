@@ -37,8 +37,7 @@ public class Customer extends Table_super {
     //insert value and need to select id if there has same id then update ,else insert value
     public void insert(String username, String firstname, String lastname, String phone, String password, String question) {
 
-        ArrayList<Integer> list;
-        list = get_id_list(table_name1);
+        ArrayList<Integer> list = get_id_list(table_name1);
 
         boolean customer_exist1 = judge_something_exist_by_phone_or_username(phone);
         boolean customer_exist2 = judge_something_exist_by_phone_or_username(username);
@@ -54,7 +53,6 @@ public class Customer extends Table_super {
         }
 
     }
-
 
     private void update_value(int pre_id, String username, String firstname, String lastname, String phone, String password, String question) {
 

@@ -7,8 +7,8 @@ public class connection {
     public Connection connection;
     public Statement statement;
 
-//    String url = "jdbc:derby:C:/Users/zzzzzz/IdeaProjects/PDC_project/PDC_database";
-String url = "jdbc:derby:PDC_database";
+    //    String url = "jdbc:derby:C:/Users/zzzzzz/IdeaProjects/PDC_project/PDC_database";
+    String url = "jdbc:derby:PDC_database";
     String user = "root";
     String password = "wanglei1224";
 

@@ -2,6 +2,7 @@ package database;
 
 import database.get_object.Get_customer;
 import database.get_object.Get_hotel;
+import database.get_object.Get_staff;
 import database.table.Customer;
 import database.table.Hotel;
 import database.table.Image;
@@ -26,8 +27,10 @@ public class create_table {
         customer.insert("Apple", "Bob", "White", "123456789", "991224wl", "akkk");
         customer.insert("Banana", "Mary", "Ropack", "78345", "rwf74d8", "fgijh");
         customer.view_table();
-        Get_customer get_customer = customer.get(1);
         int id = customer.search_id_by_phone_or_username("Apple");
+        Get_customer get_customer = customer.get(id);
+//        int id = customer.search_id_by_phone_or_username("Apple");
+        get_customer.print();
         customer.delete(id);
         customer.view_table();
         System.out.println();
@@ -37,8 +40,11 @@ public class create_table {
         staff.insert("Tree", "jack", "Black", "186457451", "password1", "ABRIHUJ", "mary");
         staff.insert("Sea", "mary", "Blown", "641515674", "te489.15b", "ABYVFS", "helen");
         staff.view_table();
-        staff.get(1);
-        int id2 = customer.search_id_by_phone_or_username("Tree");
+        int id2 = staff.search_id_by_phone_or_username("Tree");
+        System.out.println("ID2 = " + id2);
+        Get_staff get_staff = staff.get(id2);
+        get_staff.print();
+//        int id2 = customer.search_id_by_phone_or_username("Tree");
         staff.delete(id2);
         staff.view_table();
         System.out.println();
@@ -47,7 +53,9 @@ public class create_table {
         hotel.insert("fly fire hotel", 4, 5, 2, 6, 1, 0);
         hotel.insert("fly cat hotel", 1, 0, 2, 3, 5, 6);
         hotel.view_table();
-        Get_hotel get_hotel = hotel.get(1);
+        int id3 = hotel.search_id_by_hotel_name("fly fire hotel");
+        Get_hotel get_hotel = hotel.get(id3);
+        get_hotel.print();
         hotel.delete(1);
         hotel.view_table();
         System.out.println();

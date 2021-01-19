@@ -9,7 +9,7 @@ public class Get_image {
         this.id = id;
         this.hotel_name = hotel_name;
         this.path = path;
-        print();
+//        print();
     }
 
 

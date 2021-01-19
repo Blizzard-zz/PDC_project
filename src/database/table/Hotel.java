@@ -86,7 +86,7 @@ public class Hotel extends Table_super {
         return exist;
     }
 
-    private int search_id_by_hotel_name(String hotel_name) {
+    public int search_id_by_hotel_name(String hotel_name) {
         System.out.println("hotel_name = " + hotel_name);
         try {
             String search = "select id from " + table_name1 + " where hotel_name = '" + hotel_name + "'";

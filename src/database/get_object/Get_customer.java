@@ -1,13 +1,13 @@
 package database.get_object;
 
 public class Get_customer {
-    int id;
-    String username;
-    String firstname;
-    String lastname;
-    String phone_number;
-    String password;
-    String security_question;
+    public int id;
+    public String username;
+    public String firstname;
+    public String lastname;
+    public String phone_number;
+    public String password;
+    public String security_question;
 
     public Get_customer(int id, String username, String firstname, String lastname, String phone, String password, String question) {
         this.id = id;
@@ -17,7 +17,7 @@ public class Get_customer {
         this.phone_number = phone;
         this.password = password;
         this.security_question = question;
-        print();
+//        print();
     }
 
     public void print() {
