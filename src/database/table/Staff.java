@@ -13,8 +13,8 @@ public class Staff extends Table_super {
     public String table_name1;
     database.connection connection;
 
-    public Staff(ArrayList list, connection c) {
-        super(c);
+    public Staff(ArrayList list, connection c, String name) {
+        super(c, name);
         table_name1 = "staff";
         this.connection = super.connection;
         initial_table(list);
@@ -86,21 +86,21 @@ public class Staff extends Table_super {
         return exist;
     }
 
-    private int search_id_by_phone(String phone) {
-        System.out.println("phone_number = " + phone);
-        try {
-            String search = "select id from " + table_name1 + " where phone_number = '" + phone + "'";
-            System.out.println(search);
-            ResultSet resultSet = connection.statement.executeQuery(search);
-//            connection.statement.executeUpdate(search);
-            if (resultSet.next()) {
-                return resultSet.getInt("id");
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return 0;
-    }
+//    private int search_id_by_phone(String phone) {
+//        System.out.println("phone_number = " + phone);
+//        try {
+//            String search = "select id from " + table_name1 + " where phone_number = '" + phone + "'";
+//            System.out.println(search);
+//            ResultSet resultSet = connection.statement.executeQuery(search);
+////            connection.statement.executeUpdate(search);
+//            if (resultSet.next()) {
+//                return resultSet.getInt("id");
+//            }
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        }
+//        return 0;
+//    }
 
 
     private void update_value(int pre_id, String firstname, String lastname, String phone, String password, String register, String question) {
@@ -156,54 +156,54 @@ public class Staff extends Table_super {
     }
 
     //login judge the input_password whether equal to the password stored in the database.
-    public boolean login(String phone, String input_password) {
-        boolean login = false;
+//    public boolean login(String phone, String input_password) {
+//        boolean login = false;
+//        String judge = "phone_number";
+//        String login_password = search_password(phone,judge);
+//
+//        if (login_password.equals(input_password)) {
+//            login = true;
+//            System.out.println("input password correct,login.....");
+//        }
+//
+//        return login;
+//    }
 
-        String login_password = search_password_by_phone(phone);
-
-        if (login_password.equals(input_password)) {
-            login = true;
-            System.out.println("input password correct,login.....");
-        }
-
-        return login;
-    }
-
-    private String search_password_by_phone(String phone) {
-//        System.out.println("phone_number = " + phone);
-        try {
-            String search = "select password from " + table_name1 + " where phone_number = '" + phone + "'";
-            System.out.println(search);
-            ResultSet resultSet = connection.statement.executeQuery(search);
-            if (resultSet.next()) {
-                return resultSet.getString("password");
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return null;
-    }
+//    private String search_password_by_phone(String phone) {
+////        System.out.println("phone_number = " + phone);
+//        try {
+//            String search = "select password from " + table_name1 + " where phone_number = '" + phone + "'";
+//            System.out.println(search);
+//            ResultSet resultSet = connection.statement.executeQuery(search);
+//            if (resultSet.next()) {
+//                return resultSet.getString("password");
+//            }
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        }
+//        return null;
+//    }
 
     //if staff forget password, it provide a method to find it.
-    public String find_forget_password(String phone, String question) {
-        try {
-            String search = "select * from " + table_name1 + " where phone_number = '" + phone + "'";
-            ResultSet resultSet2 = connection.statement.executeQuery(search);
-
-            if (resultSet2.next()) {
-
-                String exist_question1 = resultSet2.getString("question");
-                if (exist_question1.equals(question)) {
-                    return resultSet2.getString("password");
-                }
-
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return null;
-
-    }
+//    public String find_forget_password(String phone, String question) {
+//        try {
+//            String search = "select * from " + table_name1 + " where phone_number = '" + phone + "'";
+//            ResultSet resultSet2 = connection.statement.executeQuery(search);
+//
+//            if (resultSet2.next()) {
+//
+//                String exist_question1 = resultSet2.getString("question");
+//                if (exist_question1.equals(question)) {
+//                    return resultSet2.getString("password");
+//                }
+//
+//            }
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        }
+//        return null;
+//
+//    }
 
 
     @Override

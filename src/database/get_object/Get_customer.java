@@ -2,14 +2,16 @@ package database.get_object;
 
 public class Get_customer {
     int id;
+    String username;
     String firstname;
     String lastname;
     String phone_number;
     String password;
     String security_question;
 
-    public Get_customer(int id, String firstname, String lastname, String phone, String password, String question) {
+    public Get_customer(int id, String username, String firstname, String lastname, String phone, String password, String question) {
         this.id = id;
+        this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
         this.phone_number = phone;

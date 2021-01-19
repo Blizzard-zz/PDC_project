@@ -21,43 +21,43 @@ public class create_table {
 
         System.out.println();
         System.out.println();
-        Customer customer = new Customer(list, c);
+        Customer customer = new Customer(list, c, "customer");
 //        customer.clean_table(customer.table_name1);
-        customer.insert("Bob", "White", "123456789", "991224wl", "akkk");
-        customer.insert("Mary", "Ropack", "78345", "rwf74d8", "fgijh");
+        customer.insert("Bob", "Apple", "White", "123456789", "991224wl", "akkk");
+        customer.insert("Mary", "Banana", "Ropack", "78345", "rwf74d8", "fgijh");
         customer.view_table();
         Get_customer get_customer = customer.get(1);
 
-        customer.delete(1, customer.table_name1);
+        customer.delete(1);
         customer.view_table();
         System.out.println();
 
-        Staff staff = new Staff(list, c);
+        Staff staff = new Staff(list, c, "staff");
 //        staff.clean_table(staff.table_name1);
         staff.insert("Leo", "Black", "186457451", "password1", "ABRIHUJ", "mary");
         staff.insert("Jack", "Blown", "641515674", "te489.15b", "ABYVFS", "helen");
         staff.view_table();
         staff.get(1);
-        staff.delete(1, staff.table_name1);
+        staff.delete(1);
         staff.view_table();
         System.out.println();
 
-        Hotel hotel = new Hotel(list, c);
+        Hotel hotel = new Hotel(list, c, "hotel");
         hotel.insert("fly fire hotel", 4, 5, 2, 6, 1, 0);
         hotel.insert("fly cat hotel", 1, 0, 2, 3, 5, 6);
         hotel.view_table();
         Get_hotel get_hotel = hotel.get(1);
-        hotel.delete(1, hotel.table_name1);
+        hotel.delete(1);
         hotel.view_table();
         System.out.println();
 
-        Image image = new Image(list, c);
-        image.insert(2, "fly fire", "C:\\Users\\zzzzzz\\IdeaProjects\\PDC_project\\image\\商城.png");
-        image.view_table();
-        image.get(2);
-        image.delete(2, image.table_name1);
-        image.view_table();
-        System.out.println();
+//        Image image = new Image(list, c,"image");
+//        image.insert(2, "fly fire", "C:\\Users\\zzzzzz\\IdeaProjects\\PDC_project\\image\\商城.png");
+//        image.view_table();
+//        image.get(2);
+//        image.delete(2, image.table_name1);
+//        image.view_table();
+//        System.out.println();
 
         login_test(customer, staff, "123456789", "991224wl", "186457451", "password1");
         forget_password_test(customer, staff, "123456789", "akkk", "186457451", "mary");
@@ -91,9 +91,9 @@ public class create_table {
     }
 
     public void clean_all_table(Customer customer, Staff staff, Hotel hotel) {
-        customer.clean_table(customer.table_name1);
-        staff.clean_table(staff.table_name1);
-        hotel.clean_table(hotel.table_name1);
+        customer.clean_table();
+        staff.clean_table();
+        hotel.clean_table();
     }
 
     public void login_test(Customer customer, Staff staff, String phone, String password, String phone2, String password2) {

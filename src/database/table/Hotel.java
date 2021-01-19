@@ -12,12 +12,11 @@ public class Hotel extends Table_super {
     public String table_name1;
     database.connection connection;
 
-    public Hotel(ArrayList list, connection c) {
-        super(c);
+    public Hotel(ArrayList list, connection c, String name) {
+        super(c, name);
         table_name1 = "hotel";
         this.connection = super.connection;
         initial_table(list);
-
     }
 
     public void initial_table(ArrayList list) {

@@ -16,7 +16,7 @@ String url = "jdbc:derby:PDC_database";
         getConnection();
     }
 
-    public Connection getConnection() {
+    public void getConnection() {
         try {
             Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
             System.out.println("Driver Success");
@@ -32,7 +32,6 @@ String url = "jdbc:derby:PDC_database";
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return connection;
     }
 
     public void close_Connection() {

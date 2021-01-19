@@ -12,9 +12,9 @@ public class Image extends Table_super {
     public String table_name1;
     database.connection connection;
 
-    public Image(ArrayList list, connection c) {
-        super(c);
-        table_name1 = "image";
+    public Image(ArrayList list, connection c, String name) {
+        super(c, name);
+
         this.connection = super.connection;
         initial_table(list);
     }
@@ -44,14 +44,14 @@ public class Image extends Table_super {
         String table = this.table_name1;
         connection c = this.connection;
         try {
-            ResultSet resultSet = c.statement.executeQuery("select * from " + table + " where id = " + id);
+            ResultSet resultSet = c.statement.executeQuery("select * from " + table_name1 + " where id = " + id);
             if (resultSet.next()) {
-                String update = "update " + table + " set " + "hotel_name = '" + hotel_name + "',path = '" + path + "' where id = " + id;
+                String update = "update " + table_name1 + " set " + "hotel_name = '" + hotel_name + "',path = '" + path + "' where id = " + id;
                 System.out.println(update);
                 c.statement.executeUpdate(update);
 
             } else {
-                String insert = "insert into " + table + " values (" + id + ",'" + hotel_name + "','" + path + "')";
+                String insert = "insert into " + table_name1 + " values (" + id + ",'" + hotel_name + "','" + path + "')";
                 System.out.println(insert);
                 c.statement.executeUpdate(insert);
             }
@@ -62,10 +62,10 @@ public class Image extends Table_super {
     }
 
     public Get_image get(int id) {
-        String table_name = this.table_name1;
+//        String table_name = this.table_name1;
         connection c = this.connection;
         try {
-            ResultSet resultSet = c.statement.executeQuery("select * from " + table_name);
+            ResultSet resultSet = c.statement.executeQuery("select * from " + table_name1);
 
             while (resultSet.next()) {
                 if (id == resultSet.getInt("id")) {
@@ -86,10 +86,10 @@ public class Image extends Table_super {
 
     @Override
     public void view_table() {
-        String table_name = this.table_name1;
+//        String table_name = this.table_name1;
         connection c = this.connection;
         try {
-            ResultSet resultSet = c.statement.executeQuery("select * from " + table_name);
+            ResultSet resultSet = c.statement.executeQuery("select * from " + table_name1);
             int index = 0;
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
