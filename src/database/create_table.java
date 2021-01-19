@@ -23,22 +23,23 @@ public class create_table {
         System.out.println();
         Customer customer = new Customer(list, c, "customer");
 //        customer.clean_table(customer.table_name1);
-        customer.insert("Bob", "Apple", "White", "123456789", "991224wl", "akkk");
-        customer.insert("Mary", "Banana", "Ropack", "78345", "rwf74d8", "fgijh");
+        customer.insert("Apple", "Bob", "White", "123456789", "991224wl", "akkk");
+        customer.insert("Banana", "Mary", "Ropack", "78345", "rwf74d8", "fgijh");
         customer.view_table();
         Get_customer get_customer = customer.get(1);
-
-        customer.delete(1);
+        int id = customer.search_id_by_phone_or_username("Apple");
+        customer.delete(id);
         customer.view_table();
         System.out.println();
 
         Staff staff = new Staff(list, c, "staff");
 //        staff.clean_table(staff.table_name1);
-        staff.insert("Leo", "Black", "186457451", "password1", "ABRIHUJ", "mary");
-        staff.insert("Jack", "Blown", "641515674", "te489.15b", "ABYVFS", "helen");
+        staff.insert("Tree", "jack", "Black", "186457451", "password1", "ABRIHUJ", "mary");
+        staff.insert("Sea", "mary", "Blown", "641515674", "te489.15b", "ABYVFS", "helen");
         staff.view_table();
         staff.get(1);
-        staff.delete(1);
+        int id2 = customer.search_id_by_phone_or_username("Tree");
+        staff.delete(id2);
         staff.view_table();
         System.out.println();
 
@@ -59,8 +60,8 @@ public class create_table {
 //        image.view_table();
 //        System.out.println();
 
-        login_test(customer, staff, "123456789", "991224wl", "186457451", "password1");
-        forget_password_test(customer, staff, "123456789", "akkk", "186457451", "mary");
+        login_test(customer, staff, "78345", "rwf74d8", "186457451", "asd");
+        forget_password_test(customer, staff, "Apple", "akkk", "186457451", "mary");
 
         c.close_Connection();
 
@@ -96,25 +97,29 @@ public class create_table {
         hotel.clean_table();
     }
 
-    public void login_test(Customer customer, Staff staff, String phone, String password, String phone2, String password2) {
+    public void login_test(Customer customer, Staff staff, String account1, String password, String account2, String password2) {
         System.out.println("-----login test-----");
-        if (customer.login(phone, password)) {
+        if (customer.login(account1, password)) {
             System.out.println("customer login success");
         }
 
-        if (staff.login(phone2, password2)) {
+        if (staff.login(account2, password2)) {
             System.out.println("staff login success");
         }
         System.out.println("-----test over-----");
         System.out.println();
     }
 
-    public void forget_password_test(Customer customer, Staff staff, String phone, String question, String phone2, String question2) {
-        System.out.println("-----forget_password_test-----");
-        String password = customer.find_forget_password(phone, question);
-        System.out.println("customer get password:" + password);
-        String password2 = staff.find_forget_password(phone2, question2);
-        System.out.println("staff get password:" + password2);
+    public void forget_password_test(Customer customer, Staff staff, String account1, String question, String account2, String question2) {
+        System.out.println("-----forget password test-----");
+        String password = customer.find_forget_password(account1, question);
+        String password2 = staff.find_forget_password(account2, question2);
+        if (password != null) {
+            System.out.println("customer get password:" + password);
+        }
+        if (password2 != null) {
+            System.out.println("staff get password:" + password2);
+        }
         System.out.println("-----test over-----");
         System.out.println();
     }

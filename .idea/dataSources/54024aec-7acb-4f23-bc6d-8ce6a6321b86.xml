@@ -98,28 +98,32 @@
       <Position>1</Position>
       <DataType>INTEGER|4s</DataType>
     </column>
-    <column id="37" parent="17" name="FIRSTNAME">
+    <column id="37" parent="17" name="USERNAME">
       <Position>2</Position>
       <DataType>VARCHAR(50)|12s</DataType>
     </column>
-    <column id="38" parent="17" name="LASTNAME">
+    <column id="38" parent="17" name="FIRSTNAME">
       <Position>3</Position>
       <DataType>VARCHAR(50)|12s</DataType>
     </column>
-    <column id="39" parent="17" name="PHONE_NUMBER">
+    <column id="39" parent="17" name="LASTNAME">
       <Position>4</Position>
       <DataType>VARCHAR(50)|12s</DataType>
     </column>
-    <column id="40" parent="17" name="PASSWORD">
+    <column id="40" parent="17" name="PHONE_NUMBER">
       <Position>5</Position>
-      <DataType>VARCHAR(20)|12s</DataType>
+      <DataType>VARCHAR(50)|12s</DataType>
     </column>
-    <column id="41" parent="17" name="REGISTER">
+    <column id="41" parent="17" name="PASSWORD">
       <Position>6</Position>
       <DataType>VARCHAR(20)|12s</DataType>
     </column>
-    <column id="42" parent="17" name="QUESTION">
+    <column id="42" parent="17" name="REGISTER">
       <Position>7</Position>
+      <DataType>VARCHAR(20)|12s</DataType>
+    </column>
+    <column id="43" parent="17" name="QUESTION">
+      <Position>8</Position>
       <DataType>VARCHAR(50)|12s</DataType>
     </column>
   </database-model>

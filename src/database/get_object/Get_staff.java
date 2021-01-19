@@ -2,6 +2,7 @@ package database.get_object;
 
 public class Get_staff {
     int id;
+    String username;
     String firstname;
     String lastname;
     String phone_number;
@@ -9,8 +10,9 @@ public class Get_staff {
     String register;
     String question;
 
-    public Get_staff(int id, String firstname, String lastname, String phone, String password, String register, String question) {
+    public Get_staff(int id, String username, String firstname, String lastname, String phone, String password, String register, String question) {
         this.id = id;
+        this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
         this.phone_number = phone;

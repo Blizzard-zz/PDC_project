@@ -46,11 +46,11 @@ public class Hotel extends Table_super {
 
         if (hotel_exist) {
             int pre_id = search_id_by_hotel_name(hotel_name);
-            System.out.println("pre id = " + pre_id);
+//            System.out.println("pre id = " + pre_id);
             update_value(pre_id, hotel_name, single_room, double_room, tripe_room, four_room, business_room, presidential_suite);
         } else {
             int last_id = create_new_id(list);
-            System.out.println("last id = " + last_id);
+//            System.out.println("last id = " + last_id);
             insert_value(last_id, hotel_name, single_room, double_room, tripe_room, four_room, business_room, presidential_suite);
         }
 
@@ -71,12 +71,10 @@ public class Hotel extends Table_super {
     }
 
     public boolean judge_hotel_exist(String hotel_name) {
-        String table = table_name1;
-        connection c = this.connection;
-        boolean exist = false;
+        boolean exist;
         ArrayList<String> list = new ArrayList();
         try {
-            ResultSet resultSet = c.statement.executeQuery("select * from " + table);
+            ResultSet resultSet = connection.statement.executeQuery("select * from " + table_name1);
             while (resultSet.next()) {
                 String column = resultSet.getString("hotel_name");
                 list.add(column);
@@ -84,13 +82,7 @@ public class Hotel extends Table_super {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
-        for (String s : list)
-            if (Objects.equals(s, hotel_name)) {
-                exist = true;
-                break;
-            }
-
+        exist = exist(list, hotel_name);
         return exist;
     }
 

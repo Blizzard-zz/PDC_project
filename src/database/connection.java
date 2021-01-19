@@ -4,7 +4,7 @@ import java.sql.*;
 
 
 public class connection {
-    Connection connection;
+    public Connection connection;
     public Statement statement;
 
 //    String url = "jdbc:derby:C:/Users/zzzzzz/IdeaProjects/PDC_project/PDC_database";

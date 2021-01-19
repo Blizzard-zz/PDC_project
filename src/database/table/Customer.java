@@ -6,9 +6,6 @@ import database.get_object.Get_customer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Customer extends Table_super {
 
@@ -23,82 +20,36 @@ public class Customer extends Table_super {
             if (!list.contains(table_name1)) {
 
                 String sqlCreateTable = "CREATE TABLE " + table_name1 + " (ID INT, "
-                        + "username VARCHAR (50),firstname VARCHAR(50), lastname VARCHAR(50), phone_number VARCHAR(50),password VARCHAR(20),question VARCHAR (30))";
+                        + "username VARCHAR (50),firstname VARCHAR(50), lastname VARCHAR(50)," +
+                        " phone_number VARCHAR(50),password VARCHAR(20),question VARCHAR (30))";
 
                 connection.statement.executeUpdate(sqlCreateTable);
                 System.out.println("table: " + table_name1 + " create success");
             } else {
-
                 System.out.println(table_name1 + " exists");
-
             }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-    }
-
-    public boolean judge_customer_exist_by_phone(String phone) {
-
-        boolean exist = false;
-        ArrayList<String> list = new ArrayList();
-        try {
-            ResultSet resultSet = connection.statement.executeQuery("select * from " + table_name1);
-            while (resultSet.next()) {
-                String column = resultSet.getString("phone_number");
-                list.add(column);
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        for (String s : list)
-            if (Objects.equals(s, phone)) {
-                exist = true;
-                break;
-            }
-
-        return exist;
-    }
-
-    public boolean judge_customer_exist_by_username(String name) {
-
-        boolean exist = false;
-        ArrayList<String> list = new ArrayList();
-        try {
-            ResultSet resultSet = connection.statement.executeQuery("select * from " + table_name1);
-            while (resultSet.next()) {
-                String column = resultSet.getString("username");
-                list.add(column);
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        for (String s : list)
-            if (Objects.equals(s, name)) {
-                exist = true;
-                break;
-            }
-
-        return exist;
     }
 
     //insert value and need to select id if there has same id then update ,else insert value
-    public void insert(String firstname, String username, String lastname, String phone, String password, String question) {
+    public void insert(String username, String firstname, String lastname, String phone, String password, String question) {
 
         ArrayList<Integer> list;
         list = get_id_list(table_name1);
 
-        boolean customer_exist = judge_customer_exist_by_phone(phone);
+        boolean customer_exist1 = judge_something_exist_by_phone_or_username(phone);
+        boolean customer_exist2 = judge_something_exist_by_phone_or_username(username);
 
-        if (customer_exist) {
-            int pre_id = search_id_by_phone(phone);
-            System.out.println("pre id = " + pre_id);
+        if (customer_exist1 && customer_exist2) {
+            int pre_id = search_id_by_phone_or_username(phone);
+//            System.out.println("pre id = " + pre_id);
             update_value(pre_id, username, firstname, lastname, phone, password, question);
         } else {
             int last_id = create_new_id(list);
-            System.out.println("last id = " + last_id);
+//            System.out.println("last id = " + last_id);
             insert_value(last_id, username, firstname, lastname, phone, password, question);
         }
 
@@ -154,57 +105,6 @@ public class Customer extends Table_super {
         }
         return null;
     }
-
-//    public boolean login(String account, String input_password) {
-//        boolean login;
-//        if (isNumeric(account)) {
-//            login = phone_number_login(account, input_password);
-//        } else {
-//            login = username_number_login(account, input_password);
-//        }
-//        return login;
-//    }
-//
-//    public boolean username_number_login(String account, String input_password) {
-//        boolean login = false;
-//        String judge = "username";
-//        String login_password = search_password(account, judge);
-//
-//        if (login_password.equals(input_password)) {
-//            login = true;
-//            System.out.println("input password correct,login.....");
-//        } else {
-//            System.out.println("wrong password,please input again.");
-//        }
-//
-//        return login;
-//    }
-//
-//    public boolean phone_number_login(String acount, String input_password) {
-//        boolean login = false;
-//        String judge = "phone_number";
-//        String login_password = search_password(acount, judge);
-//
-//        if (login_password.equals(input_password)) {
-//            login = true;
-//            System.out.println("input password correct,login.....");
-//        } else {
-//            System.out.println("wrong password,please input again.");
-//        }
-//
-//        return login;
-//    }
-//
-//
-//    public boolean isNumeric(String str) {
-//        Pattern pattern = Pattern.compile("[0-9]*");
-//        Matcher isNum = pattern.matcher(str);
-//        if (!isNum.matches()) {
-//            return false;
-//        }
-//        return true;
-//    }
-
 
     @Override
     public void view_table() {
