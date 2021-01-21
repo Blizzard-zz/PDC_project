@@ -41,14 +41,13 @@ public class Image extends Table_super {
     }
 
     public void insert(int id, String hotel_name, String path) {
-        String table = this.table_name1;
         connection c = this.connection;
         try {
-            ResultSet resultSet = c.statement.executeQuery("select * from " + table_name1 + " where id = " + id);
+            ResultSet resultSet = connection.statement.executeQuery("select * from " + table_name1 + " where id = " + id);
             if (resultSet.next()) {
                 String update = "update " + table_name1 + " set " + "hotel_name = '" + hotel_name + "',path = '" + path + "' where id = " + id;
                 System.out.println(update);
-                c.statement.executeUpdate(update);
+                connection.statement.executeUpdate(update);
 
             } else {
                 String insert = "insert into " + table_name1 + " values (" + id + ",'" + hotel_name + "','" + path + "')";

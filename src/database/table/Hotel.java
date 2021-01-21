@@ -1,7 +1,7 @@
 package database.table;
 
 import database.connection;
-import database.get_object.Get_hotel;
+import database.get_object.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,8 +24,9 @@ public class Hotel extends Table_super {
         try {
             if (!list.contains(table_name1)) {
 
-                String sqlCreateTable = "CREATE TABLE " + table_name1 + " (ID INT, hotel_name VARCHAR(20),  "
-                        + "single_room INT,double_room INT,tripe_room INT ,four_room INT,business_room INT,presidential_suite INT)";
+                String sqlCreateTable = "CREATE TABLE " + table_name1 + " (ID INT, hotel_name VARCHAR(20),hotel_description VARCHAR (100), "
+                        + "single_room INT,single_description VARCHAR (100),double_room INT,double_description VARCHAR (100)," +
+                        "tripe_room INT ,tripe_description VARCHAR (100),four_room INT,four_description VARCHAR (100)" + ")";
 
                 c.statement.executeUpdate(sqlCreateTable);
                 System.out.println("table: " + table_name1 + " create success");
@@ -38,30 +39,44 @@ public class Hotel extends Table_super {
 
     }
 
-    public void insert(String hotel_name, int single_room, int double_room, int tripe_room, int four_room, int business_room, int presidential_suite) {
+    public void insert(Get_hotel get_hotel) {
 
         ArrayList<Integer> list = get_id_list(table_name1);
 
-        boolean hotel_exist = judge_hotel_exist(hotel_name);
+        boolean hotel_exist = judge_hotel_exist(get_hotel.hotel_name);
 
         if (hotel_exist) {
-            int pre_id = search_id_by_hotel_name(hotel_name);
-//            System.out.println("pre id = " + pre_id);
-            update_value(pre_id, hotel_name, single_room, double_room, tripe_room, four_room, business_room, presidential_suite);
+            int pre_id = search_id_by_hotel_name(get_hotel.hotel_name);
+            update_value(pre_id, get_hotel);
         } else {
             int last_id = create_new_id(list);
-//            System.out.println("last id = " + last_id);
-            insert_value(last_id, hotel_name, single_room, double_room, tripe_room, four_room, business_room, presidential_suite);
+            insert_value(last_id, get_hotel);
         }
 
     }
 
-    private void update_value(int pre_id, String hotel_name, int single_room, int double_room, int tripe_room, int four_room, int business_room, int presidential_suite) {
+    private void insert_value(int last_id, Get_hotel hotel) {
+        try {
+            String insert = "insert into " + table_name1 + " values (" + last_id + ",'" + hotel.hotel_name + "','" + hotel.hotel_description + "',"
+                    + hotel.single_room.number + ",' " + hotel.single_room.description + "',"
+                    + hotel.double_room.number + ",' " + hotel.double_room.description + "',"
+                    + hotel.tripe_room.number + ",' " + hotel.tripe_room.description + "',"
+                    + hotel.four_room.number + ",' " + hotel.four_room.description + "')";
+            System.out.println(insert);
+            connection.statement.executeUpdate(insert);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    private void update_value(int pre_id, Get_hotel hotel) {
 
         try {
-            String update = "update " + table_name1 + " set " + "hotel_name = '" + hotel_name + "',single_room = " + single_room
-                    + ",double_room = " + double_room + ",tripe_room = " + tripe_room + ",four_room = " + four_room + ",business_room = "
-                    + business_room + ",presidential_suite = " + presidential_suite + " where id = " + pre_id;
+            String update = "update " + table_name1 + " set " + "hotel_name = '" + hotel.hotel_name + "',hotel_description = '" + hotel.hotel_description
+                    + "',single_room = " + hotel.single_room.number + ",single_description = '" + hotel.single_room.description +
+                    "',double_room = " + hotel.double_room.number + ",double_description = '" + hotel.double_room.description +
+                    "',tripe_room = " + hotel.tripe_room.number + ",tripe_description = '" + hotel.tripe_room.description +
+                    "',four_room = " + hotel.four_room.number + ",four_description = '" + hotel.four_room.description + "' where id = " + pre_id;
             System.out.println(update);
             connection.statement.executeUpdate(update);
         } catch (SQLException throwables) {
@@ -103,17 +118,6 @@ public class Hotel extends Table_super {
     }
 
 
-    private void insert_value(int last_id, String hotel_name, int single_room, int double_room, int tripe_room, int four_room, int business_room, int presidential_suite) {
-        try {
-            String insert = "insert into " + table_name1 + " values (" + last_id + ",'" + hotel_name + "'," + single_room + "," + double_room + ","
-                    + tripe_room + "," + four_room + "," + business_room + "," + presidential_suite + ")";
-            System.out.println(insert);
-            connection.statement.executeUpdate(insert);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }
-
     public Get_hotel get(int id) {
         String table_name = this.table_name1;
         connection c = this.connection;
@@ -123,14 +127,24 @@ public class Hotel extends Table_super {
             while (resultSet.next()) {
                 if (id == resultSet.getInt("id")) {
                     String hotel_name = resultSet.getString("hotel_name");
-                    int single_room = resultSet.getInt("single_room");
-                    int double_room = resultSet.getInt("double_room");
-                    int tripe_room = resultSet.getInt("tripe_room");
-                    int four_room = resultSet.getInt("four_room");
-                    int business_room = resultSet.getInt("business_room");
-                    int presidential_suite = resultSet.getInt("presidential_suite");
+                    String hotel_description = resultSet.getString("hotel_description");
 
-                    Get_hotel get_hotel = new Get_hotel(id, hotel_name, single_room, double_room, tripe_room, four_room, business_room, presidential_suite);
+                    int single_number = resultSet.getInt("single_room");
+                    String single_description = resultSet.getString("single_description");
+                    Single_room single_room = new Single_room(single_number, single_description);
+
+                    int double_number = resultSet.getInt("double_room");
+                    String double_description = resultSet.getString("single_description");
+                    Double_room double_room = new Double_room(double_number, double_description);
+                    int tripe_number = resultSet.getInt("tripe_room");
+                    String tripe_description = resultSet.getString("single_description");
+                    Tripe_room tripe_room = new Tripe_room(tripe_number, tripe_description);
+
+                    int four_number = resultSet.getInt("four_room");
+                    String four_description = resultSet.getString("single_description");
+                    Four_room four_room = new Four_room(four_number, four_description);
+
+                    Get_hotel get_hotel = new Get_hotel(id, hotel_name, hotel_description, single_room, double_room, tripe_room, four_room);
                     return get_hotel;
                 }
 
@@ -145,30 +159,17 @@ public class Hotel extends Table_super {
 
     @Override
     public void view_table() {
-        String table_name = this.table_name1;
-        connection c = this.connection;
-        try {
-            ResultSet resultSet = c.statement.executeQuery("select * from " + table_name);
-            int index = 0;
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String hotel_name = resultSet.getString("hotel_name");
-                int single_room = resultSet.getInt("single_room");
-                int double_room = resultSet.getInt("double_room");
-                int tripe_room = resultSet.getInt("tripe_room");
-                int four_room = resultSet.getInt("four_room");
-                int business_room = resultSet.getInt("business_room");
-                int presidential_suite = resultSet.getInt("presidential_suite");
+        System.out.println("view table");
+        int index = 0;
+        ArrayList<Integer> list = get_id_list(table_name1);
 
-                System.out.println("view_table id: " + id + " hotel_name: " + hotel_name + " single_room: " + single_room + " double_room: " + double_room
-                        + " tripe_room: " + tripe_room + " four_room: " + four_room + " business_room: " + business_room
-                        + " presidential_suite: " + presidential_suite);
-                index = 1;
-            }
-            if (index == 0) System.out.println("there is no data in the database");
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        for (int i = 0; i < list.size(); i++) {
+            Get_hotel get_hotel = get(list.get(i));
+            get_hotel.print();
+            index = 1;
         }
+
+        if (index == 0) System.out.println("there is no data in the database");
     }
 
 }

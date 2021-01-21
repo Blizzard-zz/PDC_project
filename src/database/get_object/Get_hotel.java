@@ -3,34 +3,34 @@ package database.get_object;
 public class Get_hotel {
     public int id;
     public String hotel_name;
-    public int single_room;
-    public int double_room;
-    public int tripe_room;
-    public int four_room;
-    public int business_room;
-    public int presidential_suite;
+    public String hotel_description;
+    public Single_room single_room;
+    public Double_room double_room;
+    public Tripe_room tripe_room;
+    public Four_room four_room;
 
-    public Get_hotel(int id, String hotel_name, int single_room, int double_room, int tripe_room, int four_room, int business_room, int presidential_suite) {
+
+    public Get_hotel(int id, String hotel_name, String hotel_description, Single_room single_room,
+                     Double_room double_room, Tripe_room tripe_room, Four_room four_room) {
         this.id = id;
         this.hotel_name = hotel_name;
+        this.hotel_description = hotel_description;
         this.single_room = single_room;
         this.double_room = double_room;
         this.tripe_room = tripe_room;
         this.four_room = four_room;
-        this.business_room = business_room;
-        this.presidential_suite = presidential_suite;
+
 //        print();
     }
 
     public void print() {
         System.out.println("id: " + id + "\n" +
                 "hotel_name:" + hotel_name + "\n" +
-                "single_room:" + single_room + "\n" +
-                "double_room:" + double_room + "\n" +
-                "tripe_room:" + tripe_room + "\n" +
-                "four_room:" + four_room + "\n" +
-                "business_room:" + business_room + "\n" +
-                "presidential_suite:" + presidential_suite);
+                "hotel_description:" + hotel_description + "\n" +
+                single_room + "\n" +
+                double_room + "\n" +
+                tripe_room + "\n" +
+                four_room + "\n");
 
 
     }

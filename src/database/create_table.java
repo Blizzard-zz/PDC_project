@@ -1,8 +1,6 @@
 package database;
 
-import database.get_object.Get_customer;
-import database.get_object.Get_hotel;
-import database.get_object.Get_staff;
+import database.get_object.*;
 import database.table.Customer;
 import database.table.Hotel;
 import database.table.Image;
@@ -50,21 +48,45 @@ public class create_table {
         System.out.println();
 
         Hotel hotel = new Hotel(list, c, "hotel");
-        hotel.insert("fly fire hotel", 4, 5, 2, 6, 1, 0);
-        hotel.insert("fly cat hotel", 1, 0, 2, 3, 5, 6);
+        String hotel_name = "Open the fire";
+        String hotel_description = "No.207, Wenzhou Road, Xiasha Development Zone  Phone number:63368947";
+
+        int single_number = 3;
+        String single_description = "1.8m king-size bed, 40m, WIFI(free), broadband(free)";
+        Single_room single_room = new Single_room(single_number, single_description);
+
+        int double_number = 0;
+        String double_description = "";
+        Double_room double_room = new Double_room(double_number, double_description);
+
+        int tripe_number = 2;
+        String tripe_description = "3 * 1.2m bed, 50-60m, WIFI(free), broadband(free)";
+        Tripe_room tripe_room = new Tripe_room(tripe_number, tripe_description);
+
+        int four_number = 1;
+        String four_description = "4 * 1.2m bed, 60m, WIFI(free), broadband(free)";
+        Four_room four_room = new Four_room(four_number, four_description);
+
+        Get_hotel get_hotel = new Get_hotel(0, hotel_name, hotel_description, single_room, double_room, tripe_room, four_room);
+
+
+        hotel.insert(get_hotel);
+//        hotel.insert(get_hotel);
         hotel.view_table();
-        int id3 = hotel.search_id_by_hotel_name("fly fire hotel");
-        Get_hotel get_hotel = hotel.get(id3);
-        get_hotel.print();
-        hotel.delete(1);
-        hotel.view_table();
+        int id3 = hotel.search_id_by_hotel_name("Open the fire");
+//        Get_hotel get_hotel = hotel.get(id3);
+        Get_hotel get_hotel1 = hotel.get(id3);
+        get_hotel1.print();
+//        hotel.delete(1);
+
         System.out.println();
 
 //        Image image = new Image(list, c,"image");
 //        image.insert(2, "fly fire", "C:\\Users\\zzzzzz\\IdeaProjects\\PDC_project\\image\\商城.png");
 //        image.view_table();
 //        image.get(2);
-//        image.delete(2, image.table_name1);
+////        int id4 = image.s
+//        image.delete(2);
 //        image.view_table();
 //        System.out.println();
 
