@@ -25,6 +25,7 @@ public class Get_staff {
     public void print() {
 
         System.out.println("id: " + id + "\n" +
+                "username:" + username + "\n" +
                 "firstname:" + firstname + "\n" +
                 "lastname:" + lastname + "\n" +
                 "phone_number:" + phone_number + "\n" +

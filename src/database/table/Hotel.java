@@ -62,7 +62,7 @@ public class Hotel extends Table_super {
                     + hotel.double_room.number + ",' " + hotel.double_room.description + "',"
                     + hotel.tripe_room.number + ",' " + hotel.tripe_room.description + "',"
                     + hotel.four_room.number + ",' " + hotel.four_room.description + "')";
-            System.out.println(insert);
+//            System.out.println(insert);
             connection.statement.executeUpdate(insert);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -77,7 +77,7 @@ public class Hotel extends Table_super {
                     "',double_room = " + hotel.double_room.number + ",double_description = '" + hotel.double_room.description +
                     "',tripe_room = " + hotel.tripe_room.number + ",tripe_description = '" + hotel.tripe_room.description +
                     "',four_room = " + hotel.four_room.number + ",four_description = '" + hotel.four_room.description + "' where id = " + pre_id;
-            System.out.println(update);
+//            System.out.println(update);
             connection.statement.executeUpdate(update);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -102,10 +102,10 @@ public class Hotel extends Table_super {
     }
 
     public int search_id_by_hotel_name(String hotel_name) {
-        System.out.println("hotel_name = " + hotel_name);
+//        System.out.println("hotel_name = " + hotel_name);
         try {
             String search = "select id from " + table_name1 + " where hotel_name = '" + hotel_name + "'";
-            System.out.println(search);
+//            System.out.println(search);
             ResultSet resultSet = connection.statement.executeQuery(search);
 //            connection.statement.executeUpdate(search);
             if (resultSet.next()) {
@@ -134,14 +134,14 @@ public class Hotel extends Table_super {
                     Single_room single_room = new Single_room(single_number, single_description);
 
                     int double_number = resultSet.getInt("double_room");
-                    String double_description = resultSet.getString("single_description");
+                    String double_description = resultSet.getString("double_description");
                     Double_room double_room = new Double_room(double_number, double_description);
                     int tripe_number = resultSet.getInt("tripe_room");
-                    String tripe_description = resultSet.getString("single_description");
+                    String tripe_description = resultSet.getString("tripe_description");
                     Tripe_room tripe_room = new Tripe_room(tripe_number, tripe_description);
 
                     int four_number = resultSet.getInt("four_room");
-                    String four_description = resultSet.getString("single_description");
+                    String four_description = resultSet.getString("four_description");
                     Four_room four_room = new Four_room(four_number, four_description);
 
                     Get_hotel get_hotel = new Get_hotel(id, hotel_name, hotel_description, single_room, double_room, tripe_room, four_room);
@@ -166,6 +166,7 @@ public class Hotel extends Table_super {
         for (int i = 0; i < list.size(); i++) {
             Get_hotel get_hotel = get(list.get(i));
             get_hotel.print();
+            System.out.println();
             index = 1;
         }
 

@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class view_the_picture {
+public class hotel_PICTURE {
     JFrame frame = null;
 
 
@@ -31,7 +31,7 @@ public class view_the_picture {
     int picturenumber = 0;
 
     public void init(String typrname) {
-        //在这加一个循环读取typrname下的图片路径，加入picturelist中
+        //在这加一个循环读取同一个酒店的所有的图片路径，加入picturelist中
         picturelist.add("src/GUI/2.jpg");
         picturelist.add("src/GUI/1.jpg");
         Font font = new Font("宋体", Font.BOLD, 20);
@@ -47,6 +47,7 @@ public class view_the_picture {
         ShowJP.setBorder(BorderFactory.createTitledBorder("显示"));
         ShowJP.setPreferredSize(new Dimension(600, 600));
 
+        //对每个房型的介绍
         String introduction = "abcasfasfaaa";
         textArea = new JTextArea(introduction, 5, 10);
         Font font1 = new Font("宋体", Font.BOLD, 30);
@@ -95,7 +96,7 @@ public class view_the_picture {
         ShowJP.add(nextBtn, BorderLayout.EAST);
 
 
-        returnb = new JButton("confirm");
+        returnb = new JButton("return");
 
         Font font2 = new Font("宋体", Font.BOLD, 25);
         returnb.setFont(font2);
@@ -110,9 +111,9 @@ public class view_the_picture {
         listerner1();
         listerner2();
         listerner3();
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+        frame.setVisible(true);
 
     }
 
@@ -194,11 +195,6 @@ public class view_the_picture {
         }
 
 
-    }
-
-    public static void main(String[] args) {
-        view_the_picture p = new view_the_picture();
-        p.init("yfy");
     }
 
 

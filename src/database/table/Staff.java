@@ -1,6 +1,7 @@
 package database.table;
 
 import database.connection;
+import database.get_object.Get_hotel;
 import database.get_object.Get_staff;
 
 import java.sql.ResultSet;
@@ -62,7 +63,7 @@ public class Staff extends Table_super {
             String update = "update " + table_name1 + " set " + "username = '" + username + "',firstname = '" + firstname + "',lastname = '" + lastname
                     + "',phone_number = '" + phone + "',password = '" + password +
                     "',register = '" + register + "',question = '" + question + "' where id = " + pre_id;
-            System.out.println(update);
+//            System.out.println(update);
             connection.statement.executeUpdate(update);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -73,7 +74,7 @@ public class Staff extends Table_super {
         try {
             String insert = "insert into " + table_name1 + " values (" + last_id + ",'" + username + "','" + firstname + "','" + lastname
                     + "','" + phone + "','" + password + "','" + register + "','" + question + "')";
-            System.out.println(insert);
+//            System.out.println(insert);
             connection.statement.executeUpdate(insert);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -108,28 +109,17 @@ public class Staff extends Table_super {
 
     @Override
     public void view_table() {
-        String table_name = this.table_name1;
-        connection c = this.connection;
-        try {
-            ResultSet resultSet = c.statement.executeQuery("select * from " + table_name);
-            int index = 0;
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String username = resultSet.getString("username");
-                String firstname = resultSet.getString("firstname");
-                String lastname = resultSet.getString("lastname");
-                String phone = resultSet.getString("phone_number");
-                String password = resultSet.getString("password");
-                String register = resultSet.getString("register");
-                String question = resultSet.getString("question");
-                System.out.println("view_table id: " + id + " username: " + username + " firstname: " + firstname + " lastname: " + lastname
-                        + " phone: " + phone + " password: " + password + " register: " + register + " question: " + question);
-                index = 1;
-            }
-            if (index == 0) System.out.println("there is no data in the database");
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        System.out.println("view table");
+        int index = 0;
+        ArrayList<Integer> list = get_id_list(table_name1);
+
+        for (int i = 0; i < list.size(); i++) {
+            Get_staff get_staff = get(list.get(i));
+            get_staff.print();
+            index = 1;
+            System.out.println();
         }
+        if (index == 0) System.out.println("there is no data in the database");
     }
 
 }

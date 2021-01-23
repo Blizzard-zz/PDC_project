@@ -3,12 +3,10 @@ package GUI;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.util.ArrayList;
-import javax.swing.filechooser.FileFilter;
 
 public class settypr extends JFrame {
-    public static roomlist roomlist1;
+    public static hotel roomlist1;
     static ArrayList<roomtype> roomlist2 = new ArrayList<>();
 
 
@@ -19,6 +17,11 @@ public class settypr extends JFrame {
     JLabel jLabel4;//Employee registration code
 
     JPanel jPanel1;
+    JButton[] b;
+    JLabel[] a;
+    JTextArea[] c;
+    JButton[] d;
+
 
     JTextField jTextField1;
     JTextField jTextField2;
@@ -96,6 +99,9 @@ public class settypr extends JFrame {
         listerner1();
         this.add(jPanel1);
         listerner1();
+
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         this.setTitle("room type set");
         this.setSize(800, 600);
         this.setVisible(true);

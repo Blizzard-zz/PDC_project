@@ -23,6 +23,7 @@ public abstract class Table_super implements Table {
 
     public abstract void initial_table(ArrayList list);
 
+    //table name
     public ArrayList get_id_list(String name) {
 //        name = table_name1;
         ArrayList<Integer> list = new ArrayList();
@@ -69,7 +70,7 @@ public abstract class Table_super implements Table {
 
         try {
 //            String search = "select id from " + table_name1 + " where phone_number = '" + phone + "'";
-            System.out.println(search);
+//            System.out.println(search);
             ResultSet resultSet = connection.statement.executeQuery(search);
             if (resultSet.next()) {
                 return resultSet.getInt("id");
@@ -84,7 +85,7 @@ public abstract class Table_super implements Table {
 //        System.out.println("phone_number = " + phone);
         try {
 //            String search = "select id from " + table_name1 + " where username = '" + username + "'";
-            System.out.println(search);
+//            System.out.println(search);
             ResultSet resultSet = connection.statement.executeQuery(search);
             if (resultSet.next()) {
                 return resultSet.getInt("id");
@@ -181,10 +182,12 @@ public abstract class Table_super implements Table {
         if (exist) {
             if (isNumeric(account)) {
                 String search1 = "select * from " + table_name1 + " where phone_number = '" + account + "'";
+                System.out.println(search1);
                 String result = phone_number_get_password_by_question(search1, question);
                 return result;
             } else {
                 String search2 = "select * from " + table_name1 + " where username = '" + account + "'";
+                System.out.println(search2);
                 String result = username_get_password_by_question(search2, question);
                 return result;
             }
@@ -201,7 +204,7 @@ public abstract class Table_super implements Table {
             ResultSet resultSet2 = connection.statement.executeQuery(search);
             while (resultSet2.next()) {
                 String exist_question1 = resultSet2.getString("question");
-                if (exist_question1.equals(question)) {
+                while (exist_question1.equals(question)) {
                     return resultSet2.getString("password");
                 }
             }
@@ -220,7 +223,7 @@ public abstract class Table_super implements Table {
             while (resultSet2.next()) {
                 String exist_question1 = resultSet2.getString("question");
 //                System.out.println(exist_question1);
-                if (exist_question1.equals(question)) {
+                while (exist_question1.equals(question)) {
                     return resultSet2.getString("password");
                 }
             }

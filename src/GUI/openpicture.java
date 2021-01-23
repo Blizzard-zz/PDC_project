@@ -26,6 +26,7 @@ public class openpicture implements ActionListener {
 
         openFile.addActionListener(this);
 
+
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1100, 800);
@@ -70,8 +71,9 @@ public class openpicture implements ActionListener {
         //EastJP.add(comfirm);
 
         frame.setVisible(true);
-    }
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+    }
     public void listerner1() {
 
         comfirm.addActionListener(new ActionListener() {
@@ -83,6 +85,7 @@ public class openpicture implements ActionListener {
 
             }
         });
+
 
 
     }
@@ -157,9 +160,5 @@ public class openpicture implements ActionListener {
         }
     }
 
-    public static void main(String[] args) {
-        openpicture picture = new openpicture();
-        //picture.init();
-    }
 
 }

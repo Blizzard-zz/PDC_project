@@ -6,7 +6,9 @@ public class Get_hotel {
     public String hotel_description;
     public Single_room single_room;
     public Double_room double_room;
+
     public Tripe_room tripe_room;
+
     public Four_room four_room;
 
 
@@ -20,7 +22,6 @@ public class Get_hotel {
         this.tripe_room = tripe_room;
         this.four_room = four_room;
 
-//        print();
     }
 
     public void print() {
@@ -30,7 +31,7 @@ public class Get_hotel {
                 single_room + "\n" +
                 double_room + "\n" +
                 tripe_room + "\n" +
-                four_room + "\n");
+                four_room);
 
 
     }

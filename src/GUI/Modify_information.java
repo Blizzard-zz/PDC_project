@@ -7,47 +7,39 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
-import java.awt.Graphics2D;
+public class Modify_information extends JFrame implements ActionListener {
 
-import java.awt.Image;
 
-import java.io.ByteArrayOutputStream;
-
-import java.io.FileInputStream;
-
-import java.io.InputStream;
-
-import javax.swing.ImageIcon;
-
-import database.*;
-public class setpage extends JFrame {
     public static hotel hetol2;
     static ArrayList<roomtype> roomlist2 = new ArrayList<>();
     static ArrayList<roomtype> hotellist = new ArrayList<>();
 
-    JFrame frame;
 
+    JFrame frame;
     JLabel jLabel;//title
     JLabel jLabel1;//username
     JLabel jLabel2;//password
-    JLabel jLabel3;//phone number
-    JLabel jLabel4;//Employee registration code
+
     JPanel jPanel1;
 
-    JButton[] b;
-    JLabel[] a;
-    JTextArea[] c;
-    JButton[] d;
+
+    JTextArea textArea1;
+    JTextArea textArea2;
+    JTextArea textArea3;
+    JTextArea textArea4;
 
     ButtonGroup bg;
 
     JComboBox jComboBox;
     JToggleButton jButton2;
 
+    JButton[] b;
+    JLabel[] a;
+    JTextArea[] c;
+    JButton[] d;
     JButton jButton3;
     JButton jButton4;
     JButton jButton5;
@@ -60,15 +52,13 @@ public class setpage extends JFrame {
 
 
     //    public static employeer staff1=new employeer();
-    public setpage() {
+    public Modify_information(String hotelname) {
         frame = new JFrame();
         jPanel1 = new JPanel();
         jPanel1.setOpaque(false);
-        jPanel1.setSize(1000, 600);
+        jPanel1.setSize(900, 600);
 
 
-        //此处读取第一个hotel的名字
-        String hotelname = "";
         hetol2 = new hotel(hotelname);
 
         roomlist2 = hetol2.show();
@@ -89,162 +79,122 @@ public class setpage extends JFrame {
         jPanel1.add(head);
 
 
-        JToggleButton[] jButtons1 = new JToggleButton[roomlist2.size()];
+        JButton[] b = new JButton[roomlist2.size()];
+        JLabel[] a = new JLabel[roomlist2.size()];
+        JTextArea[] c = new JTextArea[roomlist2.size() * 2];
+        JButton[] d = new JButton[roomlist2.size()];
 
-
-        bg = new ButtonGroup();
-        for (int i = 0; i < roomlist2.size(); i++) {
-
-            jButtons1[i] = new JToggleButton(roomlist2.get(i).roomtypename);
-            jButtons1[i].setBackground(Color.gray);
-            jButtons1[i].setBounds(0, 120 + i * 60, 150, 60);
-            bg.add(jButtons1[i]);
-            jPanel1.add(jButtons1[i]);
-
-
-            int finalI1 = i;
-            jButtons1[i].addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    String HOTELNAME = jButtons1[finalI1].getName();
-
-                    //根据酒店名字，搜索该酒店的类型，把输入房间类型的数组换成当前酒店的数组
-                    hotel hotel1 = new hotel(HOTELNAME);
-
-
-                    roomlist2 = hotel1.show();
-
-                    jPanel1.updateUI();
-
-                }
-            });
-
-        }
-
-
-        JLabel[] jLabel1 = new JLabel[roomlist2.size() * 2];
-
-
-        JButton[] jButtons2 = new JButton[roomlist2.size() * 2];
-        JButton[] jButtons3 = new JButton[roomlist2.size()];
-
-        for (int i = 0; i < roomlist2.size(); i++) {
+        for (int i = 0; i < 5; i++) {
             String show = roomlist2.get(i).roomtypename;
-            String show1 = "剩余房间数量" + String.valueOf(roomlist2.get(i).roomunmber);
-            jLabel1[2 * i] = new JLabel(show);
+            String show1 = String.valueOf(roomlist2.get(i).roomunmber);
+
+
+            c[i * 2] = new JTextArea(show);
             Font font = new Font("宋体", Font.BOLD, 20);
-            jLabel1[2 * i].setFont(font);
-            jLabel1[2 * i].setBounds(200, 120 + i * 60, 300, 40);
-            jPanel1.add(jLabel1[2 * i]);
+            c[i * 2].setFont(font);
+            c[i * 2].setBounds(0, 120 + i * 60, 150, 40);
+            jPanel1.add(c[i * 2]);
 
-            jLabel1[2 * i + 1] = new JLabel(show1);
+            a[i] = new JLabel("剩余房间数量");
+            a[i].setBounds(200, 120 + i * 60, 200, 40);
+            a[i].setFont(font);
+            jPanel1.add(a[i]);
 
-            jLabel1[2 * i + 1].setFont(font);
-            jLabel1[2 * i + 1].setBounds(350, 120 + i * 60, 300, 40);
-            jPanel1.add(jLabel1[2 * i + 1]);
+            c[i * 2 + 1] = new JTextArea(show1);
+
+            c[i * 2 + 1].setFont(font);
+            c[i * 2 + 1].setBounds(350, 120 + i * 60, 100, 40);
+            jPanel1.add(c[i * 2 + 1]);
 
 
-            jButtons2[2 * i] = new JButton("view picture");
-            jPanel1.add(jButtons2[2 * i]);
-            jButtons2[2 * i].setBounds(550, 120 + i * 60, 150, 40);
+            b[i] = new JButton("comfirm modify");
+            jPanel1.add(b[i]);
+            b[i].setBounds(550, 120 + i * 60, 150, 40);
 
-            jButtons2[2 * i + 1] = new JButton("set picture");
-            jPanel1.add(jButtons2[2 * i + 1]);
-            jButtons2[2 * i + 1].setBounds(700, 120 + i * 60, 150, 40);
-
-            jButtons3[i] = new JButton("modify");
-            jPanel1.add(jButtons3[i]);
-            jButtons3[i].setBounds(850, 120 + i * 60, 100, 40);
+            d[i] = new JButton("set picture");
+            jPanel1.add(d[i]);
+            d[i].setBounds(700, 120 + i * 60, 150, 40);
+            //b[i].addActionListener(this);
 
             int finalI = i;
-            int finalI1 = i;
-            jButtons2[2 * i].addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    String typename = jLabel1[2 * finalI1].getText();
-
-                    view_the_picture h = new view_the_picture();
-                    System.out.println(typename);
-                    h.init(typename);
-
-
-                }
-            });
-
-            jButtons2[2 * i + 1].addActionListener(new ActionListener() {
+            b[i].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
 
-                    openpicture picture = new openpicture();
-                    String typename = jLabel1[2 * finalI].getText();
-                    picture.init(typename);
-                    System.out.println(1111);
-                }
-            });
+                    String typename = c[finalI * 2].getText();
+                    String roomnumber = c[finalI * 2 + 1].getText();
+                    try {
 
-            jButtons3[i].addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    int hotelname = 0;
-                    for (int a = 0; a < roomlist2.size(); a++) {
-                        if (jButtons1[a].isSelected()) {
-                            hotelname = a;
-                            break;
-                        }
+                        int b = Integer.valueOf(roomnumber).intValue();
+                        System.out.println(b);
+                        //存入房间类型和数量
+
+
+                    } catch (NumberFormatException a) {
+
+                        a.printStackTrace();
+                        int option2 = JOptionPane.showConfirmDialog(null, "Wrong number of rooms", "提交提示", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 
                     }
+                }
+            });
 
-                    Modify_information m = new Modify_information(jButtons1[hotelname].getName());
+
+            int finalI1 = i;
+            d[i].addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println(c[finalI1 * 2].getText());
+                    view_the_picture v = new view_the_picture();
+                    v.init(c[finalI1 * 2].getText());
 
 
                 }
+
             });
 
 
         }
 
-        jButton5 = new JButton("add roomtype");
+        jButton5 = new JButton("comfirm");
         jPanel1.add(jButton5);
         jButton5.setBounds(100, 500, 200, 40);
 
-        jButton4 = new JButton("Refresh");
-        jPanel1.add(jButton4);
-        jButton4.setBounds(300, 500, 200, 40);
+
+        jButton3 = new JButton("exit");
+        jPanel1.add(jButton3);
+        jButton3.setBounds(500, 500, 200, 40);
 
 
-        listerner1();
         listerner2();
-
-        listerner4();
+        listerner3();
 
 
         frame.add(jPanel1);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 
         frame.setTitle("room type information");
-        frame.setSize(1000, 600);
+        frame.setSize(900, 600);
         frame.setVisible(true);
 
     }
 
+    public void actionPerformed(ActionEvent e) {
+        String ButtonName = e.getActionCommand();
+        if (ButtonName.equals("打开图片")) {
 
-    public void listerner1() {
-
-        jButton4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                jPanel1.updateUI();
-
-            }
-        });
+        }
 
 
     }
+
 
     public void listerner2() {
 
         jButton5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                settypr setpage1 = new settypr();
 
+
+                frame.dispose();
 
             }
         });
@@ -252,6 +202,20 @@ public class setpage extends JFrame {
 
     }
 
+
+    public void listerner3() {
+
+        jButton3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+
+
+            }
+        });
+
+
+    }
 
     public void listerner4() {
 
@@ -294,9 +258,20 @@ public class setpage extends JFrame {
         jButton5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String typename = jLabel.getText();
-                view_the_picture p = new view_the_picture();
-                p.init(typename);
+                String typename = textArea1.getText();
+                String roomnumber = textArea2.getText();
+                try {
+
+                    int b = Integer.valueOf(roomnumber).intValue();
+                    System.out.println(b);
+                    //存入房间类型和数量
+                } catch (NumberFormatException a) {
+
+                    a.printStackTrace();
+                    int option2 = JOptionPane.showConfirmDialog(null, "Wrong number of rooms", "提交提示", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+
+                }
+                //
 
 
             }
@@ -305,7 +280,7 @@ public class setpage extends JFrame {
 
     }
 
-    public String openFile() {
+    public void openFile() {
 
 
         //在这里选中图片文件，更改背景
@@ -343,22 +318,25 @@ public class setpage extends JFrame {
 			那肯定这是一张图片，因为非图片文件是获取不到它的宽高属性的*/
                 if (bi == null || bi.getHeight() <= 0 || bi.getWidth() <= 0) {
                     head.setText("您选择的不是一张图片，请从新选择！");
-                    return null;
+                    return;
                 } else {
                     String path = file.getPath();
                     System.out.println(path);
                     transferAlpha(path);
+                    /*ImageIcon image = new ImageIcon(path);
+                    image = new ImageIcon(image.getImage().getScaledInstance(550, 550, Image.SCALE_DEFAULT));
 
+
+                    head.setIcon(image);*/            //设置JLabel的显示图片
 
                 }
             } catch (IOException e) {
-
-                return null;
+                //e.printStackTrace();
+                return;
             }
 
 
         }
-        return jf.getSelectedFile().getPath();
     }
 
     public static void transferAlpha(String PATH1) {
@@ -419,7 +397,7 @@ public class setpage extends JFrame {
             }
 
             g2D.drawImage(bufferedImage1, 0, 0, imageIcon.getImageObserver());
-            String path = "src/GUI/11.jpg";
+            String path = "src/GUI/6.jpg";
             ImageIO.write(bufferedImage1, "png", new File(path));//直接输出文件
             ImageIcon i = new ImageIcon(path);
             i = new ImageIcon(i.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
@@ -438,7 +416,12 @@ public class setpage extends JFrame {
 
     }
 
+
 }
+
+
+
+
 
 
 

@@ -24,6 +24,7 @@ public class Get_customer {
 
 //        System.out.println("successfully create customer: "+id+" "+firstname+" "+lastname+" "+phone_number+" "+password+" "+security_question);
         System.out.println("id: " + id + "\n" +
+                "username:" + username + "\n" +
                 "firstname:" + firstname + "\n" +
                 "lastname:" + lastname + "\n" +
                 "phone_number:" + phone_number + "\n" +
