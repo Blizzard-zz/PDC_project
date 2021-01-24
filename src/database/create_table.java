@@ -41,7 +41,7 @@ public class create_table {
 //        establish_hotel();
 
 //        Image image = new Image(list, c,"image");
-//        image.insert(2, "fly fire", "C:\\Users\\zzzzzz\\IdeaProjects\\PDC_project\\image\\商城.png");
+//        image.insert(2, "fly fire", "C:\\ Users\\zzzzzz\\IdeaProjects\\PDC_project\\image\\商城.png");
 //        image.view_table();
 //        image.get(2);
 ////        int id4 = image.s
