@@ -16,28 +16,33 @@ import java.awt.event.ActionListener;
  */
 public class Retrive extends javax.swing.JFrame implements ActionListener {
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public String select;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    //private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private JPanel panel;
+    //private javax.swing.JLabel jLabel6;
+    //private javax.swing.JLabel jLabel7;
+    //private javax.swing.JLabel jLabel8;
+    //private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    //private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    JComboBox jComboBox;
+    JComboBox jComboBox0;
+    create_table table;
     // End of variables declaration//GEN-END:variables
 
     /**
      * Creates new form Retrive
      */
-    public create_table table;
+    //public create_table table;
     String account;
     String answer1;
-
+    String select0;
 
     public Retrive() {
         table = new create_table();
@@ -54,18 +59,20 @@ public class Retrive extends javax.swing.JFrame implements ActionListener {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        //jTextField2 = new javax.swing.JTextField();
+        //jLabel4 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        //jLabel6 = new javax.swing.JLabel();
+        //jLabel7 = new javax.swing.JLabel();
+        //jLabel8 = new javax.swing.JLabel();
+        //jLabel9 = new javax.swing.JLabel();
+        panel = new JPanel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,30 +91,50 @@ public class Retrive extends javax.swing.JFrame implements ActionListener {
         account = jTextField1.getText();
 
         jLabel3.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
-        jLabel3.setText("Question1:");
+        jLabel3.setText("Question:");
 
-        jTextField2.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
-//        answer1 =jTextField2.getText();
-        jLabel4.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
-        jLabel4.setText("Question2:");
+        jComboBox0 = new JComboBox();
+        jComboBox0.addItem("Customer");
+        jComboBox0.addItem("Staff");
+//        jComboBox.addItem("The most impressive name for you?");
+        jComboBox0.setBounds(50, 290, 70, 30);
+        select0 = (String) jComboBox0.getSelectedItem();
+        System.out.println(select0);
+        jComboBox0.addActionListener(this);
+        panel.add(jComboBox0);
+
+
+        jComboBox = new JComboBox();
+        jComboBox.addItem("What's your father's name?");
+//        jComboBox.addItem("The most impressive name for you?");
+        jComboBox.setBounds(230, 290, 150, 30);
+        select = (String) jComboBox.getSelectedItem();
+        System.out.println(select);
+        jComboBox.addActionListener(this);
+        panel.add(jComboBox);
+
+        //jTextField2.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
+        //answer1 =jTextField2.getText();
+        //jLabel4.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
+        //jLabel4.setText("Question2:");
 
         jTextField3.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
         answer1 = jTextField3.getText();
         jLabel5.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
-        jLabel5.setText("Answer-1:");
+        jLabel5.setText("Answer:");
         jLabel5.setToolTipText("");
 
-        jLabel6.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
+        //jLabel6.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
 
-        jLabel7.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
-        jLabel7.setText("What's your father's name?");
+        //jLabel7.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
+        //jLabel7.setText("What's your father's name?");
 
-        jLabel8.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
-        jLabel8.setText("Q.....");
+        //jLabel8.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
+        //jLabel8.setText("Q.....");
 
-        jLabel9.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
-        jLabel9.setText("Answer-2:");
-        jLabel9.setToolTipText("");
+        //jLabel9.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
+        //jLabel9.setText("Answer-2:");
+        //jLabel9.setToolTipText("");
 
         jButton1.setFont(new java.awt.Font("Calibri", 0, 22)); // NOI18N
         jButton1.setText("Submit");
@@ -125,32 +152,32 @@ public class Retrive extends javax.swing.JFrame implements ActionListener {
                         .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addGap(131, 131, 131)
+                                                .addGap(180, 180, 180)
                                                 .addComponent(jLabel1))
                                         .addGroup(layout.createSequentialGroup()
-                                                .addGap(79, 79, 79)
+                                                .addGap(80, 80, 80)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                         .addGroup(layout.createSequentialGroup()
                                                                 .addComponent(jLabel2)
-                                                                .addGap(44, 44, 44)
-                                                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addGap(80, 80, 80)
+                                                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                         .addComponent(jLabel3)
-                                                                        .addComponent(jLabel5)
-                                                                        .addComponent(jLabel4)
-                                                                        .addComponent(jLabel9))
+                                                                        .addComponent(jLabel5))
+                                                                //.addComponent(jLabel4)
+                                                                //.addComponent(jLabel9))
                                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                                         .addComponent(jTextField3)
-                                                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                                                        //.addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                        .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        //.addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        //.addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                         .addGroup(layout.createSequentialGroup()
-                                                .addGap(201, 201, 201)
+                                                .addGap(230, 230, 230)
                                                 .addComponent(jButton1)))
-                                .addContainerGap(75, Short.MAX_VALUE))
+                                .addContainerGap(80, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,23 +188,16 @@ public class Retrive extends javax.swing.JFrame implements ActionListener {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel2)
                                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(41, 41, 41)
+                                .addGap(35, 35, 35)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel3)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jLabel7))
-                                .addGap(35, 35, 35)
+                                        //.addComponent(jLabel6)
+                                        .addComponent(panel))
+                                .addGap(37, 37, 37)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel5))
-                                .addGap(47, 47, 47)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel8)
-                                        .addComponent(jLabel4))
-                                .addGap(37, 37, 37)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel9)
-                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(38, 38, 38)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                                 .addComponent(jButton1)
                                 .addContainerGap())
@@ -191,13 +211,30 @@ public class Retrive extends javax.swing.JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         //submit
         if (e.getSource() == jButton1) {
+
             account = jTextField1.getText();
             answer1 = jTextField3.getText();
             System.out.println("account = " + account + " answer = " + answer1);
-            String password = table.customer.find_forget_password(account, answer1);
-            System.out.println(password);
-            JOptionPane.showMessageDialog(null, "Your password is " + password,
-                    "successfully find", JOptionPane.PLAIN_MESSAGE);
+            if (select0.equals("Customer")) {
+                String password = table.customer.find_forget_password(account, answer1);
+                System.out.println(password);
+                JOptionPane.showMessageDialog(null, "Your password is " + password,
+                        "successfully find", JOptionPane.PLAIN_MESSAGE);
+            } else if (select0.equals("Staff")) {
+                String password = table.staff.find_forget_password(account, answer1);
+                System.out.println(password);
+                JOptionPane.showMessageDialog(null, "Your password is " + password,
+                        "successfully find", JOptionPane.PLAIN_MESSAGE);
+            }
+
+
+        }
+        //customer or staff
+        if (e.getSource() == jComboBox0) {
+            select0 = (String) jComboBox0.getSelectedItem();
+            System.out.println(select0);
+
+
         }
 
     }

@@ -170,7 +170,7 @@ public class SwingRegister extends JFrame implements ActionListener {
 
         jComboBox1 = new JComboBox();
         jComboBox1.addItem("What's your father's name?");
-        jComboBox1.addItem("The most impressive name for you?");
+
         jComboBox1.setBounds(230, 290, 210, 30);
         select1 = (String) jComboBox1.getSelectedItem();
         System.out.println(select1);
@@ -235,10 +235,10 @@ public class SwingRegister extends JFrame implements ActionListener {
         return same;
     }
 
-    public static void main(String[] args) {
-        SwingRegister sw = new SwingRegister();
-        sw.setVisible(true);
-    }
+//    public static void main(String[] args) {
+//        SwingRegister sw = new SwingRegister();
+//        sw.setVisible(true);
+//    }
 
     @Override
     public void actionPerformed(ActionEvent e) {

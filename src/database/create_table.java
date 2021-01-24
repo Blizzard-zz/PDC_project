@@ -37,23 +37,25 @@ public class create_table {
         establish_staff();
 
         hotel = new Hotel(list, c, "hotel");
+
+
 //        hotel.view_table();
 //        establish_hotel();
 
-//        Image image = new Image(list, c,"image");
-//        image.insert(2, "fly fire", "C:\\Users\\zzzzzz\\IdeaProjects\\PDC_project\\image\\商城.png");
-//        image.view_table();
-//        image.get(2);
-////        int id4 = image.s
-//        image.delete(2);
-//        image.view_table();
-//        System.out.println();
-//
-//        login_test(customer, staff, "78345", "rwf74d8", "186457451", "asd");
-//        forget_password_test(customer, staff, "Apple", "akkk", "186457451", "mary");
-//        clean_all_table(customer,staff,hotel);
-//        c.close_Connection();
+        image = new Image(list, c, "image");
+//        establish_image();
 
+
+    }
+
+    public void establish_image() {
+        image.insert("Open the fire", "src/images/1.standard room.PNG", "src/images/1.singleRoom.PNG",
+                "src/images/1.business room.PNG", "src/images/1.five-person room.PNG", "src/images/1.four-person room.PNG");
+        image.insert("Eagle", "src/images/2.standard room.PNG", "src/images/2.singleRoom.PNG",
+                "src/images/2.business room.PNG", "src/images/2.three-person room.PNG", "src/images/2.four-person room.PNG");
+        image.insert("Dreamers", "src/images/3.standard room.PNG", "src/images/3.single room.PNG",
+                "src/images/3.business room.PNG", "src/images/3.five-person room.PNG", "src/images/3.four-person room.PNG");
+        image.view_table();
     }
 
     public void establish_hotel() {

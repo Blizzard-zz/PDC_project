@@ -68,7 +68,7 @@ public class hotelpage {
 //        hotel = new hotel("YFY");
 //
 //        hotel = search_hotel_by_name(name);
-        System.out.println("hotel_page_name: " + name);
+//        System.out.println("hotel_page_name: " + name);
         hotel = new hotel(name);
         hotel.get_hotel.print();
 
@@ -89,7 +89,6 @@ public class hotelpage {
             if (roomlist.get(i).room_number == 0) {
                 exchange++;
                 continue;
-
             }
 
             int h = i;
@@ -102,7 +101,9 @@ public class hotelpage {
             WestJP.setBounds(0, 0 + h * 200, 500, 200);
 
             //将每种房型的第一张图片读取，放进path数组里，路径用path[i]赋值
-            ImageIcon image = new ImageIcon("src/GUI/1.jpg");
+            String path = roomlist.get(i).path;
+            System.out.println("Path: " + path);
+            ImageIcon image = new ImageIcon(path);
             image = new ImageIcon(image.getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
             jButtons1[2 * i] = new JButton();
             jButtons1[2 * i].setBounds(0, 0, 150, 150);
@@ -184,9 +185,8 @@ public class hotelpage {
         frame.setTitle("Welcome to " + hotel.hotel_name);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setBounds(100, 200, 550, 650);
-        frame.setSize(550, 400);
+        frame.setSize(550, 600);
         frame.setVisible(true);
-
 
     }
 

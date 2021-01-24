@@ -8,12 +8,13 @@ public class roomtype {
     String description;
     roomtype next;
     int room_number;
+    String path;
 
-    public roomtype(String roomtypename, int roomnumber, String description) {
+    public roomtype(String roomtypename, int roomnumber, String description, String path) {
         this.roomtypename = roomtypename;
         this.room_number = roomnumber;
         this.description = description;
-
+        this.path = path;
     }
 
     public int checkin() {

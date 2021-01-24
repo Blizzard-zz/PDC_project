@@ -100,41 +100,57 @@
     </column>
     <column id="37" parent="16" name="HOTEL_NAME">
       <Position>2</Position>
-      <DataType>VARCHAR(10)|12s</DataType>
+      <DataType>VARCHAR(100)|12s</DataType>
     </column>
-    <column id="38" parent="16" name="PATH">
+    <column id="38" parent="16" name="HOTEL_PATH">
       <Position>3</Position>
       <DataType>VARCHAR(100)|12s</DataType>
     </column>
-    <column id="39" parent="17" name="ID">
+    <column id="39" parent="16" name="SINGLE_ROOM_PATH">
+      <Position>4</Position>
+      <DataType>VARCHAR(100)|12s</DataType>
+    </column>
+    <column id="40" parent="16" name="DOUBLE_ROOM_PATH">
+      <Position>5</Position>
+      <DataType>VARCHAR(100)|12s</DataType>
+    </column>
+    <column id="41" parent="16" name="TRIPE_ROOM_PATH">
+      <Position>6</Position>
+      <DataType>VARCHAR(100)|12s</DataType>
+    </column>
+    <column id="42" parent="16" name="FOUR_ROOM_PATH">
+      <Position>7</Position>
+      <DataType>VARCHAR(100)|12s</DataType>
+    </column>
+    <column id="43" parent="17" name="ID">
       <Position>1</Position>
       <DataType>INTEGER|4s</DataType>
     </column>
-    <column id="40" parent="17" name="USERNAME">
+    <column id="44" parent="17" name="USERNAME">
       <Position>2</Position>
       <DataType>VARCHAR(50)|12s</DataType>
     </column>
-    <column id="41" parent="17" name="FIRSTNAME">
+    <column id="45" parent="17" name="FIRSTNAME">
       <Position>3</Position>
       <DataType>VARCHAR(50)|12s</DataType>
     </column>
-    <column id="42" parent="17" name="LASTNAME">
+    <column id="46" parent="17" name="LASTNAME">
       <Position>4</Position>
       <DataType>VARCHAR(50)|12s</DataType>
     </column>
-    <column id="43" parent="17" name="PHONE_NUMBER">
+    <column id="47" parent="17" name="PHONE_NUMBER">
       <Position>5</Position>
       <DataType>VARCHAR(50)|12s</DataType>
     </column>
-    <column id="44" parent="17" name="PASSWORD">
+    <column id="48" parent="17" name="PASSWORD">
       <Position>6</Position>
       <DataType>VARCHAR(20)|12s</DataType>
     </column>
-    <column id="45" parent="17" name="REGISTER">
+    <column id="49" parent="17" name="REGISTER">
       <Position>7</Position>
       <DataType>VARCHAR(20)|12s</DataType>
     </column>
-    <column id="46" parent="17" name="QUESTION">
+    <column id="50" parent="17" name="QUESTION">
       <Position>8</Position>
       <DataType>VARCHAR(50)|12s</DataType>
     </column>

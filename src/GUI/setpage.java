@@ -37,10 +37,10 @@ public class setpage extends JFrame {
 
     JPanel jPanel1;
 
-    JButton[] b;
-    JLabel[] a;
-    JTextArea[] c;
-    JButton[] d;
+    JLabel[] jLabel1;
+    JButton[] jButtons2;
+    JButton[] jButtons3;
+    JToggleButton[] jButtons1;
 
     ButtonGroup bg;
 
@@ -92,8 +92,12 @@ public class setpage extends JFrame {
         jPanel1.add(head);
 
 
+        jLabel1 = new JLabel[room_list.size() * 2];
+        jButtons2 = new JButton[room_list.size() * 2];
+        jButtons3 = new JButton[room_list.size()];
+
         //接下来的所有roomlist2出现的地方，需要换成酒店名字所存的数组
-        JToggleButton[] jButtons1 = new JToggleButton[hotels.size()];
+        jButtons1 = new JToggleButton[hotels.size()];
         bg = new ButtonGroup();
         for (int i = 0; i < hotels.size(); i++) {
 
@@ -105,8 +109,13 @@ public class setpage extends JFrame {
 
 
             int finalI1 = i;
+
             jButtons1[i].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+
+                    remove(room_list);
+
+                    System.out.println(1111);
                     //此处返回的是选中的酒店名
                     String HOTELNAME = jButtons1[finalI1].getText();
                     System.out.println(HOTELNAME);
@@ -115,30 +124,131 @@ public class setpage extends JFrame {
                     //此处更新为选中酒店的房间类型数组
 
                     room_list = hotel.show_room_list();
-//                    System.out.println(Arrays.to(room_list));
-//                    System.out.println(room_list);
-                    //以上两行代码完成房间类型数组的赋值后可以删除
+
+                    System.out.println(room_list.toString());
+                    add(room_list);
+                    //System.out.println(room_list);
+
+
+                    //jPanel1.removeAll();
+                    //jPanel1.revalidate();
+                    //frame.invalidate();
+                    //frame.repaint();
+                    frame.validate();
+                    //frame.setVisible(true);
 
 
                     jPanel1.updateUI();
 
+
                 }
+
+
             });
 
         }
+
+
         //到此处截至，以上所有roomlist2替换
 
 
         //以下所有的roomlist2存放的为房间类型的数组
-        JLabel[] jLabel1 = new JLabel[room_list.size() * 2];
+        /*JLabel[] jLabel1 = new JLabel[room_list.size() * 2];
         JButton[] jButtons2 = new JButton[room_list.size() * 2];
-        JButton[] jButtons3 = new JButton[room_list.size()];
+        JButton[] jButtons3 = new JButton[room_list.size()];*/
 
+
+        this.add(room_list);
 //        room_list = hotels.get(0).show_room_list();
         System.out.println("size = " + room_list.size());
 
+
+        jButton5 = new JButton("add roomtype");
+        jPanel1.add(jButton5);
+        jButton5.setBounds(100, 500, 200, 40);
+
+        jButton4 = new JButton("Refresh");
+        jPanel1.add(jButton4);
+        jButton4.setBounds(300, 500, 200, 40);
+
+
+        listerner1();
+        listerner2();
+
+        listerner4();
+
+
+        frame.add(jPanel1);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        frame.setTitle("room type information");
+        frame.setSize(1000, 600);
+        frame.setVisible(true);
+
+    }
+
+    private void initial_hotel() {
+        hotel = new hotel("Open the fire");
+
+        hotel1 = new hotel("Eagle");
+
+        hotel3 = new hotel("Dreamers");
+
+        hotels.add(hotel);
+        hotels.add(hotel1);
+        hotels.add(hotel3);
+    }
+
+
+    public void listerner1() {
+
+        jButton4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                jPanel1.updateUI();
+
+            }
+        });
+
+
+    }
+
+    public void listerner2() {
+
+        jButton5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //此处为添加房间类型的按钮，无需改动
+                settypr setpage1 = new settypr();
+
+
+            }
+        });
+
+
+    }
+
+
+    public void listerner4() {
+
+        head.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //此处为修改头像框按钮，无需改动
+                openFile();//打开文件
+
+            }
+        });
+
+
+    }
+
+    public void add(ArrayList<roomtype> room_list) {
+
         for (int i = 0; i < room_list.size(); i++) {
-            System.out.println("i = " + i);
+            System.out.println(123456);
+            //System.out.println("i = " + i);
 //            room_list = hotels.get(i).show_room_list();
             //show里存放的为房间类型名称的数组，通过roolist2[i]调用赋值
             String show = room_list.get(i).roomtypename;
@@ -224,86 +334,23 @@ public class setpage extends JFrame {
 
         }
 
-        jButton5 = new JButton("add roomtype");
-        jPanel1.add(jButton5);
-        jButton5.setBounds(100, 500, 200, 40);
-
-        jButton4 = new JButton("Refresh");
-        jPanel1.add(jButton4);
-        jButton4.setBounds(300, 500, 200, 40);
-
-
-        listerner1();
-        listerner2();
-
-        listerner4();
-
-
-        frame.add(jPanel1);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        frame.setTitle("room type information");
-        frame.setSize(1000, 600);
-        frame.setVisible(true);
-
-    }
-
-    private void initial_hotel() {
-        hotel = new hotel("Open the fire");
-
-        hotel1 = new hotel("Eagle");
-
-        hotel3 = new hotel("Dreamers");
-
-        hotels.add(hotel);
-        hotels.add(hotel1);
-        hotels.add(hotel3);
     }
 
 
-    public void listerner1() {
+    public void remove(ArrayList<roomtype> room_list) {
 
-        jButton4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        for (int i = 0; i < room_list.size(); i++) {
+            jPanel1.remove(jLabel1[2 * i]);
+            jPanel1.remove(jLabel1[2 * i + 1]);
+            jPanel1.remove(jButtons2[2 * i]);
+            jPanel1.remove(jButtons2[2 * i + 1]);
+            jPanel1.remove(jButtons3[i]);
 
-                jPanel1.updateUI();
-
-            }
-        });
+        }
 
 
     }
 
-    public void listerner2() {
-
-        jButton5.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //此处为添加房间类型的按钮，无需改动
-                settypr setpage1 = new settypr();
-
-
-            }
-        });
-
-
-    }
-
-
-    public void listerner4() {
-
-        head.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //此处为修改头像框按钮，无需改动
-                openFile();//打开文件
-
-            }
-        });
-
-
-    }
 
     //以下都无需改动
     public String openFile() {

@@ -69,7 +69,8 @@ public class customer {
             WestJP.setBounds(0, 0 + i * 200, 500, 200);
 
             //将每个酒店的图片选一张，路径存入数组里，用path[i]的方式赋值给image
-            ImageIcon image = new ImageIcon("src/GUI/1.jpg");
+            String path = hotels.get(i).hotel_path;
+            ImageIcon image = new ImageIcon(path);
             image = new ImageIcon(image.getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
 
             a[3 * i] = new JLabel();

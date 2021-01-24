@@ -126,21 +126,21 @@ public class Modify_information extends JFrame {
                     String typename = c[finalI * 2].getText();
                     String roomnumber = c[finalI * 2 + 1].getText();
                     try {
-
                         int b = Integer.valueOf(roomnumber).intValue();
                         String a = typename;
 //                        System.out.println(b);
                         hotel hotel = new hotel(hotelname);
-                        System.out.println(a + " " + b);
+                        hotel.get_hotel.print();
+
+                        System.out.println("type_name: " + a + " " + b);
                         //此处需加入存入语句，typename为读取的类型名字，roomnumber为读取的剩余房间数
                         hotel.get_hotel.set(a, b);
                         hotel.get_hotel.print();
                         table.hotel.insert(hotel.get_hotel);
-                    } catch (NumberFormatException a) {
 
+                    } catch (NumberFormatException a) {
                         a.printStackTrace();
                         int option2 = JOptionPane.showConfirmDialog(null, "Wrong number of rooms", "提交提示", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
-
                     }
                 }
             });

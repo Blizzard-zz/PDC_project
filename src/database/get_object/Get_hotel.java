@@ -53,7 +53,7 @@ public class Get_hotel {
     }
 
     public void set(String room_type_name, int room_number) {
-        System.out.println(room_number + " " + room_number);
+        System.out.println("in set: name = " + room_type_name + " number = " + room_number);
 
         switch (room_type_name) {
             case "single_room":
@@ -62,7 +62,7 @@ public class Get_hotel {
             case "double_room":
                 double_room.number = room_number;
                 break;
-            case "tripe_number":
+            case "tripe_room":
                 tripe_room.number = room_number;
                 break;
             case "four_room":
