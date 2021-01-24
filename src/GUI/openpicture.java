@@ -16,7 +16,9 @@ public class openpicture implements ActionListener {
     JButton comfirm;
     JButton openFile;
     File file;
+    String path1=null;
 
+    //此处用于为传入的roomtype添加新的图片，
     public void init(String typrname) {
         openFile = new JButton("打开图片");
         comfirm = new JButton("确认图片");
@@ -32,17 +34,14 @@ public class openpicture implements ActionListener {
         frame.setSize(1100, 800);
         frame.setLayout(new BorderLayout());
 
-        //主面板
         JPanel ShowJP = new JPanel(new BorderLayout());
-        ShowJP.setBorder(BorderFactory.createTitledBorder("显示"));
+        ShowJP.setBorder(BorderFactory.createTitledBorder("add the picture"));
         ShowJP.setPreferredSize(new Dimension(1100, 800));
 
-        //ShowJP.add(openFile);
 
 
         frame.add(ShowJP, BorderLayout.CENTER);
 
-        //显示面板
         JPanel WestJP = new JPanel(new FlowLayout());
         ShowJP.add(WestJP, BorderLayout.NORTH);
         WestJP.setPreferredSize(new Dimension(550, 550));
@@ -50,17 +49,10 @@ public class openpicture implements ActionListener {
 
         FlowLayout layout = new FlowLayout(1, 400, 100);
         JPanel EastJP = new JPanel(layout);
-        //ShowJP.add(EastJP,BorderLayout.SOUTH);
         frame.add(EastJP, BorderLayout.SOUTH);
         EastJP.setPreferredSize(new Dimension(550, 200));
 
-        //openFile.setBounds(600,100,50,50);
-        //comfirm.setBounds(600,100,50,50);
-        //EastJP.setLayout(null);
 
-        //openFile.setBounds(600, 600, 100, 50);
-
-        //comfirm.setBounds(200,200 ,50,50);
 
         openFile.setSize(200, 100);
         comfirm.setSize(50, 50);
@@ -68,7 +60,6 @@ public class openpicture implements ActionListener {
         EastJP.add(openFile, BorderLayout.WEST);
         EastJP.add(comfirm, BorderLayout.EAST);
         listerner1();
-        //EastJP.add(comfirm);
 
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -79,9 +70,16 @@ public class openpicture implements ActionListener {
         comfirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //return file.getPath();
-                //type 名在输入里有
-                frame.dispose();
+                if(path1==null){
+                    frame.dispose();
+                }
+                else{
+                    //此处存入path1，为新添加图片,类型名称为roomtype
+
+
+                    frame.dispose();
+
+                }
 
             }
         });
@@ -91,25 +89,21 @@ public class openpicture implements ActionListener {
     }
 
 
-    //实现按钮监听事件
     public void actionPerformed(ActionEvent e) {
         String ButtonName = e.getActionCommand();
         if (ButtonName.equals("打开图片")) {
             System.out.println("打开图片:");
-            openFile();//打开文件
+            openFile();
         }
 
     }
 
-    //打开文件夹操作
     public void openFile() {
 
 
-        //在这里选中图片文件，更改背景
         JFileChooser jf = new JFileChooser();// 实例化文件选择器
 
         jf.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-        // 设置文件过滤
         jf.setFileFilter(new FileFilter() {// FileFilter 为抽象类
 
 
@@ -136,8 +130,7 @@ public class openpicture implements ActionListener {
             try {
                 file = jf.getSelectedFile();
                 bi = ImageIO.read(file);
-			/*获取文件是否为图片，如果能够正常的获取到一张图片的宽高属性，
-			那肯定这是一张图片，因为非图片文件是获取不到它的宽高属性的*/
+
                 if (bi == null || bi.getHeight() <= 0 || bi.getWidth() <= 0) {
                     label.setText("您选择的不是一张图片，请从新选择！");
                     return;
@@ -148,11 +141,10 @@ public class openpicture implements ActionListener {
                     image = new ImageIcon(image.getImage().getScaledInstance(550, 550, Image.SCALE_DEFAULT));
 
 
-                    label.setIcon(image);            //设置JLabel的显示图片
-
+                    label.setIcon(image);
+                    path1=file.getPath();
                 }
             } catch (IOException e) {
-                //e.printStackTrace();
                 return;
             }
 

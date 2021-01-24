@@ -24,16 +24,22 @@ public class hotel_PICTURE {
     JButton previousBtn;
     JButton nextBtn;
     JButton returnb;
-    BufferedImage bi = null;//用于存储临时打开的图片流
+    BufferedImage bi = null;
     JButton comfirm;
     JButton openFile;
     File file;
     int picturenumber = 0;
 
+    //此处是显示对应房型的图片
     public void init(String typrname) {
-        //在这加一个循环读取同一个酒店的所有的图片路径，加入picturelist中
+        //在这加一个循环读取同一个房间类型的所有的图片路径，加入picturelist中
+
         picturelist.add("src/GUI/2.jpg");
         picturelist.add("src/GUI/1.jpg");
+
+
+
+
         Font font = new Font("宋体", Font.BOLD, 20);
 
 
@@ -42,17 +48,19 @@ public class hotel_PICTURE {
         frame.setSize(600, 600);
         frame.setLayout(new BorderLayout());
 
-        //主面板
+
         JPanel ShowJP = new JPanel(new BorderLayout());
-        ShowJP.setBorder(BorderFactory.createTitledBorder("显示"));
+        ShowJP.setBorder(BorderFactory.createTitledBorder("the roomtype picture"));
         ShowJP.setPreferredSize(new Dimension(600, 600));
 
-        //对每个房型的介绍
+        //对酒店某个房型的介绍的介绍，具体房型用变量roomtye查询
         String introduction = "abcasfasfaaa";
         textArea = new JTextArea(introduction, 5, 10);
         Font font1 = new Font("宋体", Font.BOLD, 30);
 
         //此处显示的是第一个图片，可以直接把设置好的路径改成读取picturelist[0]的图片就成
+
+
         ImageIcon image = new ImageIcon("src/GUI/1.jpg");
         image = new ImageIcon(image.getImage().getScaledInstance(350, 350, Image.SCALE_DEFAULT));
 
@@ -62,7 +70,7 @@ public class hotel_PICTURE {
 
         frame.add(ShowJP, BorderLayout.CENTER);
 
-        //四个图片面板
+
         JPanel WestJP = new JPanel(new FlowLayout());
         ShowJP.add(WestJP, BorderLayout.CENTER);
         WestJP.setPreferredSize(new Dimension(500, 500));
@@ -73,13 +81,12 @@ public class hotel_PICTURE {
         textArea.setLineWrap(true);
         textArea.setEditable(false);
         textArea.setOpaque(false);
-        //textArea.setHorizontalAlignment(JTextField.CENTER);
         WestJP.add(textArea, BorderLayout.SOUTH);
 
 
-        JToolBar toolBar = new JToolBar("测试工具栏");
 
-        // 创建 工具栏按钮
+
+
         previousBtn = new JButton(new ImageIcon("src/GUI/left.png"));
         previousBtn.setFocusPainted(false);
         previousBtn.setContentAreaFilled(false);
@@ -160,6 +167,7 @@ public class hotel_PICTURE {
         returnb.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 frame.dispose();
             }
         });
@@ -167,15 +175,7 @@ public class hotel_PICTURE {
 
     }
 
-    //实现按钮监听事件
-    public void actionPerformed(ActionEvent e) {
-        String ButtonName = e.getActionCommand();
-        if (ButtonName.equals("打开图片")) {
 
-        }
-
-
-    }
 
     //打开文件夹操作
     public void openFile(String path) {
@@ -186,11 +186,11 @@ public class hotel_PICTURE {
             bi = ImageIO.read(file);
             ImageIcon image = new ImageIcon(path);
             image = new ImageIcon(image.getImage().getScaledInstance(350, 350, Image.SCALE_DEFAULT));
-            label1.setIcon(image);            //设置JLabel的显示图片
+            label1.setIcon(image);
 
 
         } catch (IOException e) {
-            //e.printStackTrace();
+
             return;
         }
 

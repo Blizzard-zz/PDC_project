@@ -183,7 +183,7 @@ public class Login extends javax.swing.JFrame implements ActionListener {
             if (select.equals("Customer")) {
                 System.out.println("Customer login...");
                 table.customer.login(account, password);
-                new customer();
+                new customer(account);
             }
             if (select.equals("Staff")) {
                 System.out.println("Staff login...");

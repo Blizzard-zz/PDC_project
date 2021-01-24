@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 public class bookpage extends JFrame {
     public static hotel roomlist1;
@@ -54,7 +56,7 @@ public class bookpage extends JFrame {
     JScrollPane scrollPane1;
 
 
-    public bookpage() {
+    public bookpage(String typenmae) {
 
         frame = new JFrame();
         jPanel1 = new JPanel();
@@ -205,6 +207,59 @@ public class bookpage extends JFrame {
         frame.setVisible(true);
 
 
+        edicb.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+
+                    int data=changedate(edicb.getSelectedIndex());
+                    edicb1.removeAllItems();
+
+                    for(int i=0;i<data;i++){
+                        edicb1.addItem(String.valueOf(i+1));
+
+                    }
+                    jPanel1.updateUI();
+
+                }
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+        edicb2.addItemListener(new ItemListener() {
+
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+
+                    int data=changedate(edicb2.getSelectedIndex());
+                    edicb3.removeAllItems();
+                    for(int i=0;i<data;i++){
+                        edicb3.addItem(String.valueOf(i+1));
+
+                    }
+
+                    jPanel1.updateUI();
+                }
+            }
+        });
+
+
+
+
+
+
     }
 
 
@@ -225,13 +280,22 @@ public class bookpage extends JFrame {
                     int date = (month1 - month) * 30 + specificdate1 - specificdate;
                     int option = JOptionPane.showConfirmDialog(null, "You have a reservation for " + String.valueOf(date) + " days", "提交提示", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 
-                    //存入数据
-                    textArea1.getText();//房间数
-                    textArea2.getText();//姓名
-                    textArea3.getText();//电话
+                    if(option==2)
+                    {
 
+                    }
+                    else {
 
-                    frame.dispose();
+                        //存入数据
+                        textArea1.getText();//房间数
+                        textArea2.getText();//姓名
+                        textArea3.getText();//电话
+
+                        //该typenmae下房间数-1
+                        frame.dispose();
+
+                    }
+
 
                 }
 
@@ -249,30 +313,20 @@ public class bookpage extends JFrame {
         jButton3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(20);
-                ;
-
-
+                frame.dispose();
             }
         });
+    }
 
+    public int changedate(int monthes) {
+
+        int[] a=new int[]{31,28,31,30,31,30,31,31,30,31,30,31};
+        return a[monthes];
 
     }
 
-    public void listerner3() {
-
-        jButton6.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                openpicture picture = new openpicture();
-                String typename = jLabel.getText();
-                picture.init(typename);
-
-            }
-        });
 
 
-    }
 
 
 }

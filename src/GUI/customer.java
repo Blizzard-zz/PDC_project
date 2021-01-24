@@ -7,40 +7,27 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class customer {
+
+
     public static hotel roomlist1;
     static ArrayList<roomtype> roomlist2 = new ArrayList<>();
     JFrame frame = null;
 
 
-    JLabel jLabel;//title
 
     JPanel jPanel1;
-    JLabel jlabel2;
 
     JPanel jPanel2;
 
 
-    JButton[] b;
-    JLabel[] a;
-    JTextArea[] c;
-    JButton[] d;
-    JLabel[] e;
-    JLabel[] f;
-    JLabel[] g;
 
-    JButton jButton2;
-
-    JButton jButton6;
-    JButton jlabel3;
-    JLabel jlabel4;
-
-    JLabel jlabel1;
-    JTextArea textArea;
 
     JScrollPane scrollPane;
 
+    //此处为顾客登录后打开的第一个界面，传入的参数是用户名
 
-    public customer() {
+
+    public customer(String username) {
 
         jPanel1 = new JPanel();
         jPanel2 = new JPanel();
@@ -57,6 +44,9 @@ public class customer {
         jPanel1.setLayout(null);
 
 
+
+
+        //这里需要把所有酒店的名字，介绍，图片传入roomlist2中
         roomlist1 = new hotel("YFY");
         roomlist2 = roomlist1.show();
 
@@ -74,7 +64,7 @@ public class customer {
             JPanel WestJP = new JPanel(null);
             WestJP.setBounds(0, 0 + i * 200, 500, 200);
 
-
+            //将每个酒店的图片选一张，路径存入数组里，用path[i]的方式赋值给image
             ImageIcon image = new ImageIcon("src/GUI/1.jpg");
             image = new ImageIcon(image.getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
 
@@ -84,29 +74,26 @@ public class customer {
             WestJP.add(a[3 * i]);
 
 
-            //读取酒店名
-
-
+            //将每个酒店的名字存入数组里，用name[i]的方式赋值给hotelname
             String hotelname = "   YFY";
             a[3 * i + 1] = new JLabel(hotelname);
             a[3 * i + 1].setBounds(250, 0, 150, 40);
             WestJP.add(a[3 * i + 1]);
 
-
-            //读取并计算平均价格
-            String price = "  50 ";
-            a[3 * i + 2] = new JLabel(price);
+            //酒店价格设置在700-1400左右
+            final double price1 = Math.random();
+            final int price2 = (int)(700+price1*700);
+            a[3 * i + 2] = new JLabel(String.valueOf(price2));
             a[3 * i + 2].setBounds(450, 150, 50, 50);
             WestJP.add(a[3 * i + 2]);
 
             //浏览按钮
-
             d[i] = new JButton("view");
             d[i].setBounds(300, 110, 80, 40);
             WestJP.add(d[i]);
 
 
-            //读取介绍
+            //读取酒店介绍介绍
             String describetion = "ABCBADBABD   ";
             c[i] = new JTextArea(describetion, 3, 10);
             c[i].setLineWrap(true);
@@ -118,13 +105,15 @@ public class customer {
 
             jPanel1.add(WestJP);
 
-
+            //此处为打开某个特定酒店页面，显示各种房型
             int finalI = i;
             d[i].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                    //hotelname为读取下来的酒店名字，无需改动
 
                     String hotelname = a[3 * finalI + 1].getName();
                     hotelpage h = new hotelpage(hotelname);
+
                 }
             });
 
@@ -141,7 +130,7 @@ public class customer {
         frame.add(scrollPane);
 
 
-        frame.setTitle("hotel list");
+        frame.setTitle("welcome to the hotel System  "+username);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         frame.setSize(550, 400);
@@ -151,55 +140,15 @@ public class customer {
     }
 
 
-    public void listerner1() {
-
-        jlabel3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //获取是那个酒店的按钮被点击
-                String hotelname = jPanel1.getName();
-                hotelpage h = new hotelpage(hotelname);
 
 
-            }
 
 
-        });
 
-
-    }
-
-    public void listerner2() {
-
-        jButton2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                settypr setpage1 = new settypr();
-
-
-            }
-        });
-
-
-    }
-
-    public void listerner3() {
-
-        jButton6.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                openpicture picture = new openpicture();
-                String typename = jLabel.getText();
-                picture.init(typename);
-
-            }
-        });
-
-
-    }
 
     public static void main(String[] args) {
-        customer c = new customer();
+
+        customer c = new customer("yfy");
     }
 
 

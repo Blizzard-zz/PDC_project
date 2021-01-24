@@ -30,11 +30,15 @@ public class view_the_picture {
     File file;
     int picturenumber = 0;
 
+
+    //这个是根据输入的房间类型，读取对应的图片，加在picturelist里
+
     public void init(String typrname) {
         //在这加一个循环读取typrname下的图片路径，加入picturelist中
+
         picturelist.add("src/GUI/2.jpg");
         picturelist.add("src/GUI/1.jpg");
-        Font font = new Font("宋体", Font.BOLD, 20);
+        Font font = new Font("宋体", Font.BOLD, 25);
 
 
         frame = new JFrame();
@@ -42,11 +46,13 @@ public class view_the_picture {
         frame.setSize(600, 600);
         frame.setLayout(new BorderLayout());
 
-        //主面板
         JPanel ShowJP = new JPanel(new BorderLayout());
-        ShowJP.setBorder(BorderFactory.createTitledBorder("显示"));
+        ShowJP.setBorder(BorderFactory.createTitledBorder("view the  "+typrname +"  picture"));
+        ShowJP.setFont(font);
         ShowJP.setPreferredSize(new Dimension(600, 600));
 
+
+        //这边读取的是对这个房间类型的介绍，直接赋值给introduction就行
         String introduction = "abcasfasfaaa";
         textArea = new JTextArea(introduction, 5, 10);
         Font font1 = new Font("宋体", Font.BOLD, 30);
@@ -56,12 +62,18 @@ public class view_the_picture {
         image = new ImageIcon(image.getImage().getScaledInstance(350, 350, Image.SCALE_DEFAULT));
 
 
+
+        //以下无需改动
+        //以下无需改动
+        //以下无需改动
+        //以下无需改动
+        //以下无需改动
+
         label1.setIcon(image);
 
 
         frame.add(ShowJP, BorderLayout.CENTER);
 
-        //四个图片面板
         JPanel WestJP = new JPanel(new FlowLayout());
         ShowJP.add(WestJP, BorderLayout.CENTER);
         WestJP.setPreferredSize(new Dimension(500, 500));
@@ -72,13 +84,11 @@ public class view_the_picture {
         textArea.setLineWrap(true);
         textArea.setEditable(false);
         textArea.setOpaque(false);
-        //textArea.setHorizontalAlignment(JTextField.CENTER);
         WestJP.add(textArea, BorderLayout.SOUTH);
 
 
-        JToolBar toolBar = new JToolBar("测试工具栏");
 
-        // 创建 工具栏按钮
+
         previousBtn = new JButton(new ImageIcon("src/GUI/left.png"));
         previousBtn.setFocusPainted(false);
         previousBtn.setContentAreaFilled(false);
@@ -88,7 +98,7 @@ public class view_the_picture {
         nextBtn = new JButton(new ImageIcon("src/GUI/right.png"));
 
         nextBtn.setContentAreaFilled(false);
-        nextBtn.setBorderPainted(false);//不绘制边框
+        nextBtn.setBorderPainted(false);
 
 
         ShowJP.add(previousBtn, BorderLayout.WEST);
@@ -196,10 +206,10 @@ public class view_the_picture {
 
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         view_the_picture p = new view_the_picture();
         p.init("yfy");
-    }
+    }*/
 
 
 }

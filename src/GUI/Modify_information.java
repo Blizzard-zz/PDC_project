@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
 
-public class Modify_information extends JFrame implements ActionListener {
+public class Modify_information extends JFrame {
 
 
     public static hotel hetol2;
@@ -51,32 +51,31 @@ public class Modify_information extends JFrame implements ActionListener {
     BufferedImage bi = null;//用于存储临时打开的图片流
 
 
-    //    public static employeer staff1=new employeer();
+    //此处是根据选择的酒店，来修改type的信息，传入的是酒店名
     public Modify_information(String hotelname) {
         frame = new JFrame();
         jPanel1 = new JPanel();
         jPanel1.setOpaque(false);
         jPanel1.setSize(900, 600);
 
-
+        //这两行语句是用来把酒店内的酒店类型传入roomlist2数组里的
         hetol2 = new hotel(hotelname);
-
         roomlist2 = hetol2.show();
 
 
         jPanel1.setLayout(null);
 
 
+        //头像框
         head = new JButton();
-
         ImageIcon image = new ImageIcon("src/GUI/5.jpg");
         transferAlpha("src/GUI/5.jpg");
         image = new ImageIcon(image.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
-
-
         head.setBounds(0, 0, 100, 100);
-
         jPanel1.add(head);
+
+
+
 
 
         JButton[] b = new JButton[roomlist2.size()];
@@ -84,8 +83,12 @@ public class Modify_information extends JFrame implements ActionListener {
         JTextArea[] c = new JTextArea[roomlist2.size() * 2];
         JButton[] d = new JButton[roomlist2.size()];
 
+        //此处的i小于需改成存放酒店类型数组的长度
         for (int i = 0; i < 5; i++) {
+
+            //show里存放的是对应的类型名字
             String show = roomlist2.get(i).roomtypename;
+            //show1里存放的是剩余的房间数量
             String show1 = String.valueOf(roomlist2.get(i).roomunmber);
 
 
@@ -114,8 +117,8 @@ public class Modify_information extends JFrame implements ActionListener {
             d[i] = new JButton("set picture");
             jPanel1.add(d[i]);
             d[i].setBounds(700, 120 + i * 60, 150, 40);
-            //b[i].addActionListener(this);
 
+            //以下为确认按钮的事件
             int finalI = i;
             b[i].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -124,9 +127,13 @@ public class Modify_information extends JFrame implements ActionListener {
                     String roomnumber = c[finalI * 2 + 1].getText();
                     try {
 
+
                         int b = Integer.valueOf(roomnumber).intValue();
                         System.out.println(b);
-                        //存入房间类型和数量
+
+                        //此处需加入存入语句，typename为读取的类型名字，roomnumber为读取的剩余房间数
+
+
 
 
                     } catch (NumberFormatException a) {
@@ -138,11 +145,12 @@ public class Modify_information extends JFrame implements ActionListener {
                 }
             });
 
-
+            //此处为浏览图片按钮，无需改动
             int finalI1 = i;
             d[i].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    System.out.println(c[finalI1 * 2].getText());
+
+                    //System.out.println(c[finalI1 * 2].getText());
                     view_the_picture v = new view_the_picture();
                     v.init(c[finalI1 * 2].getText());
 
@@ -177,14 +185,7 @@ public class Modify_information extends JFrame implements ActionListener {
 
     }
 
-    public void actionPerformed(ActionEvent e) {
-        String ButtonName = e.getActionCommand();
-        if (ButtonName.equals("打开图片")) {
 
-        }
-
-
-    }
 
 
     public void listerner2() {
@@ -217,128 +218,8 @@ public class Modify_information extends JFrame implements ActionListener {
 
     }
 
-    public void listerner4() {
 
-        head.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                openFile();//打开文件
-
-            }
-        });
-
-
-    }
-
-    public void listerner5() {
-
-        jButton2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                String HOTELNAME = jButton2.getName();
-
-                //根据酒店名字，搜索该酒店的类型，把输入房间类型的数组换成当前酒店的数组
-                hotel hotel1 = new hotel(HOTELNAME);
-
-
-                roomlist2 = hotel1.show();
-
-                jPanel1.updateUI();
-
-
-            }
-        });
-
-
-    }
-
-    public void listerner6() {
-
-        jButton5.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String typename = textArea1.getText();
-                String roomnumber = textArea2.getText();
-                try {
-
-                    int b = Integer.valueOf(roomnumber).intValue();
-                    System.out.println(b);
-                    //存入房间类型和数量
-                } catch (NumberFormatException a) {
-
-                    a.printStackTrace();
-                    int option2 = JOptionPane.showConfirmDialog(null, "Wrong number of rooms", "提交提示", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
-
-                }
-                //
-
-
-            }
-        });
-
-
-    }
-
-    public void openFile() {
-
-
-        //在这里选中图片文件，更改背景
-        JFileChooser jf = new JFileChooser();// 实例化文件选择器
-
-        jf.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-        // 设置文件过滤
-        jf.setFileFilter(new FileFilter() {// FileFilter 为抽象类
-
-
-            @Override
-            public String getDescription() {// 显示为指定后缀名的文件
-
-                return ".jpg";
-            }
-
-            @Override
-            public boolean accept(File f) {// 判断文件是否已jpg结尾
-                if (f.getName().endsWith("jpg") || f.getName().endsWith("png")) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        });
-        jf.showOpenDialog(null);// 设置打开时的窗口
-
-
-        if (jf.getSelectedFile() != null) {
-
-            try {
-                file = jf.getSelectedFile();
-                bi = ImageIO.read(file);
-			/*获取文件是否为图片，如果能够正常的获取到一张图片的宽高属性，
-			那肯定这是一张图片，因为非图片文件是获取不到它的宽高属性的*/
-                if (bi == null || bi.getHeight() <= 0 || bi.getWidth() <= 0) {
-                    head.setText("您选择的不是一张图片，请从新选择！");
-                    return;
-                } else {
-                    String path = file.getPath();
-                    System.out.println(path);
-                    transferAlpha(path);
-                    /*ImageIcon image = new ImageIcon(path);
-                    image = new ImageIcon(image.getImage().getScaledInstance(550, 550, Image.SCALE_DEFAULT));
-
-
-                    head.setIcon(image);*/            //设置JLabel的显示图片
-
-                }
-            } catch (IOException e) {
-                //e.printStackTrace();
-                return;
-            }
-
-
-        }
-    }
-
+    //此处为头像框修改方法，无需改动
     public static void transferAlpha(String PATH1) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
@@ -349,7 +230,6 @@ public class Modify_information extends JFrame implements ActionListener {
         try {
             is = new FileInputStream(file);
 
-//如果是MultipartFile类型，那么自身也有转换成流的方法：is = file.getInputStream();
 
             BufferedImage bi = ImageIO.read(is);
 
@@ -405,7 +285,6 @@ public class Modify_information extends JFrame implements ActionListener {
             head.setIcon(i);
 
 
-// ImageIO.write(bufferedImage, "png", byteArrayOutputStream);//转换成byte数组
 
         } catch (Exception e) {
             e.printStackTrace();

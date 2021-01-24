@@ -23,7 +23,6 @@ import java.io.InputStream;
 
 import javax.swing.ImageIcon;
 
-import database.*;
 public class setpage extends JFrame {
     public static hotel hetol2;
     static ArrayList<roomtype> roomlist2 = new ArrayList<>();
@@ -31,11 +30,8 @@ public class setpage extends JFrame {
 
     JFrame frame;
 
-    JLabel jLabel;//title
-    JLabel jLabel1;//username
-    JLabel jLabel2;//password
-    JLabel jLabel3;//phone number
-    JLabel jLabel4;//Employee registration code
+    JLabel jLabel;
+
     JPanel jPanel1;
 
     JButton[] b;
@@ -55,30 +51,35 @@ public class setpage extends JFrame {
     static JButton head;
 
 
+
     File file;
-    BufferedImage bi = null;//用于存储临时打开的图片流
+    BufferedImage bi = null;
 
+    //需要读取所有的酒店名字，和第一个酒店内的全部房间类型，数量，以及该房间类型对应的图片
 
-    //    public static employeer staff1=new employeer();
     public setpage() {
         frame = new JFrame();
         jPanel1 = new JPanel();
         jPanel1.setOpaque(false);
         jPanel1.setSize(1000, 600);
+        //读取所有的酒店，加进列表里
 
 
-        //此处读取第一个hotel的名字
+
+
+        //此处读取第一个hotel的名字，并搜索第一个酒店内的所有房间类型，替换成roolist2
         String hotelname = "";
         hetol2 = new hotel(hotelname);
-
         roomlist2 = hetol2.show();
+        //以上roomlist2的代码赋值后，原先代码可以直接删除
 
 
         jPanel1.setLayout(null);
 
 
-        head = new JButton();
 
+        //此处图片为显示的第一个头像，
+        head = new JButton();
         ImageIcon image = new ImageIcon("src/GUI/5.jpg");
         transferAlpha("src/GUI/5.jpg");
         image = new ImageIcon(image.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
@@ -89,9 +90,9 @@ public class setpage extends JFrame {
         jPanel1.add(head);
 
 
+
+        //接下来的所有roomlist2出现的地方，需要换成酒店名字所存的数组
         JToggleButton[] jButtons1 = new JToggleButton[roomlist2.size()];
-
-
         bg = new ButtonGroup();
         for (int i = 0; i < roomlist2.size(); i++) {
 
@@ -105,13 +106,16 @@ public class setpage extends JFrame {
             int finalI1 = i;
             jButtons1[i].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                    //此处返回的是选中的酒店名
                     String HOTELNAME = jButtons1[finalI1].getName();
 
                     //根据酒店名字，搜索该酒店的类型，把输入房间类型的数组换成当前酒店的数组
                     hotel hotel1 = new hotel(HOTELNAME);
-
-
+                    //此处更新为选中酒店的房间类型数组
                     roomlist2 = hotel1.show();
+                    //以上两行代码完成房间类型数组的赋值后可以删除
+
+
 
                     jPanel1.updateUI();
 
@@ -119,17 +123,24 @@ public class setpage extends JFrame {
             });
 
         }
+        //到此处截至，以上所有roomlist2替换
 
 
+
+
+        //以下所有的roomlist2存放的为房间类型的数组
         JLabel[] jLabel1 = new JLabel[roomlist2.size() * 2];
-
-
         JButton[] jButtons2 = new JButton[roomlist2.size() * 2];
         JButton[] jButtons3 = new JButton[roomlist2.size()];
 
         for (int i = 0; i < roomlist2.size(); i++) {
+            //show里存放的为房间类型名称的数组，通过roolist2[i]调用赋值
             String show = roomlist2.get(i).roomtypename;
+
+            //此处存放的是各个房间类型的剩余房间数量，
             String show1 = "剩余房间数量" + String.valueOf(roomlist2.get(i).roomunmber);
+
+
             jLabel1[2 * i] = new JLabel(show);
             Font font = new Font("宋体", Font.BOLD, 20);
             jLabel1[2 * i].setFont(font);
@@ -159,9 +170,12 @@ public class setpage extends JFrame {
             int finalI1 = i;
             jButtons2[2 * i].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                    //此处返回的是选中房间类型名称，不需要改动
                     String typename = jLabel1[2 * finalI1].getText();
 
+
                     view_the_picture h = new view_the_picture();
+
                     System.out.println(typename);
                     h.init(typename);
 
@@ -171,17 +185,22 @@ public class setpage extends JFrame {
 
             jButtons2[2 * i + 1].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-
+                    //此处为添加图片的按钮,无需修改
                     openpicture picture = new openpicture();
                     String typename = jLabel1[2 * finalI].getText();
+
                     picture.init(typename);
+
                     System.out.println(1111);
+
                 }
             });
 
             jButtons3[i].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                    //此处为修改信息的按钮，无需改动
                     int hotelname = 0;
+
                     for (int a = 0; a < roomlist2.size(); a++) {
                         if (jButtons1[a].isSelected()) {
                             hotelname = a;
@@ -243,6 +262,7 @@ public class setpage extends JFrame {
         jButton5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //此处为添加房间类型的按钮，无需改动
                 settypr setpage1 = new settypr();
 
 
@@ -258,6 +278,7 @@ public class setpage extends JFrame {
         head.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+               //此处为修改头像框按钮，无需改动
                 openFile();//打开文件
 
             }
@@ -265,46 +286,7 @@ public class setpage extends JFrame {
 
 
     }
-
-    public void listerner5() {
-
-        jButton2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                String HOTELNAME = jButton2.getName();
-
-                //根据酒店名字，搜索该酒店的类型，把输入房间类型的数组换成当前酒店的数组
-                hotel hotel1 = new hotel(HOTELNAME);
-
-
-                roomlist2 = hotel1.show();
-
-                jPanel1.updateUI();
-
-
-            }
-        });
-
-
-    }
-
-    public void listerner6() {
-
-        jButton5.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String typename = jLabel.getText();
-                view_the_picture p = new view_the_picture();
-                p.init(typename);
-
-
-            }
-        });
-
-
-    }
-
+    //以下都无需改动
     public String openFile() {
 
 
