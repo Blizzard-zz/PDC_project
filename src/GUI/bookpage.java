@@ -1,5 +1,7 @@
 package GUI;
 
+import database.create_table;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,7 +14,7 @@ public class bookpage extends JFrame {
     public static hotel roomlist1;
     static ArrayList<roomtype> roomlist2 = new ArrayList<>();
     JFrame frame;
-
+    create_table table;
     JComboBox edicb;
     JComboBox edicb1;
     JComboBox edicb2;
@@ -55,9 +57,13 @@ public class bookpage extends JFrame {
     JScrollPane scrollPane;
     JScrollPane scrollPane1;
 
+    String room_type_name;
+    String hotel_name;
 
-    public bookpage(String typenmae) {
-
+    public bookpage(String typenmae, String hotel_name) {
+        table = new create_table();
+        this.room_type_name = typenmae;
+        this.hotel_name = hotel_name;
         frame = new JFrame();
         jPanel1 = new JPanel();
         jPanel1.setPreferredSize(new Dimension(500, 500));
@@ -136,31 +142,31 @@ public class bookpage extends JFrame {
         jPanel1.add(edicb3);
 
 
-        jLabel1 = new JLabel("room number:");
+        jLabel1 = new JLabel("Room Number:");
         jLabel1.setBounds(50, 200, 150, 20);
 
 
         textArea1 = new JTextArea("1");
-        textArea1.setBounds(200, 200, 100, 20);
+        textArea1.setBounds(200, 200, 100, 30);
 
 
-        jLabel2 = new JLabel("Resident information");
+        jLabel2 = new JLabel("Resident Name:");
         jLabel2.setBounds(50, 250, 150, 20);
 
 
         //读取用户首姓名和尾姓名
         String name = "";
         textArea2 = new JTextArea(name);
-        textArea2.setBounds(200, 250, 100, 20);
+        textArea2.setBounds(200, 250, 100, 30);
 
-        jLabel3 = new JLabel("cell-phone number");
+        jLabel3 = new JLabel("Cell-phone Number:");
         jLabel3.setBounds(50, 300, 150, 20);
 
 
         //读取用户电话号码
         String phonenumber = "";
         textArea3 = new JTextArea(phonenumber);
-        textArea3.setBounds(200, 300, 100, 20);
+        textArea3.setBounds(200, 300, 100, 30);
 
 
         jLabel4 = new JLabel("Please check in after 2 pm. Thank you");
@@ -212,11 +218,11 @@ public class bookpage extends JFrame {
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
 
-                    int data=changedate(edicb.getSelectedIndex());
+                    int data = changedate(edicb.getSelectedIndex());
                     edicb1.removeAllItems();
 
-                    for(int i=0;i<data;i++){
-                        edicb1.addItem(String.valueOf(i+1));
+                    for (int i = 0; i < data; i++) {
+                        edicb1.addItem(String.valueOf(i + 1));
 
                     }
                     jPanel1.updateUI();
@@ -224,17 +230,6 @@ public class bookpage extends JFrame {
                 }
             }
         });
-
-
-
-
-
-
-
-
-
-
-
 
 
         edicb2.addItemListener(new ItemListener() {
@@ -243,10 +238,10 @@ public class bookpage extends JFrame {
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
 
-                    int data=changedate(edicb2.getSelectedIndex());
+                    int data = changedate(edicb2.getSelectedIndex());
                     edicb3.removeAllItems();
-                    for(int i=0;i<data;i++){
-                        edicb3.addItem(String.valueOf(i+1));
+                    for (int i = 0; i < data; i++) {
+                        edicb3.addItem(String.valueOf(i + 1));
 
                     }
 
@@ -254,10 +249,6 @@ public class bookpage extends JFrame {
                 }
             }
         });
-
-
-
-
 
 
     }
@@ -280,16 +271,24 @@ public class bookpage extends JFrame {
                     int date = (month1 - month) * 30 + specificdate1 - specificdate;
                     int option = JOptionPane.showConfirmDialog(null, "You have a reservation for " + String.valueOf(date) + " days", "提交提示", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 
-                    if(option==2)
-                    {
+                    if (option == 2) {
 
-                    }
-                    else {
+                    } else {
 
                         //存入数据
-                        textArea1.getText();//房间数
+                        int input_number = Integer.parseInt(textArea1.getText());//房间数
                         textArea2.getText();//姓名
                         textArea3.getText();//电话
+
+                        hotel hotel = new hotel(hotel_name);
+                        hotel.get_hotel.print();
+
+                        int room_number = hotel.get_hotel.get_number(room_type_name);
+                        System.out.println("剩余 " + room_type_name + " 数量：" + room_number);
+                        room_number = room_number - input_number;
+                        System.out.println("减去后的房间数量：" + room_number);
+                        hotel.get_hotel.set(room_type_name, room_number);
+                        table.hotel.insert(hotel.get_hotel);
 
                         //该typenmae下房间数-1
                         frame.dispose();
@@ -320,13 +319,10 @@ public class bookpage extends JFrame {
 
     public int changedate(int monthes) {
 
-        int[] a=new int[]{31,28,31,30,31,30,31,31,30,31,30,31};
+        int[] a = new int[]{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         return a[monthes];
 
     }
-
-
-
 
 
 }

@@ -6,12 +6,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import database.*;
+
 public class hotelpage {
-    public static hotel roomlist1;
-    static ArrayList<roomtype> roomlist2 = new ArrayList<>();
+    public hotel hotel;
+    static ArrayList<roomtype> roomlist = new ArrayList<>();
     JFrame frame = null;
-
-
+    create_table table;
+    int exchange;
     JButton[] b;
     JLabel[] a;
     JTextArea[] c;
@@ -39,13 +41,15 @@ public class hotelpage {
 
 
     public hotelpage(String name) {
-     //name为具体的酒店名字
+        System.out.println("name: " + name);
+        exchange = 0;
+        table = new create_table();
+        //name为具体的酒店名字
         jPanel1 = new JPanel();
         jPanel2 = new JPanel();
         jPanel3 = new JPanel();
 
         jPanel2.setOpaque(false);
-
 
         jPanel3.setPreferredSize(new Dimension(500, 1200));
 
@@ -61,10 +65,14 @@ public class hotelpage {
 
 
         //此处为读取name酒店下，所有的roomtype和信息
-        roomlist1 = new hotel("YFY");
-        roomlist2 = roomlist1.show();
+//        hotel = new hotel("YFY");
+//
+//        hotel = search_hotel_by_name(name);
+        System.out.println("hotel_page_name: " + name);
+        hotel = new hotel(name);
+        hotel.get_hotel.print();
 
-
+        roomlist = hotel.show_room_list();
 
 
         frame = new JFrame();
@@ -72,17 +80,26 @@ public class hotelpage {
         jPanel2.setLayout(null);
 
 
+        JLabel[] jLabel1 = new JLabel[roomlist.size() * 2];
+        JTextArea[] jTextAreas1 = new JTextArea[roomlist.size()];
+        JButton[] jButtons1 = new JButton[roomlist.size() * 2];
 
 
+        for (int i = 0; i < roomlist.size(); i++) {
+            if (roomlist.get(i).room_number == 0) {
+                exchange++;
+                continue;
 
-        JLabel[] jLabel1 = new JLabel[roomlist2.size() * 2];
-        JTextArea[] jTextAreas1 = new JTextArea[roomlist2.size()];
-        JButton[] jButtons1 = new JButton[roomlist2.size() * 2];
+            }
 
+            int h = i;
+            if (exchange != 0) {
+                h = i - exchange;
 
-        for (int i = 0; i < roomlist2.size(); i++) {
+            }
             JPanel WestJP = new JPanel(null);
-            WestJP.setBounds(0, 0 + i * 200, 500, 200);
+
+            WestJP.setBounds(0, 0 + h * 200, 500, 200);
 
             //将每种房型的第一张图片读取，放进path数组里，路径用path[i]赋值
             ImageIcon image = new ImageIcon("src/GUI/1.jpg");
@@ -94,7 +111,8 @@ public class hotelpage {
 
 
             //将每个房型的名字放在数组里，用name[i]赋值给变量typename
-            String typename = "   YFY";
+            String typename;
+            typename = roomlist.get(i).roomtypename;
             jLabel1[2 * i] = new JLabel(typename);
             jLabel1[2 * i].setBounds(250, 0, 150, 40);
             WestJP.add(jLabel1[2 * i]);
@@ -102,20 +120,21 @@ public class hotelpage {
 
             //读取并计算平均价格
             final double price1 = Math.random();
-            final int price2 = (int)(500+200*i+price1*100);
-            jLabel1[2 * i + 1] = new JLabel(String.valueOf(price2));
-            jLabel1[2 * i + 1].setBounds(450, 150, 50, 50);
+            final int price2 = (int) (500 + 200 * i + price1 * 100);
+            jLabel1[2 * i + 1] = new JLabel(String.valueOf("Price: " + price2));
+            jLabel1[2 * i + 1].setBounds(400, 150, 200, 50);
             WestJP.add(jLabel1[2 * i + 1]);
 
             //浏览按钮
 
             jButtons1[2 * i + 1] = new JButton("book");
-            jButtons1[2 * i + 1].setBounds(300, 110, 80, 40);
+            jButtons1[2 * i + 1].setBounds(300, 130, 80, 40);
             WestJP.add(jButtons1[2 * i + 1]);
 
 
             //每个房间的介绍，放进数组里，用descibe[i]来赋值给describetion
-            String describetion = "ABCBADBiABD   ";
+            String describetion;
+            describetion = roomlist.get(i).description;
             jTextAreas1[i] = new JTextArea(describetion, 3, 10);
             jTextAreas1[i].setLineWrap(true);
             jTextAreas1[i].setBounds(250, 50, 200, 68);
@@ -129,7 +148,7 @@ public class hotelpage {
             jButtons1[2 * i].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     String typename1=jLabel1[2 * finalI].getText();
-                   //读取点击图片对应的房型名，打开循环浏览图片页面
+                    //读取点击图片对应的房型名，打开循环浏览图片页面
 
                     hotel_PICTURE h = new hotel_PICTURE();
                     h.init(typename1);
@@ -142,7 +161,7 @@ public class hotelpage {
                 public void actionPerformed(ActionEvent e) {
                     String typename1=jLabel1[2 * finalI1].getText();
                     //打开预订页面，把选择的房型名字输入
-                    bookpage b = new bookpage(typename1);
+                    bookpage b = new bookpage(typename1, hotel.hotel_name);
 
                 }
             });
@@ -161,18 +180,15 @@ public class hotelpage {
         scrollPane.getVerticalScrollBar().setUnitIncrement(10);
 
         frame.add(scrollPane);
-
-        frame.setTitle("hotel list");
+        System.out.println("Welcome to " + hotel.hotel_name);
+        frame.setTitle("Welcome to " + hotel.hotel_name);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+        frame.setBounds(100, 200, 550, 650);
         frame.setSize(550, 400);
         frame.setVisible(true);
 
 
     }
-
-
-
 
 
 }

@@ -1,6 +1,7 @@
 package database.table;
 
 import database.connection;
+import database.get_object.Get_hotel;
 import database.get_object.Get_image;
 import database.table.Table_super;
 
@@ -86,21 +87,34 @@ public class Image extends Table_super {
     @Override
     public void view_table() {
 //        String table_name = this.table_name1;
-        connection c = this.connection;
-        try {
-            ResultSet resultSet = c.statement.executeQuery("select * from " + table_name1);
-            int index = 0;
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String hotel_name = resultSet.getString("hotel_name");
-                String path = resultSet.getString("path");
-                System.out.println("view_table id: " + id + " hotel_name: " + hotel_name + " path: " + path);
-                index = 1;
-            }
-            if (index == 0) System.out.println("there is no data in the database");
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+//        connection c = this.connection;
+//        try {
+//            ResultSet resultSet = c.statement.executeQuery("select * from " + table_name1);
+//            int index = 0;
+//            while (resultSet.next()) {
+//                int id = resultSet.getInt("id");
+//                String hotel_name = resultSet.getString("hotel_name");
+//                String path = resultSet.getString("path");
+//                System.out.println("view_table id: " + id + " hotel_name: " + hotel_name + " path: " + path);
+//                index = 1;
+//            }
+//            if (index == 0) System.out.println("there is no data in the database");
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        }
+
+        System.out.println("view table");
+        int index = 0;
+        ArrayList<Integer> list = get_id_list(table_name1);
+
+        for (int i = 0; i < list.size(); i++) {
+            Get_image get_image = get(list.get(i));
+            get_image.print();
+            System.out.println();
+            index = 1;
         }
+
+        if (index == 0) System.out.println("there is no data in the database");
     }
 
 

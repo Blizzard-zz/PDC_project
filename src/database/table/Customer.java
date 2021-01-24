@@ -27,7 +27,7 @@ public class Customer extends Table_super {
                 connection.statement.executeUpdate(sqlCreateTable);
                 System.out.println("table: " + table_name1 + " create success");
             } else {
-                System.out.println(table_name1 + " exists");
+//                System.out.println(table_name1 + " exists");
             }
 
         } catch (SQLException throwables) {

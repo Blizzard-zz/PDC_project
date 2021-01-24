@@ -26,8 +26,7 @@ public class create_table {
 
         list = table_list(c);
 
-        System.out.println();
-        System.out.println();
+
         customer = new Customer(list, c, "customer");
 //        customer.clean_table(customer.table_name1);
         establish_customer();
@@ -38,7 +37,8 @@ public class create_table {
         establish_staff();
 
         hotel = new Hotel(list, c, "hotel");
-        establish_hotel();
+//        hotel.view_table();
+//        establish_hotel();
 
 //        Image image = new Image(list, c,"image");
 //        image.insert(2, "fly fire", "C:\\Users\\zzzzzz\\IdeaProjects\\PDC_project\\image\\商城.png");
@@ -117,12 +117,8 @@ public class create_table {
 
         hotel.insert(get_hotel2);
         hotel.view_table();
-//        int id3 = hotel.search_id_by_hotel_name("Open the fire");
-//
-//        Get_hotel get_hotel1 = hotel.get(id3);
-//        get_hotel1.print();
-//
-//        System.out.println();
+
+
     }
 
     public void establish_staff() {
@@ -131,7 +127,7 @@ public class create_table {
                 "abcdef", "ADLKOJ908", "Daniel");
         staff.insert("staff02", "Charlie", "Smith", "13957876543",
                 "ghijkl", "LAKNE736", "Joshua");
-        staff.view_table();
+//        staff.view_table();
         int id2 = staff.search_id_by_phone_or_username("staff01");
 //        System.out.println("ID2 = " + id2);
 //        Get_staff get_staff = staff.get(id2);
@@ -139,7 +135,7 @@ public class create_table {
 ////        int id2 = customer.search_id_by_phone_or_username("Tree");
 //        staff.delete(id2);
 
-        System.out.println();
+//        System.out.println();
 
     }
 
@@ -147,7 +143,7 @@ public class create_table {
         customer.insert("Scar", "Albus", "Dumbledore", "13758884998", "abcdef", "Dobby");
         customer.insert("Professor", "Severus", "Snape", "13968187236", "ghijkl", "Black");
 //        customer.insert("Black", "Bob", "White", "123456789", "991224wl", "akkk");
-        customer.view_table();
+//        customer.view_table();
 
     }
 
@@ -185,10 +181,10 @@ public class create_table {
             e.printStackTrace();
         }
 
-        System.out.print("table list: ");
-        for (String s : list) {
-            System.out.print(s + " ");
-        }
+//        System.out.print("table list: ");
+//        for (String s : list) {
+//            System.out.print(s + " ");
+//        }
         return list;
     }
 

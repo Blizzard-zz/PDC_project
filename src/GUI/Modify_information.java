@@ -2,7 +2,6 @@ package GUI;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.filechooser.FileFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,13 +9,15 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.ArrayList;
 
+import database.*;
+
 public class Modify_information extends JFrame {
 
 
-    public static hotel hetol2;
-    static ArrayList<roomtype> roomlist2 = new ArrayList<>();
-    static ArrayList<roomtype> hotellist = new ArrayList<>();
-
+    public hotel hetol2;
+    ArrayList<roomtype> roomlist2 = new ArrayList<>();
+    ArrayList<roomtype> hotellist = new ArrayList<>();
+    create_table table;
 
     JFrame frame;
     JLabel jLabel;//title
@@ -53,6 +54,7 @@ public class Modify_information extends JFrame {
 
     //此处是根据选择的酒店，来修改type的信息，传入的是酒店名
     public Modify_information(String hotelname) {
+        table = new create_table();
         frame = new JFrame();
         jPanel1 = new JPanel();
         jPanel1.setOpaque(false);
@@ -60,7 +62,8 @@ public class Modify_information extends JFrame {
 
         //这两行语句是用来把酒店内的酒店类型传入roomlist2数组里的
         hetol2 = new hotel(hotelname);
-        roomlist2 = hetol2.show();
+        System.out.println("modify: " + hotelname);
+        roomlist2 = hetol2.show_room_list();
 
 
         jPanel1.setLayout(null);
@@ -75,21 +78,18 @@ public class Modify_information extends JFrame {
         jPanel1.add(head);
 
 
-
-
-
         JButton[] b = new JButton[roomlist2.size()];
         JLabel[] a = new JLabel[roomlist2.size()];
         JTextArea[] c = new JTextArea[roomlist2.size() * 2];
         JButton[] d = new JButton[roomlist2.size()];
 
         //此处的i小于需改成存放酒店类型数组的长度
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < roomlist2.size(); i++) {
 
             //show里存放的是对应的类型名字
             String show = roomlist2.get(i).roomtypename;
             //show1里存放的是剩余的房间数量
-            String show1 = String.valueOf(roomlist2.get(i).roomunmber);
+            String show1 = String.valueOf(roomlist2.get(i).room_number);
 
 
             c[i * 2] = new JTextArea(show);
@@ -127,15 +127,15 @@ public class Modify_information extends JFrame {
                     String roomnumber = c[finalI * 2 + 1].getText();
                     try {
 
-
                         int b = Integer.valueOf(roomnumber).intValue();
-                        System.out.println(b);
-
+                        String a = typename;
+//                        System.out.println(b);
+                        hotel hotel = new hotel(hotelname);
+                        System.out.println(a + " " + b);
                         //此处需加入存入语句，typename为读取的类型名字，roomnumber为读取的剩余房间数
-
-
-
-
+                        hotel.get_hotel.set(a, b);
+                        hotel.get_hotel.print();
+                        table.hotel.insert(hotel.get_hotel);
                     } catch (NumberFormatException a) {
 
                         a.printStackTrace();
@@ -179,7 +179,7 @@ public class Modify_information extends JFrame {
         frame.add(jPanel1);
 
 
-        frame.setTitle("room type information");
+        frame.setTitle(hotelname + " information");
         frame.setSize(900, 600);
         frame.setVisible(true);
 
