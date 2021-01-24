@@ -6,21 +6,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import database.*;
+
 public class customer {
 
 
-    public static hotel roomlist1;
-    static ArrayList<roomtype> roomlist2 = new ArrayList<>();
+    create_table table;
+
+    public hotel hotel;
+    public hotel hotel1;
+    public hotel hotel2;
+
+    static ArrayList<hotel> hotels = new ArrayList<>();
     JFrame frame = null;
-
-
 
     JPanel jPanel1;
 
     JPanel jPanel2;
-
-
-
 
     JScrollPane scrollPane;
 
@@ -28,6 +30,7 @@ public class customer {
 
 
     public customer(String username) {
+        table = new create_table();
 
         jPanel1 = new JPanel();
         jPanel2 = new JPanel();
@@ -44,23 +47,24 @@ public class customer {
         jPanel1.setLayout(null);
 
 
-
-
         //这里需要把所有酒店的名字，介绍，图片传入roomlist2中
-        roomlist1 = new hotel("YFY");
-        roomlist2 = roomlist1.show();
+        initial_hotel();
+
+
+//        roomlist2 = hotel.show_room_list();
 
         frame = new JFrame();
         jPanel1.setLayout(null);
         jPanel2.setLayout(null);
 
 
-        JLabel[] a = new JLabel[roomlist2.size() * 3];
+        JLabel[] a = new JLabel[hotels.size() * 3];
 
-        JTextArea[] c = new JTextArea[roomlist2.size()];
-        JButton[] d = new JButton[roomlist2.size()];
+        JTextArea[] c = new JTextArea[hotels.size()];
+        JButton[] d = new JButton[hotels.size()];
 
-        for (int i = 0; i < roomlist2.size(); i++) {
+        for (int i = 0; i < hotels.size(); i++) {
+
             JPanel WestJP = new JPanel(null);
             WestJP.setBounds(0, 0 + i * 200, 500, 200);
 
@@ -75,16 +79,18 @@ public class customer {
 
 
             //将每个酒店的名字存入数组里，用name[i]的方式赋值给hotelname
-            String hotelname = "   YFY";
+            String hotelname;
+            hotelname = hotels.get(i).hotel_name;
+
             a[3 * i + 1] = new JLabel(hotelname);
             a[3 * i + 1].setBounds(250, 0, 150, 40);
             WestJP.add(a[3 * i + 1]);
 
             //酒店价格设置在700-1400左右
             final double price1 = Math.random();
-            final int price2 = (int)(700+price1*700);
-            a[3 * i + 2] = new JLabel(String.valueOf(price2));
-            a[3 * i + 2].setBounds(450, 150, 50, 50);
+            final int price2 = (int) (700 + price1 * 700);
+            a[3 * i + 2] = new JLabel(String.valueOf("Average Price: " + price2));
+            a[3 * i + 2].setBounds(350, 150, 200, 50);
             WestJP.add(a[3 * i + 2]);
 
             //浏览按钮
@@ -95,9 +101,10 @@ public class customer {
 
             //读取酒店介绍介绍
             String describetion = "ABCBADBABD   ";
+            describetion = hotels.get(i).description;
             c[i] = new JTextArea(describetion, 3, 10);
             c[i].setLineWrap(true);
-            c[i].setBounds(250, 50, 200, 68);
+            c[i].setBounds(250, 40, 200, 68);
             c[i].setLineWrap(true);
             c[i].setEditable(false);
             c[i].setOpaque(false);
@@ -111,7 +118,8 @@ public class customer {
                 public void actionPerformed(ActionEvent e) {
                     //hotelname为读取下来的酒店名字，无需改动
 
-                    String hotelname = a[3 * finalI + 1].getName();
+                    String hotelname = a[3 * finalI + 1].getText();
+                    System.out.println("hotel_name = " + hotelname);
                     hotelpage h = new hotelpage(hotelname);
 
                 }
@@ -129,21 +137,24 @@ public class customer {
 
         frame.add(scrollPane);
 
-
-        frame.setTitle("welcome to the hotel System  "+username);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-        frame.setSize(550, 400);
+        frame.setTitle("welcome to the hotel System  " + username);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setLocation(600, 200);
+        frame.setSize(550, 650);
         frame.setVisible(true);
-
-
     }
 
+    private void initial_hotel() {
+        hotel = new hotel("Open the fire");
 
+        hotel1 = new hotel("Eagle");
 
+        hotel2 = new hotel("Dreamers");
 
-
-
+        hotels.add(hotel);
+        hotels.add(hotel1);
+        hotels.add(hotel2);
+    }
 
 
     public static void main(String[] args) {

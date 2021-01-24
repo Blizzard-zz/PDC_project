@@ -31,7 +31,7 @@ public class Hotel extends Table_super {
                 c.statement.executeUpdate(sqlCreateTable);
                 System.out.println("table: " + table_name1 + " create success");
             } else {
-                System.out.println(table_name1 + " exists");
+//                System.out.println(table_name1 + " exists");
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -77,7 +77,7 @@ public class Hotel extends Table_super {
                     "',double_room = " + hotel.double_room.number + ",double_description = '" + hotel.double_room.description +
                     "',tripe_room = " + hotel.tripe_room.number + ",tripe_description = '" + hotel.tripe_room.description +
                     "',four_room = " + hotel.four_room.number + ",four_description = '" + hotel.four_room.description + "' where id = " + pre_id;
-//            System.out.println(update);
+            System.out.println(update);
             connection.statement.executeUpdate(update);
         } catch (SQLException throwables) {
             throwables.printStackTrace();

@@ -2,7 +2,6 @@ package GUI;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.filechooser.FileFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -60,7 +59,7 @@ public class Modify_information extends JFrame {
 
         //这两行语句是用来把酒店内的酒店类型传入roomlist2数组里的
         hetol2 = new hotel(hotelname);
-        roomlist2 = hetol2.show();
+        roomlist2 = hetol2.show_room_list();
 
 
         jPanel1.setLayout(null);
@@ -89,7 +88,7 @@ public class Modify_information extends JFrame {
             //show里存放的是对应的类型名字
             String show = roomlist2.get(i).roomtypename;
             //show1里存放的是剩余的房间数量
-            String show1 = String.valueOf(roomlist2.get(i).roomunmber);
+            String show1 = String.valueOf(roomlist2.get(i).room_number);
 
 
             c[i * 2] = new JTextArea(show);

@@ -33,7 +33,40 @@ public class Get_hotel {
                 tripe_room + "\n" +
                 four_room);
 
-
     }
 
+    public int get_number(String room_type_name) {
+        switch (room_type_name) {
+            case "single_room":
+                return single_room.number;
+            case "double_room":
+                return double_room.number;
+            case "tripe_room":
+                return tripe_room.number;
+            case "four_room":
+                return four_room.number;
+
+
+        }
+
+        return 0;
+    }
+
+    public void set(String room_type_name, int room_number) {
+
+        switch (room_type_name) {
+            case "single_room":
+                single_room.number = room_number;
+            case "double_room":
+                double_room.number = room_number;
+            case "tripe_room":
+                tripe_room.number = room_number;
+            case "four_room":
+                four_room.number = room_number;
+
+
+        }
+
+
+    }
 }

@@ -33,6 +33,7 @@ public class SwingRegister extends JFrame implements ActionListener {
 
 
     JComboBox jComboBox;
+    JComboBox jComboBox1;
     JTextField nameTxt;
     JLabel pwdLbl;
     JLabel genderLbl;
@@ -40,6 +41,7 @@ public class SwingRegister extends JFrame implements ActionListener {
     boolean same = false;
     public create_table table;
     public String select;
+    public String select1;
     public String username;
     public String first_name;
     public String last_name;
@@ -160,11 +162,20 @@ public class SwingRegister extends JFrame implements ActionListener {
         panel.add(phone1);
 
 
-        String question = "What's your father's name?";
-        qusetion = new JLabel("Qusetion1:                     " + question);
-        qusetion.setFont(new Font("Calibri", Font.BOLD, 18));
-        qusetion.setBounds(60, 290, 400, 30);
-        panel.add(qusetion);
+//        String question = "What's your father's name?";
+//        qusetion = new JLabel("Qusetion1:                     " + question);
+//        qusetion.setFont(new Font("Calibri", Font.BOLD, 18));
+//        qusetion.setBounds(60, 290, 400, 30);
+//        panel.add(qusetion);
+
+        jComboBox1 = new JComboBox();
+        jComboBox1.addItem("What's your father's name?");
+        jComboBox1.addItem("The most impressive name for you?");
+        jComboBox1.setBounds(230, 290, 210, 30);
+        select1 = (String) jComboBox1.getSelectedItem();
+        System.out.println(select1);
+        jComboBox1.addActionListener(this);
+        panel.add(jComboBox1);
 
         qusetion1 = new JTextField();
         qusetion1.setBounds(230, 330, 200, 30);
@@ -236,6 +247,11 @@ public class SwingRegister extends JFrame implements ActionListener {
         if (e.getSource() == jComboBox) {
             select = (String) jComboBox.getSelectedItem();
             System.out.println(select);
+        }
+        //question
+        if (e.getSource() == jComboBox1) {
+            select1 = (String) jComboBox1.getSelectedItem();
+            System.out.println(select1);
         }
         //submit
         if (e.getSource() == btn) {

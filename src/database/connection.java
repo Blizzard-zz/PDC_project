@@ -19,7 +19,7 @@ public class connection {
     public void getConnection() {
         try {
             Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-            System.out.println("Driver Success");
+//            System.out.println("Driver Success");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

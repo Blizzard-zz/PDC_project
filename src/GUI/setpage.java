@@ -20,13 +20,16 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 
 import java.io.InputStream;
+import java.util.Arrays;
 
 import javax.swing.ImageIcon;
 
 public class setpage extends JFrame {
-    public static hotel hetol2;
-    static ArrayList<roomtype> roomlist2 = new ArrayList<>();
-    static ArrayList<roomtype> hotellist = new ArrayList<>();
+    public hotel hotel;
+    public hotel hotel1;
+    public hotel hotel3;
+    ArrayList<hotel> hotels = new ArrayList<>();
+    ArrayList<roomtype> room_list;
 
     JFrame frame;
 
@@ -51,7 +54,6 @@ public class setpage extends JFrame {
     static JButton head;
 
 
-
     File file;
     BufferedImage bi = null;
 
@@ -59,23 +61,23 @@ public class setpage extends JFrame {
 
     public setpage() {
         frame = new JFrame();
+
         jPanel1 = new JPanel();
         jPanel1.setOpaque(false);
         jPanel1.setSize(1000, 600);
         //读取所有的酒店，加进列表里
 
 
-
-
         //此处读取第一个hotel的名字，并搜索第一个酒店内的所有房间类型，替换成roolist2
-        String hotelname = "";
-        hetol2 = new hotel(hotelname);
-        roomlist2 = hetol2.show();
+//        String hotelname = "Open the fire";
+//        hetol2 = new hotel(hotelname);
+        initial_hotel();
+        room_list = new ArrayList<>();
+        room_list = hotels.get(0).show_room_list();
         //以上roomlist2的代码赋值后，原先代码可以直接删除
 
 
         jPanel1.setLayout(null);
-
 
 
         //此处图片为显示的第一个头像，
@@ -90,13 +92,12 @@ public class setpage extends JFrame {
         jPanel1.add(head);
 
 
-
         //接下来的所有roomlist2出现的地方，需要换成酒店名字所存的数组
-        JToggleButton[] jButtons1 = new JToggleButton[roomlist2.size()];
+        JToggleButton[] jButtons1 = new JToggleButton[hotels.size()];
         bg = new ButtonGroup();
-        for (int i = 0; i < roomlist2.size(); i++) {
+        for (int i = 0; i < hotels.size(); i++) {
 
-            jButtons1[i] = new JToggleButton(roomlist2.get(i).roomtypename);
+            jButtons1[i] = new JToggleButton(hotels.get(i).hotel_name);
             jButtons1[i].setBackground(Color.gray);
             jButtons1[i].setBounds(0, 120 + i * 60, 150, 60);
             bg.add(jButtons1[i]);
@@ -107,14 +108,16 @@ public class setpage extends JFrame {
             jButtons1[i].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     //此处返回的是选中的酒店名
-                    String HOTELNAME = jButtons1[finalI1].getName();
-
+                    String HOTELNAME = jButtons1[finalI1].getText();
+                    System.out.println(HOTELNAME);
                     //根据酒店名字，搜索该酒店的类型，把输入房间类型的数组换成当前酒店的数组
-                    hotel hotel1 = new hotel(HOTELNAME);
+                    hotel hotel = new hotel(HOTELNAME);
                     //此处更新为选中酒店的房间类型数组
-                    roomlist2 = hotel1.show();
-                    //以上两行代码完成房间类型数组的赋值后可以删除
 
+                    room_list = hotel.show_room_list();
+//                    System.out.println(Arrays.to(room_list));
+//                    System.out.println(room_list);
+                    //以上两行代码完成房间类型数组的赋值后可以删除
 
 
                     jPanel1.updateUI();
@@ -126,20 +129,23 @@ public class setpage extends JFrame {
         //到此处截至，以上所有roomlist2替换
 
 
-
-
         //以下所有的roomlist2存放的为房间类型的数组
-        JLabel[] jLabel1 = new JLabel[roomlist2.size() * 2];
-        JButton[] jButtons2 = new JButton[roomlist2.size() * 2];
-        JButton[] jButtons3 = new JButton[roomlist2.size()];
+        JLabel[] jLabel1 = new JLabel[room_list.size() * 2];
+        JButton[] jButtons2 = new JButton[room_list.size() * 2];
+        JButton[] jButtons3 = new JButton[room_list.size()];
 
-        for (int i = 0; i < roomlist2.size(); i++) {
+//        room_list = hotels.get(0).show_room_list();
+        System.out.println("size = " + room_list.size());
+
+        for (int i = 0; i < room_list.size(); i++) {
+            System.out.println("i = " + i);
+//            room_list = hotels.get(i).show_room_list();
             //show里存放的为房间类型名称的数组，通过roolist2[i]调用赋值
-            String show = roomlist2.get(i).roomtypename;
+            String show = room_list.get(i).roomtypename;
 
             //此处存放的是各个房间类型的剩余房间数量，
-            String show1 = "剩余房间数量" + String.valueOf(roomlist2.get(i).roomunmber);
-
+            String show1 = "剩余房间数量" + String.valueOf(room_list.get(i).room_number);
+            System.out.println(show + "  " + "number = " + show1);
 
             jLabel1[2 * i] = new JLabel(show);
             Font font = new Font("宋体", Font.BOLD, 20);
@@ -201,7 +207,7 @@ public class setpage extends JFrame {
                     //此处为修改信息的按钮，无需改动
                     int hotelname = 0;
 
-                    for (int a = 0; a < roomlist2.size(); a++) {
+                    for (int a = 0; a < hotels.size(); a++) {
                         if (jButtons1[a].isSelected()) {
                             hotelname = a;
                             break;
@@ -242,6 +248,18 @@ public class setpage extends JFrame {
 
     }
 
+    private void initial_hotel() {
+        hotel = new hotel("Open the fire");
+
+        hotel1 = new hotel("Eagle");
+
+        hotel3 = new hotel("Dreamers");
+
+        hotels.add(hotel);
+        hotels.add(hotel1);
+        hotels.add(hotel3);
+    }
+
 
     public void listerner1() {
 
@@ -278,7 +296,7 @@ public class setpage extends JFrame {
         head.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               //此处为修改头像框按钮，无需改动
+                //此处为修改头像框按钮，无需改动
                 openFile();//打开文件
 
             }
@@ -286,6 +304,7 @@ public class setpage extends JFrame {
 
 
     }
+
     //以下都无需改动
     public String openFile() {
 

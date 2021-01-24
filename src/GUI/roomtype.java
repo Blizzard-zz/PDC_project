@@ -5,26 +5,26 @@ public class roomtype {
     String picture1;
     String picture2;
     String picture3;
-
+    String description;
     roomtype next;
-    int roomunmber;
+    int room_number;
 
-    public roomtype(String roomtypename, int roomnumber) {
+    public roomtype(String roomtypename, int roomnumber, String description) {
         this.roomtypename = roomtypename;
-        this.roomunmber = roomnumber;
-
+        this.room_number = roomnumber;
+        this.description = description;
 
     }
 
     public int checkin() {
-        roomunmber = roomunmber - 1;
-        return roomunmber;
+        room_number = room_number - 1;
+        return room_number;
 
     }
 
     public int Checkout() {
-        roomunmber = roomunmber + 1;
-        return roomunmber;
+        room_number = room_number + 1;
+        return room_number;
 
     }
 
