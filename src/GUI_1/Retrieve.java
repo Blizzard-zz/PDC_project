@@ -28,19 +28,13 @@ public class Retrieve extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JLabel jLabel5;
     private JPanel panel;
     private javax.swing.JLabel jLabel6;
-    //private javax.swing.JLabel jLabel7;
-    //private javax.swing.JLabel jLabel8;
-    //private javax.swing.JLabel jLabel9;
+
     private javax.swing.JTextField jTextField2;
-    //private javax.swing.JTextField jTextField2;
+
     private javax.swing.JTextField jTextField3;
 
     // End of variables declaration//GEN-END:variables
 
-    /**
-     * Creates new form Retrive
-     */
-    //public create_table table;
     String account;
     String answer1;
     create_table table;
@@ -99,7 +93,7 @@ public class Retrieve extends javax.swing.JFrame implements ActionListener {
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        //jTextField2 = new javax.swing.JTextField();
+
         jLabel4 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jComboBox2 = new javax.swing.JComboBox<>();
@@ -107,9 +101,7 @@ public class Retrieve extends javax.swing.JFrame implements ActionListener {
         jLabel5 = new javax.swing.JLabel();
 
         jLabel6 = new javax.swing.JLabel();
-        //jLabel7 = new javax.swing.JLabel();
-        //jLabel8 = new javax.swing.JLabel();
-        //jLabel9 = new javax.swing.JLabel();
+
         panel = new JPanel();
         jButton1 = new javax.swing.JButton();
 
@@ -136,10 +128,6 @@ public class Retrieve extends javax.swing.JFrame implements ActionListener {
         jLabel4.setText("Identity:");
         jLabel4.setToolTipText("");
 
-        //jTextField2.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
-        //answer1 =jTextField2.getText();
-        //jLabel4.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
-        //jLabel4.setText("Question2:");
 
         jTextField3.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
         answer1 = jTextField3.getText();
@@ -147,28 +135,13 @@ public class Retrieve extends javax.swing.JFrame implements ActionListener {
         jLabel5.setText("Answer:");
         jLabel5.setToolTipText("");
 
-        //jLabel6.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
-
-        //jLabel7.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
-        //jLabel7.setText("What's your father's name?");
-
-        //jLabel8.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
-        //jLabel8.setText("Q.....");
-
-        //jLabel9.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
-        //jLabel9.setText("Answer-2:");
-        //jLabel9.setToolTipText("");
 
         jButton1.setFont(new java.awt.Font("Calibri", 0, 22)); // NOI18N
         jButton1.setText("Submit");
         jButton1.addActionListener(this);
-//        jButton1.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                Password(evt);
-//            }
-//        });  
+
         jComboBox1.setFont(new java.awt.Font("Calibri", 0, 20)); // NOI18N
-//        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Customer", "Staff"}));
+
         jComboBox1.addItem("Customer");
         jComboBox1.addItem("Staff");
 
@@ -176,7 +149,6 @@ public class Retrieve extends javax.swing.JFrame implements ActionListener {
         System.out.println(select0);
         jComboBox1.addActionListener(this);
 
-//        System.out.println(select);
 
         jTextField2.setText("");
 

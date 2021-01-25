@@ -7,9 +7,6 @@ import database.get_object.Get_hotel;
 import database.get_object.Get_image;
 
 public class hotel {
-    roomtype first;
-    roomtype next;
-
     create_table table;
 
     roomtype roomtype1;

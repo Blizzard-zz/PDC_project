@@ -179,10 +179,6 @@ public class view_the_picture {
     //实现按钮监听事件
     public void actionPerformed(ActionEvent e) {
         String ButtonName = e.getActionCommand();
-        if (ButtonName.equals("打开图片")) {
-
-        }
-
 
     }
 
@@ -200,16 +196,10 @@ public class view_the_picture {
 
         } catch (IOException e) {
             //e.printStackTrace();
-            return;
         }
 
 
     }
-
-    /*public static void main(String[] args) {
-        view_the_picture p = new view_the_picture();
-        p.init("yfy");
-    }*/
 
 
 }

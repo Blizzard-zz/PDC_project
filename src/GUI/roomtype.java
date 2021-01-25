@@ -2,11 +2,9 @@ package GUI;
 
 public class roomtype {
     String roomtypename;
-    String picture1;
-    String picture2;
-    String picture3;
+
     String description;
-    roomtype next;
+
     int room_number;
     String path;
 

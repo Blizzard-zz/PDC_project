@@ -101,7 +101,7 @@ public class customer {
 
 
             //读取酒店介绍介绍
-            String describetion = "ABCBADBABD   ";
+            String describetion;
             describetion = hotels.get(i).description;
             c[i] = new JTextArea(describetion, 3, 10);
             c[i].setLineWrap(true);
@@ -157,11 +157,6 @@ public class customer {
         hotels.add(hotel2);
     }
 
-
-//    public static void main(String[] args) {
-//
-//        customer c = new customer("yfy");
-//    }
 
 
 }

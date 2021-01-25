@@ -44,13 +44,13 @@ public class create_table {
     }
 
     public void establish_image() {
-        image.insert("Open the fire", "src/images/1.standard room.PNG", "src/images/1.singleRoom.PNG",
+        image.insert("Open the fire", "src/images/1.jpg", "src/images/1.singleRoom.PNG",
                 "src/images/1.business room.PNG", "src/images/1.five-person room.PNG", "src/images/1.four-person room.PNG");
-        image.insert("Eagle", "src/images/2.standard room.PNG", "src/images/2.singleRoom.PNG",
+        image.insert("Eagle", "src/images/2.jpg", "src/images/2.singleRoom.PNG",
                 "src/images/2.business room.PNG", "src/images/2.three-person room.PNG", "src/images/2.four-person room.PNG");
-        image.insert("Dreamers", "src/images/3.standard room.PNG", "src/images/3.single room.PNG",
+        image.insert("Dreamers", "src/images/3.jpg", "src/images/3.single room.PNG",
                 "src/images/3.business room.PNG", "src/images/3.five-person room.PNG", "src/images/3.four-person room.PNG");
-//        image.view_table();
+
     }
 
     public void establish_hotel() {

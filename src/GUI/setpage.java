@@ -43,13 +43,9 @@ public class setpage extends JFrame {
 
     ButtonGroup bg;
 
-    JComboBox jComboBox;
-    JToggleButton jButton2;
-
-    JButton jButton3;
     JButton jButton4;
     JButton jButton5;
-    JButton jButton6;
+
     static JButton head;
 
 
@@ -68,8 +64,7 @@ public class setpage extends JFrame {
 
 
         //此处读取第一个hotel的名字，并搜索第一个酒店内的所有房间类型，替换成roolist2
-//        String hotelname = "Open the fire";
-//        hetol2 = new hotel(hotelname);
+
         initial_hotel();
         room_list = new ArrayList<>();
         room_list = hotels.get(0).show_room_list();
@@ -147,10 +142,6 @@ public class setpage extends JFrame {
 
 
         //以下所有的roomlist2存放的为房间类型的数组
-        /*JLabel[] jLabel1 = new JLabel[room_list.size() * 2];
-        JButton[] jButtons2 = new JButton[room_list.size() * 2];
-        JButton[] jButtons3 = new JButton[room_list.size()];*/
-
 
         this.add(room_list);
 //        room_list = hotels.get(0).show_room_list();
@@ -215,7 +206,7 @@ public class setpage extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //此处为添加房间类型的按钮，无需改动
-                settypr setpage1 = new settypr();
+                new settypr();
 
             }
         });
@@ -319,7 +310,7 @@ public class setpage extends JFrame {
 
                     }
 
-                    Modify_information m = new Modify_information(jButtons1[hotelname].getText());
+                    new Modify_information(jButtons1[hotelname].getText());
 
 
                 }
@@ -474,7 +465,6 @@ public class setpage extends JFrame {
         } catch (Exception e) {
             e.printStackTrace();
 
-        } finally {
         }
 
 

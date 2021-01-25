@@ -26,7 +26,7 @@ public class Login extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JPasswordField jTextField2;
     String select;
     String account;
     String password;
@@ -54,7 +54,7 @@ public class Login extends javax.swing.JFrame implements ActionListener {
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
@@ -77,7 +77,7 @@ public class Login extends javax.swing.JFrame implements ActionListener {
         jLabel3.setText("Password:");
 
         jTextField2.setFont(new java.awt.Font("Calibri", 0, 22)); // NOI18N
-        password = jTextField2.getText();
+        password = String.valueOf(jTextField2.getPassword());
 
         jLabel4.setFont(new java.awt.Font("Calibri", 0, 22)); // NOI18N
         jLabel4.setText("Identity:");
@@ -177,7 +177,7 @@ public class Login extends javax.swing.JFrame implements ActionListener {
         //login
         if (e.getSource() == jButton1) {
             account = jTextField1.getText();
-            password = jTextField2.getText();
+            password = String.valueOf(jTextField2.getPassword());
             System.out.println("account: " + account + " password:" + password);
 
             if (select.equals("Customer")) {

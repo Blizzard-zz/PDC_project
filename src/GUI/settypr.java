@@ -6,9 +6,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class settypr extends JFrame {
-    public static hotel roomlist1;
-    static ArrayList<roomtype> roomlist2 = new ArrayList<>();
-
 
     JLabel jLabel;//title
     JLabel jLabel1;//username
@@ -17,8 +14,6 @@ public class settypr extends JFrame {
     JLabel jLabel4;//Employee registration code
 
     JPanel jPanel1;
-    JButton[] b;
-    JLabel[] a;
     JTextArea[] c;
     JButton[] d;
 
@@ -36,8 +31,6 @@ public class settypr extends JFrame {
     JButton jButton3;
     JButton jButton4;
     JButton jButton5;
-
-    //    public static employeer staff1 = new employeer();
 
     public settypr() {
         jPanel1 = new JPanel();
@@ -70,10 +63,6 @@ public class settypr extends JFrame {
         textArea.setLineWrap(true);
         textArea.setBounds(300, 300, 200, 68);
 
-
-        //jTextField3 = new JTextField(10);
-        //jTextField3.setBounds(300,300,200,40);
-
         jTextField4 = new JTextField(10);
         jTextField4.setBounds(300, 400, 200, 30);
 
@@ -93,7 +82,7 @@ public class settypr extends JFrame {
 
         jPanel1.add(jTextField1);
         jPanel1.add(jTextField2);
-        //jPanel1.add(jTextField3);
+
         jPanel1.add(jTextField4);
         listerner1();
         this.add(jPanel1);
@@ -123,21 +112,6 @@ public class settypr extends JFrame {
 
 
     }
-
-
-//    public void listerner2() {
-//
-//        jButton5.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                usepage setpage1 = new usepage();
-//
-//
-//            }
-//        });
-//
-//
-//    }
 
 
 }

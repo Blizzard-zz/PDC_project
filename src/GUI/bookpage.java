@@ -280,7 +280,7 @@ public class bookpage extends JFrame {
                 int specificdate1 = edicb3.getSelectedIndex();
 
                 if (month > month1) {
-                    int option2 = JOptionPane.showConfirmDialog(null, "You have chosen the wrong date", "提交提示", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+                    int option2 = JOptionPane.showConfirmDialog(null, "You have chosen the wrong date", "Notes", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
                 } else {
                     int date = (month1 - month) * 30 + specificdate1 - specificdate;
                     int option = JOptionPane.showConfirmDialog(null,
@@ -300,9 +300,9 @@ public class bookpage extends JFrame {
                         hotel.get_hotel.print();
 
                         int room_number = hotel.get_hotel.get_number(room_type_name);
-                        System.out.println("剩余 " + room_type_name + " 数量：" + room_number);
+//                        System.out.println("剩余 " + room_type_name + " 数量：" + room_number);
                         room_number = room_number - input_number;
-                        System.out.println("减去后的房间数量：" + room_number);
+//                        System.out.println("减去后的房间数量：" + room_number);
                         hotel.get_hotel.set(room_type_name, room_number);
                         table.hotel.insert(hotel.get_hotel);
 

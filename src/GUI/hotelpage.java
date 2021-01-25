@@ -11,31 +11,14 @@ import database.*;
 public class hotelpage {
     public hotel hotel;
     static ArrayList<roomtype> roomlist = new ArrayList<>();
-    JFrame frame = null;
+    JFrame frame;
     create_table table;
     int exchange;
-    JButton[] b;
-    JLabel[] a;
-    JTextArea[] c;
-    JButton[] d;
-
-    JLabel jLabel;
-    JLabel jlabel1;
-    JLabel jlabel2;
 
 
     JPanel jPanel1;
     JPanel jPanel2;
     JPanel jPanel3;
-    JButton jlabel4;
-    JButton jlabel3;
-
-
-    JButton jButton2;
-
-    JButton jButton6;
-
-    JTextArea textArea;
 
     JScrollPane scrollPane;
 
@@ -65,10 +48,7 @@ public class hotelpage {
 
 
         //此处为读取name酒店下，所有的roomtype和信息
-//        hotel = new hotel("YFY");
-//
-//        hotel = search_hotel_by_name(name);
-//        System.out.println("hotel_page_name: " + name);
+
         hotel = new hotel(name);
         hotel.get_hotel.print();
 
@@ -122,7 +102,7 @@ public class hotelpage {
             //读取并计算平均价格
             final double price1 = Math.random();
             final int price2 = (int) (500 + 200 * i + price1 * 100);
-            jLabel1[2 * i + 1] = new JLabel(String.valueOf("Price: " + price2));
+            jLabel1[2 * i + 1] = new JLabel("Price: " + price2);
             jLabel1[2 * i + 1].setBounds(400, 150, 200, 50);
             WestJP.add(jLabel1[2 * i + 1]);
 
@@ -133,7 +113,7 @@ public class hotelpage {
             WestJP.add(jButtons1[2 * i + 1]);
 
 
-            //每个房间的介绍，放进数组里，用descibe[i]来赋值给describetion
+            //每个房间的介绍，放进数组里，用describe[i]来赋值给description
             String describetion;
             describetion = roomlist.get(i).description;
             jTextAreas1[i] = new JTextArea(describetion, 3, 10);

@@ -227,10 +227,6 @@ public class SwingRegister extends JFrame implements ActionListener {
         return same;
     }
 
-//    public static void main(String[] args) {
-//        SwingRegister sw = new SwingRegister();
-//        sw.setVisible(true);
-//    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -276,8 +272,6 @@ public class SwingRegister extends JFrame implements ActionListener {
                                 System.out.println("Staff submit!!");
                             }
                         }
-//                        System.out.println("OK!submit!!");
-//                        System.exit(0);
 
                     } else {
                         JOptionPane.showMessageDialog(null, "The two passwords are inconsistent," +

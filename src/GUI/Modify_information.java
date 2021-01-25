@@ -15,7 +15,7 @@ public class Modify_information extends JFrame {
 
 
     public hotel hetol2;
-    ArrayList<roomtype> roomlist2 = new ArrayList<>();
+    ArrayList<roomtype> roomlist2;
     create_table table;
 
     JFrame frame;
@@ -25,10 +25,6 @@ public class Modify_information extends JFrame {
     JButton jButton3;
     JButton jButton5;
     static JButton head;
-
-
-    File file;
-    BufferedImage bi = null;//用于存储临时打开的图片流
 
 
     //此处是根据选择的酒店，来修改type的信息，传入的是酒店名
@@ -106,14 +102,12 @@ public class Modify_information extends JFrame {
                     String roomnumber = c[finalI * 2 + 1].getText();
                     try {
                         int b = Integer.valueOf(roomnumber).intValue();
-                        String a = typename;
-//                        System.out.println(b);
+
                         hotel hotel = new hotel(hotelname);
                         hotel.get_hotel.print();
 
-//                        System.out.println("type_name: " + a + " " + b);
                         //此处需加入存入语句，typename为读取的类型名字，roomnumber为读取的剩余房间数
-                        hotel.get_hotel.set(a, b);
+                        hotel.get_hotel.set(typename, b);
 
                         table.hotel.insert(hotel.get_hotel);
 
@@ -267,7 +261,6 @@ public class Modify_information extends JFrame {
         } catch (Exception e) {
             e.printStackTrace();
 
-        } finally {
         }
 
 

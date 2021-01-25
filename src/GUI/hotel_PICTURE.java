@@ -25,9 +25,7 @@ public class hotel_PICTURE {
     JButton nextBtn;
     JButton returnb;
     BufferedImage bi = null;
-    JButton comfirm;
-    JButton openFile;
-    File file;
+
     hotel hotel;
     roomtype room;
     int picturenumber = 0;
@@ -44,13 +42,6 @@ public class hotel_PICTURE {
         String path = room.path;
         picturelist.add(path);
 
-
-//        picturelist.add("src/GUI/2.jpg");
-
-
-        Font font = new Font("宋体", Font.BOLD, 20);
-
-
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600, 600);
@@ -62,7 +53,7 @@ public class hotel_PICTURE {
         ShowJP.setPreferredSize(new Dimension(600, 600));
 
         //对酒店某个房型的介绍的介绍，具体房型用变量roomtye查询
-        String introduction = "abcasfasfaaa";
+        String introduction;
         introduction = room.description;
         textArea = new JTextArea(introduction, 5, 10);
         Font font1 = new Font("宋体", Font.BOLD, 15);
