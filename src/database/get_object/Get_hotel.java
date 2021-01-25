@@ -46,7 +46,6 @@ public class Get_hotel {
             case "four_room":
                 return four_room.number;
 
-
         }
 
         return 0;
