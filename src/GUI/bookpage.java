@@ -11,8 +11,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 public class bookpage extends JFrame {
-    public static hotel roomlist1;
-    static ArrayList<roomtype> roomlist2 = new ArrayList<>();
+
     JFrame frame;
     create_table table;
     JComboBox edicb;
@@ -20,47 +19,32 @@ public class bookpage extends JFrame {
     JComboBox edicb2;
     JComboBox edicb3;
 
-
-    JLabel jLabel;
-
     JLabel jLabel1;
     JLabel jLabel2;
     JLabel jLabel3;
     JLabel jLabel4;
     JLabel jLabel5;
     JLabel jLabel6;
-    JLabel jLabel7;
-
-    JButton[] b;
-    JLabel[] a;
-    JTextArea[] c;
-    JButton[] d;
-
 
     JPanel jPanel1;
 
-
-    JPanel jPanel2;
-
-
     JButton jButton2;
     JButton jButton3;
-    JButton jButton6;
-    JButton jlabel3;
 
     JTextArea textArea1;
     JTextArea textArea2;
     JTextArea textArea3;
-    JTextArea textArea4;
 
-
-    JScrollPane scrollPane;
-    JScrollPane scrollPane1;
 
     String room_type_name;
     String hotel_name;
+    int price;
+    int room_number;
+    String name = "";
+    String phonenumber;
 
-    public bookpage(String typenmae, String hotel_name) {
+    public bookpage(String typenmae, String hotel_name, int prize) {
+        this.price = prize;
         table = new create_table();
         this.room_type_name = typenmae;
         this.hotel_name = hotel_name;
@@ -146,27 +130,43 @@ public class bookpage extends JFrame {
         jLabel1.setBounds(50, 200, 150, 20);
 
 
-        textArea1 = new JTextArea("1");
+        textArea1 = new JTextArea();
         textArea1.setBounds(200, 200, 100, 30);
-
+        String number = textArea1.getText();
+        if (number.length() != 0) {
+            room_number = Integer.parseInt(textArea1.getText());
+        } else {
+            room_number = 0;
+        }
 
         jLabel2 = new JLabel("Resident Name:");
         jLabel2.setBounds(50, 250, 150, 20);
 
 
         //读取用户首姓名和尾姓名
-        String name = "";
-        textArea2 = new JTextArea(name);
-        textArea2.setBounds(200, 250, 100, 30);
 
+        textArea2 = new JTextArea();
+        name = textArea2.getText();
+        textArea2.setBounds(200, 250, 100, 30);
+        if (name.length() != 0) {
+            name = textArea2.getText();
+        } else {
+            name = "";
+        }
         jLabel3 = new JLabel("Cell-phone Number:");
         jLabel3.setBounds(50, 300, 150, 20);
 
 
         //读取用户电话号码
-        String phonenumber = "";
-        textArea3 = new JTextArea(phonenumber);
+
+        textArea3 = new JTextArea();
+        phonenumber = textArea3.getText();
         textArea3.setBounds(200, 300, 100, 30);
+        if (phonenumber.length() != 0) {
+            phonenumber = textArea3.getText();
+        } else {
+            phonenumber = "";
+        }
 
 
         jLabel4 = new JLabel("Please check in after 2 pm. Thank you");
@@ -259,6 +259,20 @@ public class bookpage extends JFrame {
         jButton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                room_number = Integer.parseInt(textArea1.getText());
+                String number = textArea1.getText();
+                if (number.length() != 0) {
+                    room_number = Integer.parseInt(textArea1.getText());
+                } else {
+                    room_number = 0;
+                }
+
+                name = textArea2.getText();
+                phonenumber = textArea3.getText();
+
+                System.out.println("name: " + name + " number: " + room_number + " phone: " + phonenumber);
+
                 int month = edicb.getSelectedIndex();
                 int specificdate = edicb1.getSelectedIndex();
 
@@ -269,7 +283,9 @@ public class bookpage extends JFrame {
                     int option2 = JOptionPane.showConfirmDialog(null, "You have chosen the wrong date", "提交提示", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
                 } else {
                     int date = (month1 - month) * 30 + specificdate1 - specificdate;
-                    int option = JOptionPane.showConfirmDialog(null, "You have a reservation for " + String.valueOf(date) + " days", "提交提示", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+                    int option = JOptionPane.showConfirmDialog(null,
+                            "You want to book " + room_number + " room for " + name + " " + String.valueOf(date) + " days?"
+                                    + ". The phone is " + phonenumber, "Notes", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 
                     if (option == 2) {
 

@@ -17,12 +17,10 @@ public class Get_customer {
         this.phone_number = phone;
         this.password = password;
         this.security_question = question;
-//        print();
+
     }
 
     public void print() {
-
-//        System.out.println("successfully create customer: "+id+" "+firstname+" "+lastname+" "+phone_number+" "+password+" "+security_question);
         System.out.println("id: " + id + "\n" +
                 "username:" + username + "\n" +
                 "firstname:" + firstname + "\n" +

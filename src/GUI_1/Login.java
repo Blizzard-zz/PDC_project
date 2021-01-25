@@ -197,15 +197,13 @@ public class Login extends javax.swing.JFrame implements ActionListener {
         if (e.getSource() == jButton2) {
             new SwingRegister();
         }
-
         //find password
         if (e.getSource() == jButton3) {
-            new Retrive();
+            new Retrieve();
         }
     }
 
-    public static void main(String args[]) {
-
+    public static void start() {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -230,6 +228,12 @@ public class Login extends javax.swing.JFrame implements ActionListener {
                 new Login().setVisible(true);
             }
         });
+
+
+    }
+
+    public static void main(String args[]) {
+        start();
     }
 
 

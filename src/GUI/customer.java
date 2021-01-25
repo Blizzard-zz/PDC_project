@@ -158,10 +158,10 @@ public class customer {
     }
 
 
-    public static void main(String[] args) {
-
-        customer c = new customer("yfy");
-    }
+//    public static void main(String[] args) {
+//
+//        customer c = new customer("yfy");
+//    }
 
 
 }

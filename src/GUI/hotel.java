@@ -48,6 +48,24 @@ public class hotel {
 
     }
 
+    public roomtype get_room_type_by_name(String name) {
+
+        switch (name) {
+            case "single_room":
+                return roomtype1;
+            case "double_room":
+                return roomtype2;
+            case "tripe_room":
+                return roomtype3;
+            case "four_room":
+                return roomtype4;
+
+        }
+
+        return null;
+    }
+
+
     public void add(roomtype room) {
         roomlist1.add(room);
     }

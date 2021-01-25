@@ -24,6 +24,7 @@ public class connection {
             e.printStackTrace();
         }
         try {
+
             connection = DriverManager.getConnection(url, user, password);
 
             statement = connection.createStatement();

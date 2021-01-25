@@ -148,10 +148,11 @@ public class hotelpage {
             int finalI = i;
             jButtons1[2 * i].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    String typename1=jLabel1[2 * finalI].getText();
+                    String typename1 = jLabel1[2 * finalI].getText();
                     //读取点击图片对应的房型名，打开循环浏览图片页面
 
-                    hotel_PICTURE h = new hotel_PICTURE();
+                    hotel_PICTURE h = new hotel_PICTURE(hotel);
+
                     h.init(typename1);
 
                 }
@@ -162,8 +163,7 @@ public class hotelpage {
                 public void actionPerformed(ActionEvent e) {
                     String typename1=jLabel1[2 * finalI1].getText();
                     //打开预订页面，把选择的房型名字输入
-                    bookpage b = new bookpage(typename1, hotel.hotel_name);
-
+                    new bookpage(typename1, hotel.hotel_name, price2);
                 }
             });
 

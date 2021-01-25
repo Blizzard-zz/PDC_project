@@ -42,20 +42,16 @@ public class Staff extends Table_super {
     public void insert(String username, String firstname, String lastname, String phone, String password, String register, String question) {
 
         ArrayList<Integer> list = get_id_list(table_name1);
-
         boolean staff_exist1 = judge_something_exist_by_phone_or_username(phone);
         boolean staff_exist2 = judge_something_exist_by_phone_or_username(username);
 
         if (staff_exist1 && staff_exist2) {
             int pre_id = search_id_by_phone_or_username(phone);
-//            System.out.println("pre id = " + pre_id);
             update_value(pre_id, username, firstname, lastname, phone, password, register, question);
         } else {
             int last_id = create_new_id(list);
-//            System.out.println("last id = " + last_id);
             insert_value(last_id, username, firstname, lastname, phone, password, register, question);
         }
-
     }
 
     private void update_value(int pre_id, String username, String firstname, String lastname, String phone, String password, String register, String question) {

@@ -28,24 +28,19 @@ public class create_table {
 
 
         customer = new Customer(list, c, "customer");
-//        customer.clean_table(customer.table_name1);
-        establish_customer();
-
-
         staff = new Staff(list, c, "staff");
-//        staff.clean_table(staff.table_name1);
-        establish_staff();
-
         hotel = new Hotel(list, c, "hotel");
-
-
-//        hotel.view_table();
-//        establish_hotel();
-
         image = new Image(list, c, "image");
-//        establish_image();
+        clean_all_table(customer, staff, hotel);
+        establish_all();
 
+    }
 
+    public void establish_all() {
+        establish_customer();
+        establish_staff();
+        establish_hotel();
+        establish_image();
     }
 
     public void establish_image() {
@@ -55,7 +50,7 @@ public class create_table {
                 "src/images/2.business room.PNG", "src/images/2.three-person room.PNG", "src/images/2.four-person room.PNG");
         image.insert("Dreamers", "src/images/3.standard room.PNG", "src/images/3.single room.PNG",
                 "src/images/3.business room.PNG", "src/images/3.five-person room.PNG", "src/images/3.four-person room.PNG");
-        image.view_table();
+//        image.view_table();
     }
 
     public void establish_hotel() {
@@ -118,34 +113,22 @@ public class create_table {
                 double_number2, double_description2, tripe_number2, tripe_description2, four_number2, four_description2);
 
         hotel.insert(get_hotel2);
-        hotel.view_table();
+//        hotel.view_table();
 
 
     }
 
     public void establish_staff() {
-        //        staff.clean_table(staff.table_name1);
         staff.insert("staff01", "Ada", "Miller", "13757689435",
                 "abcdef", "ADLKOJ908", "Daniel");
         staff.insert("staff02", "Charlie", "Smith", "13957876543",
                 "ghijkl", "LAKNE736", "Joshua");
-//        staff.view_table();
-        int id2 = staff.search_id_by_phone_or_username("staff01");
-//        System.out.println("ID2 = " + id2);
-//        Get_staff get_staff = staff.get(id2);
-//        get_staff.print();
-////        int id2 = customer.search_id_by_phone_or_username("Tree");
-//        staff.delete(id2);
-
-//        System.out.println();
 
     }
 
     public void establish_customer() {
         customer.insert("Scar", "Albus", "Dumbledore", "13758884998", "abcdef", "Dobby");
         customer.insert("Professor", "Severus", "Snape", "13968187236", "ghijkl", "Black");
-//        customer.insert("Black", "Bob", "White", "123456789", "991224wl", "akkk");
-//        customer.view_table();
 
     }
 
@@ -182,11 +165,6 @@ public class create_table {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-//        System.out.print("table list: ");
-//        for (String s : list) {
-//            System.out.print(s + " ");
-//        }
         return list;
     }
 

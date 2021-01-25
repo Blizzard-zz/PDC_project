@@ -161,13 +161,6 @@ public class SwingRegister extends JFrame implements ActionListener {
         phone_number = phone1.getText();
         panel.add(phone1);
 
-
-//        String question = "What's your father's name?";
-//        qusetion = new JLabel("Qusetion1:                     " + question);
-//        qusetion.setFont(new Font("Calibri", Font.BOLD, 18));
-//        qusetion.setBounds(60, 290, 400, 30);
-//        panel.add(qusetion);
-
         jComboBox1 = new JComboBox();
         jComboBox1.addItem("What's your father's name?");
 
@@ -191,7 +184,6 @@ public class SwingRegister extends JFrame implements ActionListener {
         ediLbl.setBounds(60, 370, 90, 30);
         panel.add(ediLbl);
         ediLbl.setFont(new Font("Calibri", Font.BOLD, 18));
-
 
         jComboBox = new JComboBox();
         jComboBox.addItem("Customer");
@@ -255,39 +247,45 @@ public class SwingRegister extends JFrame implements ActionListener {
         }
         //submit
         if (e.getSource() == btn) {
-            int option = JOptionPane.showConfirmDialog(null, "你确定提交吗？", "提交提示", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+            int option = JOptionPane.showConfirmDialog(null, "Are you sure？", "Notes", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 
+            password1 = String.valueOf(pwd.getPassword());
+            password2 = String.valueOf(id.getPassword());
+            same = judge_same(password1, password2);
+            username = nameTxt.getText();
+            first_name = firstname1.getText();
+            last_name = lastname1.getText();
+            phone_number = phone1.getText();
+            security_question = qusetion1.getText();
+            staff_register = register.getText();
+            boolean is_empty = is_empty();
             if (option == JOptionPane.OK_OPTION) {
-                password1 = String.valueOf(pwd.getPassword());
-                password2 = String.valueOf(id.getPassword());
-                same = judge_same(password1, password2);
-                username = nameTxt.getText();
-                first_name = firstname1.getText();
-                last_name = lastname1.getText();
-                phone_number = phone1.getText();
-                security_question = qusetion1.getText();
-                staff_register = register.getText();
-                if (same) {
-                    //写入数据
-                    if (select.equals("Customer")) {
-                        System.out.println(username + " " + first_name + " " + last_name + " " + phone_number + " " + password1 + " " + security_question);
-                        table.customer.insert(username, first_name, last_name, phone_number, password1, security_question);
-                    } else if (select.equals("Staff")) {
-                        if (list.contains(staff_register)) {
-                            System.out.println(username + " " + first_name + " " + last_name + " " + phone_number + " " + password1 + " " + staff_register + " " + security_question);
-                            table.staff.insert(username, first_name, last_name, phone_number, password1, staff_register, security_question);
-                        }
-                    }
-                    System.out.println("OK!submit!!");
-                    System.exit(0);
+                if (is_empty) {
 
                 } else {
-//                    int option1 = JOptionPane.showConfirmDialog(null, "两次密码输入不正确", "提交错误", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
-                    JOptionPane.showMessageDialog(null, "两次密码输入不一致," +
-                            "please input again.", "incorrect!", JOptionPane.ERROR_MESSAGE);
+                    if (same) {
+                        //写入数据
+                        if (select.equals("Customer")) {
+                            System.out.println(username + " " + first_name + " " + last_name + " " + phone_number + " " + password1 + " " + security_question);
+                            table.customer.insert(username, first_name, last_name, phone_number, password1, security_question);
+                            System.out.println("Customer submit!!");
+                        } else if (select.equals("Staff")) {
+                            if (list.contains(staff_register)) {
+                                System.out.println(username + " " + first_name + " " + last_name + " " + phone_number + " " + password1 + " " + staff_register + " " + security_question);
+                                table.staff.insert(username, first_name, last_name, phone_number, password1, staff_register, security_question);
+                                System.out.println("Staff submit!!");
+                            }
+                        }
+//                        System.out.println("OK!submit!!");
+//                        System.exit(0);
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "The two passwords are inconsistent," +
+                                "please input again.", "incorrect!", JOptionPane.ERROR_MESSAGE);
+
+                    }
 
                 }
-
 
             } else {
                 System.out.println("NO!cancel!!");
@@ -305,6 +303,35 @@ public class SwingRegister extends JFrame implements ActionListener {
 
     }
 
+    public boolean is_empty() {
+        boolean _empty = false;
+        password1 = String.valueOf(pwd.getPassword());
+        password2 = String.valueOf(id.getPassword());
+        same = judge_same(password1, password2);
+        username = nameTxt.getText();
+        first_name = firstname1.getText();
+        last_name = lastname1.getText();
+        phone_number = phone1.getText();
+        security_question = qusetion1.getText();
+        if (username.length() == 0 || first_name.length() == 0 || last_name.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Name can't be empty," +
+                    "please input again.", "incorrect!", JOptionPane.ERROR_MESSAGE);
+            _empty = true;
+        } else if (password1.length() == 0 || password2.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Passwords can't be empty," +
+                    "please input again.", "incorrect!", JOptionPane.ERROR_MESSAGE);
+            _empty = true;
+        } else if (phone_number.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Phone_number can't be empty," +
+                    "please input again.", "incorrect!", JOptionPane.ERROR_MESSAGE);
+            _empty = true;
+        } else if (security_question.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Question answer can't be empty," +
+                    "please input again.", "incorrect!", JOptionPane.ERROR_MESSAGE);
+            _empty = true;
+        }
+        return _empty;
+    }
 }
 
 

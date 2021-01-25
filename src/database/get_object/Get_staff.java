@@ -19,7 +19,7 @@ public class Get_staff {
         this.password = password;
         this.register = register;
         this.question = question;
-//        print();
+
     }
 
     public void print() {

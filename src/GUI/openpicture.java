@@ -16,12 +16,22 @@ public class openpicture implements ActionListener {
     JButton comfirm;
     JButton openFile;
     File file;
-    String path1=null;
+    String path1 = null;
+    String room_type_name;
+    hotel hotel;
 
     //此处用于为传入的roomtype添加新的图片，
+    public openpicture(String type_name, hotel hotel) {
+        this.room_type_name = type_name;
+        this.hotel = hotel;
+
+    }
+
+
     public void init(String typrname) {
-        openFile = new JButton("打开图片");
-        comfirm = new JButton("确认图片");
+        this.room_type_name = typrname;
+        openFile = new JButton("open picture");
+        comfirm = new JButton("confirm");
         Font font = new Font("宋体", Font.BOLD, 20);
         comfirm.setFont(font);
         openFile.setFont(font);
@@ -38,8 +48,6 @@ public class openpicture implements ActionListener {
         ShowJP.setBorder(BorderFactory.createTitledBorder("add the picture"));
         ShowJP.setPreferredSize(new Dimension(1100, 800));
 
-
-
         frame.add(ShowJP, BorderLayout.CENTER);
 
         JPanel WestJP = new JPanel(new FlowLayout());
@@ -53,7 +61,6 @@ public class openpicture implements ActionListener {
         EastJP.setPreferredSize(new Dimension(550, 200));
 
 
-
         openFile.setSize(200, 100);
         comfirm.setSize(50, 50);
 
@@ -65,15 +72,15 @@ public class openpicture implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
     }
+
     public void listerner1() {
 
         comfirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(path1==null){
+                if (path1 == null) {
                     frame.dispose();
-                }
-                else{
+                } else {
                     //此处存入path1，为新添加图片,类型名称为roomtype
 
 
@@ -83,7 +90,6 @@ public class openpicture implements ActionListener {
 
             }
         });
-
 
 
     }
@@ -142,7 +148,7 @@ public class openpicture implements ActionListener {
 
 
                     label.setIcon(image);
-                    path1=file.getPath();
+                    path1 = file.getPath();
                 }
             } catch (IOException e) {
                 return;

@@ -16,35 +16,14 @@ public class Modify_information extends JFrame {
 
     public hotel hetol2;
     ArrayList<roomtype> roomlist2 = new ArrayList<>();
-    ArrayList<roomtype> hotellist = new ArrayList<>();
     create_table table;
 
     JFrame frame;
-    JLabel jLabel;//title
-    JLabel jLabel1;//username
-    JLabel jLabel2;//password
 
     JPanel jPanel1;
 
-
-    JTextArea textArea1;
-    JTextArea textArea2;
-    JTextArea textArea3;
-    JTextArea textArea4;
-
-    ButtonGroup bg;
-
-    JComboBox jComboBox;
-    JToggleButton jButton2;
-
-    JButton[] b;
-    JLabel[] a;
-    JTextArea[] c;
-    JButton[] d;
     JButton jButton3;
-    JButton jButton4;
     JButton jButton5;
-    JButton jButton6;
     static JButton head;
 
 
@@ -132,10 +111,10 @@ public class Modify_information extends JFrame {
                         hotel hotel = new hotel(hotelname);
                         hotel.get_hotel.print();
 
-                        System.out.println("type_name: " + a + " " + b);
+//                        System.out.println("type_name: " + a + " " + b);
                         //此处需加入存入语句，typename为读取的类型名字，roomnumber为读取的剩余房间数
                         hotel.get_hotel.set(a, b);
-                        hotel.get_hotel.print();
+
                         table.hotel.insert(hotel.get_hotel);
 
                     } catch (NumberFormatException a) {
@@ -151,9 +130,8 @@ public class Modify_information extends JFrame {
                 public void actionPerformed(ActionEvent e) {
 
                     //System.out.println(c[finalI1 * 2].getText());
-                    view_the_picture v = new view_the_picture();
+                    view_the_picture v = new view_the_picture(hetol2);
                     v.init(c[finalI1 * 2].getText());
-
 
                 }
 

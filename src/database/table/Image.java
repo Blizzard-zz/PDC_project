@@ -28,7 +28,7 @@ public class Image extends Table_super {
                 String sqlCreateTable = "CREATE TABLE " + table_name1 + " (ID INT, "
                         + "hotel_name VARCHAR (100),hotel_path VARCHAR(100),single_room_path VARCHAR (100),double_room_path VARCHAR (100)," +
                         "tripe_room_path VARCHAR (100),four_room_path VARCHAR (100))";
-                System.out.println(sqlCreateTable);
+//                System.out.println(sqlCreateTable);
                 connection.statement.executeUpdate(sqlCreateTable);
                 System.out.println("table: " + table_name1 + " create success");
             } else {
@@ -63,8 +63,6 @@ public class Image extends Table_super {
         ArrayList<Integer> list = get_id_list(table_name1);
 
         boolean hotel_exist = judge_hotel_exist(hotel_name);
-
-
         try {
             int pre_id = search_id_by_hotel_name(hotel_name);
             ResultSet resultSet = connection.statement.executeQuery("select * from " + table_name1 + " where id = " + pre_id);
@@ -74,14 +72,14 @@ public class Image extends Table_super {
                         + "',single_room_path = '" + single_path + "',double_room_path = '" + double_path + "',tripe_room_path = '" + tripe_path
                         + "',four_room_path = '" + four_path + "' where id = " + pre_id;
 
-                System.out.println(update);
+//                System.out.println(update);
                 connection.statement.executeUpdate(update);
 
             } else {
                 int last_id = create_new_id(list);
                 String insert = "insert into " + table_name1 + " values (" + last_id + ",'" + hotel_name + "','" + hotel_path
                         + "','" + single_path + "','" + double_path + "','" + tripe_path + "','" + four_path + "')";
-                System.out.println(insert);
+//                System.out.println(insert);
                 c.statement.executeUpdate(insert);
             }
 

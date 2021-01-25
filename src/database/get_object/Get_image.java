@@ -10,8 +10,6 @@ public class Get_image {
     public String four_path;
 
 
-    Get_hotel get_hotel;
-
     public Get_image(int id, String hotel_name, String path, String single_path, String double_path, String tripe_path, String four_path) {
         this.id = id;
         this.hotel_name = hotel_name;
@@ -20,7 +18,7 @@ public class Get_image {
         this.double_path = double_path;
         this.tripe_path = tripe_path;
         this.four_path = four_path;
-//        print();
+
     }
 
 

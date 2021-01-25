@@ -28,16 +28,24 @@ public class hotel_PICTURE {
     JButton comfirm;
     JButton openFile;
     File file;
+    hotel hotel;
+    roomtype room;
     int picturenumber = 0;
 
+    public hotel_PICTURE(hotel hotel) {
+        this.hotel = hotel;
+    }
+
     //此处是显示对应房型的图片
-    public void init(String typrname) {
+    public void init(String room_typr_name) {
         //在这加一个循环读取同一个房间类型的所有的图片路径，加入picturelist中
-
-        picturelist.add("src/GUI/2.jpg");
         picturelist.add("src/GUI/1.jpg");
+        room = hotel.get_room_type_by_name(room_typr_name);
+        String path = room.path;
+        picturelist.add(path);
 
 
+//        picturelist.add("src/GUI/2.jpg");
 
 
         Font font = new Font("宋体", Font.BOLD, 20);
@@ -55,8 +63,9 @@ public class hotel_PICTURE {
 
         //对酒店某个房型的介绍的介绍，具体房型用变量roomtye查询
         String introduction = "abcasfasfaaa";
+        introduction = room.description;
         textArea = new JTextArea(introduction, 5, 10);
-        Font font1 = new Font("宋体", Font.BOLD, 30);
+        Font font1 = new Font("宋体", Font.BOLD, 15);
 
         //此处显示的是第一个图片，可以直接把设置好的路径改成读取picturelist[0]的图片就成
 

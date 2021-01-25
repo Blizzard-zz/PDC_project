@@ -37,8 +37,7 @@ public class settypr extends JFrame {
     JButton jButton4;
     JButton jButton5;
 
-    public static client client1 = new client();
-//    public static employeer staff1 = new employeer();
+    //    public static employeer staff1 = new employeer();
 
     public settypr() {
         jPanel1 = new JPanel();

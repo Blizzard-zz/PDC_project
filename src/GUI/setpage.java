@@ -28,12 +28,11 @@ public class setpage extends JFrame {
     public hotel hotel;
     public hotel hotel1;
     public hotel hotel3;
+    public hotel transfer_hotel;
     ArrayList<hotel> hotels = new ArrayList<>();
     ArrayList<roomtype> room_list;
 
     JFrame frame;
-
-    JLabel jLabel;
 
     JPanel jPanel1;
 
@@ -115,25 +114,20 @@ public class setpage extends JFrame {
 
                     remove(room_list);
 
-                    System.out.println(1111);
+
                     //此处返回的是选中的酒店名
                     String HOTELNAME = jButtons1[finalI1].getText();
                     System.out.println(HOTELNAME);
                     //根据酒店名字，搜索该酒店的类型，把输入房间类型的数组换成当前酒店的数组
                     hotel hotel = new hotel(HOTELNAME);
                     //此处更新为选中酒店的房间类型数组
-
+                    transfer_hotel = hotel;
                     room_list = hotel.show_room_list();
 
-                    System.out.println(room_list.toString());
+//                    System.out.println(room_list.toString());
                     add(room_list);
                     //System.out.println(room_list);
 
-
-                    //jPanel1.removeAll();
-                    //jPanel1.revalidate();
-                    //frame.invalidate();
-                    //frame.repaint();
                     frame.validate();
                     //frame.setVisible(true);
 
@@ -194,6 +188,7 @@ public class setpage extends JFrame {
 
         hotel3 = new hotel("Dreamers");
 
+        transfer_hotel = null;
         hotels.add(hotel);
         hotels.add(hotel1);
         hotels.add(hotel3);
@@ -222,7 +217,6 @@ public class setpage extends JFrame {
                 //此处为添加房间类型的按钮，无需改动
                 settypr setpage1 = new settypr();
 
-
             }
         });
 
@@ -247,14 +241,14 @@ public class setpage extends JFrame {
     public void add(ArrayList<roomtype> room_list) {
 
         for (int i = 0; i < room_list.size(); i++) {
-            System.out.println(123456);
+//            System.out.println(123456);
             //System.out.println("i = " + i);
 //            room_list = hotels.get(i).show_room_list();
             //show里存放的为房间类型名称的数组，通过roolist2[i]调用赋值
             String show = room_list.get(i).roomtypename;
 
             //此处存放的是各个房间类型的剩余房间数量，
-            String show1 = "剩余房间数量" + String.valueOf(room_list.get(i).room_number);
+            String show1 = "Number of rooms remaining" + String.valueOf(room_list.get(i).room_number);
             System.out.println(show + "  " + "number = " + show1);
 
             jLabel1[2 * i] = new JLabel(show);
@@ -290,7 +284,7 @@ public class setpage extends JFrame {
                     String typename = jLabel1[2 * finalI1].getText();
 
 
-                    view_the_picture h = new view_the_picture();
+                    view_the_picture h = new view_the_picture(transfer_hotel);
 
                     System.out.println(typename);
                     h.init(typename);
@@ -302,9 +296,9 @@ public class setpage extends JFrame {
             jButtons2[2 * i + 1].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     //此处为添加图片的按钮,无需修改
-                    openpicture picture = new openpicture();
-                    String typename = jLabel1[2 * finalI].getText();
 
+                    String typename = jLabel1[2 * finalI].getText();
+                    openpicture picture = new openpicture(typename, hotel);
                     picture.init(typename);
 
                     System.out.println(1111);
@@ -390,7 +384,7 @@ public class setpage extends JFrame {
 			/*获取文件是否为图片，如果能够正常的获取到一张图片的宽高属性，
 			那肯定这是一张图片，因为非图片文件是获取不到它的宽高属性的*/
                 if (bi == null || bi.getHeight() <= 0 || bi.getWidth() <= 0) {
-                    head.setText("您选择的不是一张图片，请从新选择！");
+                    head.setText("You have not selected a picture, please choose a new one!");
                     return null;
                 } else {
                     String path = file.getPath();

@@ -19,24 +19,26 @@ public class view_the_picture {
     public List<String> picturelist = new ArrayList<>();
 
     JLabel label1 = new JLabel();//用于显示图片
-
-
     JButton previousBtn;
     JButton nextBtn;
     JButton returnb;
     BufferedImage bi = null;//用于存储临时打开的图片流
-    JButton comfirm;
-    JButton openFile;
-    File file;
     int picturenumber = 0;
+    roomtype room;
+    hotel hotel;
 
+    public view_the_picture(hotel hotel) {
+        System.out.println("view_hotel: " + hotel.hotel_name);
+        this.hotel = hotel;
+    }
 
     //这个是根据输入的房间类型，读取对应的图片，加在picturelist里
 
     public void init(String typrname) {
         //在这加一个循环读取typrname下的图片路径，加入picturelist中
-
-        picturelist.add("src/GUI/2.jpg");
+        room = hotel.get_room_type_by_name(typrname);
+        String path = room.path;
+        picturelist.add(path);
         picturelist.add("src/GUI/1.jpg");
         Font font = new Font("宋体", Font.BOLD, 25);
 
@@ -47,20 +49,20 @@ public class view_the_picture {
         frame.setLayout(new BorderLayout());
 
         JPanel ShowJP = new JPanel(new BorderLayout());
-        ShowJP.setBorder(BorderFactory.createTitledBorder("view the  "+typrname +"  picture"));
+        ShowJP.setBorder(BorderFactory.createTitledBorder("view the  " + typrname + "  picture"));
         ShowJP.setFont(font);
         ShowJP.setPreferredSize(new Dimension(600, 600));
 
 
         //这边读取的是对这个房间类型的介绍，直接赋值给introduction就行
-        String introduction = "abcasfasfaaa";
+        String introduction;
+        introduction = room.description;
         textArea = new JTextArea(introduction, 5, 10);
-        Font font1 = new Font("宋体", Font.BOLD, 30);
+        Font font1 = new Font("宋体", Font.BOLD, 15);
 
         //此处显示的是第一个图片，可以直接把设置好的路径改成读取picturelist[0]的图片就成
         ImageIcon image = new ImageIcon("src/GUI/1.jpg");
         image = new ImageIcon(image.getImage().getScaledInstance(350, 350, Image.SCALE_DEFAULT));
-
 
 
         //以下无需改动
@@ -85,8 +87,6 @@ public class view_the_picture {
         textArea.setEditable(false);
         textArea.setOpaque(false);
         WestJP.add(textArea, BorderLayout.SOUTH);
-
-
 
 
         previousBtn = new JButton(new ImageIcon("src/GUI/left.png"));
@@ -121,8 +121,8 @@ public class view_the_picture {
         listerner2();
         listerner3();
         frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
     }
 
